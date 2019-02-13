@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  head
+    include _head.pug
+  body
+    main
+      article
+        #page
+          input(type="text", id="username-form" value="sass")
+          span /
+          input(type="text", id="reponame-form" value="sass")
+          button#request request
+          #show-window
