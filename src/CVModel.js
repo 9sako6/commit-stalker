@@ -3,6 +3,7 @@ class CVModel {
     // init
     this.username = "";
     this.reponame = "";
-    this.responseJSON = "";
+    this.responseJSON = null;
+    this.commitNum = null;
   }
 }
