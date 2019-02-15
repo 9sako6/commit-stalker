@@ -1,2 +1,4 @@
-all: index.pug
-	pug index.pug --pretty
+SRC = public/index.pug
+
+all: $(SRC)
+	pug $(SRC) --pretty

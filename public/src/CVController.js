@@ -5,8 +5,6 @@ class CVController {
     this.view = new CVView();
     // event
     this.request(this.model, this.view);
-    nodeTest();
-    // this._getCommitNum(this.model, this.view);
   }
 
   request(model, view) {
@@ -54,28 +52,6 @@ class CVController {
     request.send();
   }
 
-  hoge() {
-    // model.username = $("#username-form").val();
-    // model.reponame = $("#reponame-form").val();
-    const request = new XMLHttpRequest();
-    var url = `https://github.com/sass/sass/`;
-    request.open("GET", url);
-    request.addEventListener("load", (event) => {
-      // error
-      if (event.target.status !== 200) {
-        console.log(`${event.target.status}: ${event.target.statusText}`);
-        return;
-      }
-      // success
-      console.log(event.target.status);
-      console.log(event.target.responseText);
-      // let resJSON = JSON.parse(event.target.responseText);
-      // model.commitNum = sum(resJSON.all);
-      // console.log(model.commitNum);
-      // view.showResponse(model.commitNum);
-    });
-    request.send();
-  }
 
 
 }
