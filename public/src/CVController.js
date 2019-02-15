@@ -5,6 +5,7 @@ class CVController {
     this.view = new CVView();
     // event
     this.request(this.model, this.view);
+    nodeTest();
     // this._getCommitNum(this.model, this.view);
   }
 
