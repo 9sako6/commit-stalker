@@ -53,11 +53,11 @@ class CVController {
     request.send();
   }
 
-  _getCommitNum(model, view) {
-    model.username = $("#username-form").val();
-    model.reponame = $("#reponame-form").val();
+  hoge() {
+    // model.username = $("#username-form").val();
+    // model.reponame = $("#reponame-form").val();
     const request = new XMLHttpRequest();
-    var url = `https://api.github.com/repos/${model.username}/${model.reponame}/stats/participation`;
+    var url = `https://github.com/sass/sass/`;
     request.open("GET", url);
     request.addEventListener("load", (event) => {
       // error
@@ -67,13 +67,14 @@ class CVController {
       }
       // success
       console.log(event.target.status);
-      // console.log(event.target.responseText);
-      let resJSON = JSON.parse(event.target.responseText);
-      model.commitNum = sum(resJSON.all);
-      console.log(model.commitNum);
+      console.log(event.target.responseText);
+      // let resJSON = JSON.parse(event.target.responseText);
+      // model.commitNum = sum(resJSON.all);
+      // console.log(model.commitNum);
       // view.showResponse(model.commitNum);
     });
     request.send();
   }
+
 
 }
