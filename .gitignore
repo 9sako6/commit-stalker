@@ -1,2 +1,4 @@
-*.json
+sample
 .DS_Store
+functions
+public
