@@ -3,3 +3,5 @@ sample
 node_modules
 /.firebase
 /.firebaserc
+firebase-debug.log
+.eslintrc.json

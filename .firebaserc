@@ -1,5 +1,6 @@
 {
   "projects": {
-    "commit-stalker": "commit-stalker"
+    "commit-stalker": "commit-stalker",
+    "default": "commit-stalker"
   }
 }
