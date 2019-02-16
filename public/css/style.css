@@ -1,11 +1,82 @@
 body {
   background-color: #fff;
-}
+  font-family: -apple-system, 'BlinkMacSystemFont'; }
+
+input[type=text] {
+  font-size: 16px; }
+
+input {
+  border-radius: 5px; }
+
+button {
+  border-radius: 6px;
+  font-size: 16px;
+  height: 24px; }
+
+#page-form {
+  width: 75px; }
+
+#info-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 90%;
+  left: 0;
+  width: 100vw;
+  background-color: #24292e;
+  padding: 1em;
+  color: #fff; }
+
+.forms {
+  display: inline-block;
+  position: absolute;
+  width: 800px; }
+
+.path-divider {
+  font-size: 18;
+  margin: .25em; }
+
+#show-window {
+  margin-top: 20px;
+  position: fixed;
+  overflow: auto;
+  top: 10%;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.commits-list-item {
+  list-style: none;
+  border-top: 1px solid #eaecef;
+  margin: 0;
+  padding: 0; }
+
+.commits-list-item:hover {
+  background-color: #f5fbff; }
+
+.table-list-cell {
+  display: table-cell;
+  font-size: 12px;
+  padding: 8px 10px;
+  position: relative;
+  vertical-align: top;
+  border-left: 1px solid #eaecef; }
 
 .commit-title {
+  margin: 0;
+  padding: 0; }
 
-}
 .message {
   font-size: 14px;
-  color: #24292e;
-}
+  color: #24292e; }
+
+#commit-num {
+  color: #fff;
+  margin: 5px;
+  height: 20px; }
+
+.text-emphasized {
+  font-weight: 600; }
+
+/*# sourceMappingURL=style.css.map */
