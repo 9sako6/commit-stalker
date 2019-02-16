@@ -11,30 +11,34 @@ class CVController {
     // basic request
     $("#request").on("click", () => {
       model.username = $("#username-form").val();
-      model.reponame = $("#reponame-form").val();
-      model.pageNum = $("#pagenum-form").val();
-      this._request(model, view);
+      model.repo = $("#repo-form").val();
+      model.page = $("#page-form").val();
+      this.getCommitNum(model, view);
+      this.getGitHubAPI(model, view);
     });
     // the latest page request
     $("#latest-request").on("click", () => {
       model.username = $("#username-form").val();
-      model.reponame = $("#reponame-form").val();
-      model.pageNum = 1;
-      this._request(model, view);
+      model.repo = $("#repo-form").val();
+      model.page = 1;
+      this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
     });
     // the oldest page request
-    $("#latest-request").on("click", () => {
+    $("#oldest-request").on("click", () => {
       model.username = $("#username-form").val();
-      model.reponame = $("#reponame-form").val();
-      model.pageNum = 1;
-      this._request(model, view);
+      model.repo = $("#repo-form").val();
+      let lastPage = model.commitNum.replace(',', '') / 100 | 0 + 1;
+      model.page = lastPage;
+      this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
     });
   }
 
-  _request(model, view) {
+  getGitHubAPI(model, view) {
     // GET request via GitHub API
     const request = new XMLHttpRequest();
-    var url = `https://api.github.com/repos/${model.username}/${model.reponame}/commits?page=${model.pageNum}&per_page=100`;
+    var url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
     request.open("GET", url);
     request.addEventListener("load", (event) => {
       // error
@@ -52,6 +56,17 @@ class CVController {
     request.send();
   }
 
-
+  getCommitNum(model, view) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET",`/commits?username=${model.username}&repo=${model.repo}&page=${model.page}`);
+    xhr.addEventListener("load", (e) => {
+      var commitInfo = JSON.parse(xhr.responseText);
+      model.commitNum = commitInfo.commitNum;
+      // view.showCommitNum(model.commitNum);
+      console.log(commitInfo.commitNum);
+      view.showCommitNum(model.commitNum);
+    });
+    xhr.send();
+  }
 
 }
