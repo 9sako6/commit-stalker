@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/CVModel.js"></script>
+    <script src="src/CVView.js"></script>
+    <script src="src/CVController.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+      new CVController();
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <div id="page">
+          <input type="text" id="username-form" value="sass"><span>/</span>
+          <input type="text" id="reponame-form" value="sass">
+          <input type="text" id="pagenum-form" value="1">
+          <a href="/commits?username=sass&repo=sass"><button id="request">request</button></a>
+          <button id="latest-request"><<</button>
+          <button id="oldest-request">>></button>
+          <div id="commit-num">{{commitNum}}</div>
+          <div id="show-window"></div>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
