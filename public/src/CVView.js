@@ -19,7 +19,11 @@ class CVView {
   }
 
   showCommitNum(commitNum) {
-    $("#commit-num").text(commitNum);
+    if (commitNum) {
+      const elem = `<span class="num text-emphasized">${commitNum}</span>commits`
+      $("#commit-num").empty();
+      $("#commit-num").append(elem);
+    }
   }
 
   setPageForm(page) {

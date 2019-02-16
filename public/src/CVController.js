@@ -16,11 +16,20 @@ class CVController {
       this.getCommitNum(model, view);
       this.getGitHubAPI(model, view);
     });
-    // the latest page request
-    $("#latest-request").on("click", () => {
+    // page back
+    $("#back-request").on("click", () => {
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
-      model.page = 1;
+      model.page = model.page == 1 ? 1 : Number(model.page) - 1;
+      this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
+    });
+    // next page
+    $("#next-request").on("click", () => {
+      model.username = $("#username-form").val();
+      model.repo = $("#repo-form").val();
+      model.page = Number(model.page) + 1;
+      console.log(model.page);
       this.getGitHubAPI(model, view);
       view.setPageForm(model.page);
     });
@@ -62,8 +71,7 @@ class CVController {
     xhr.addEventListener("load", (e) => {
       var commitInfo = JSON.parse(xhr.responseText);
       model.commitNum = commitInfo.commitNum;
-      // view.showCommitNum(model.commitNum);
-      console.log(commitInfo.commitNum);
+      // console.log(commitInfo.commitNum);
       view.showCommitNum(model.commitNum);
     });
     xhr.send();

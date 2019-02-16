@@ -20,13 +20,21 @@
     <main>
       <article>
         <div id="page">
-          <input type="text" id="username-form" value="sass"><span>/</span>
-          <input type="text" id="repo-form" value="sass">
-          <input type="text" id="page-form" value="1">
-          <button type="button" id="request">request</button>
-          <button id="latest-request"><<</button>
-          <button id="oldest-request">>></button>
-          <div id="commit-num">0</div>
+          <div id="info-container">
+            <div class="forms">
+              <div id="commit-num"></div>
+              <input type="text" id="username-form" value="" placeholder="username">
+              <span class="path-divider">/</span>
+              <input type="text" id="repo-form" value="" placeholder="repository">
+              <span class="path-divider">|</span>
+              <input type="text" id="page-form" value="" placeholder="page num.">
+              <button type="button" id="request">request</button>
+              <button id="latest-request"><<</button>
+              <button id="back-request"><</button>
+              <button id="next-request">></button>
+              <button id="oldest-request">>></button>
+            </div>
+          </div>
           <div id="show-window"></div>
         </div>
       </article>
