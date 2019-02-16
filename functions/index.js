@@ -13,17 +13,8 @@ app.set('view engine', 'hbs');
 //
 // root
 //
-const pageInfo = {
-  "title": "Commit Stalker"
-};
-
-const setTitle = (req, res, title) => {
-  res.render('index', { title });
-};
-
-app.get('/', function (request, response) {
-  const title = pageInfo.title;
-  setTitle(request, response, title);
+app.get('/', function(request, response) {
+  response.render('index', {});
 });
 
 //
@@ -32,13 +23,16 @@ app.get('/', function (request, response) {
 let commitInfo = {
   "username": "",
   "repo": "",
-  "commitNum": null
+  "page": null,
+  "commitNum": null,
+  "responseJSON": ""
 };
 
-const getCommitNum = (request, response) => {
+const getCommitNum = (req, res) => {
   // get query
-  let username = request.query.username;
-  let repo = request.query.repo;
+  let username = req.query.username;
+  let repo = req.query.repo;
+  let page = req.query.page;
   // compare query with pre-query
   if (username !== commitInfo.username || repo !== commitInfo.repo) {
     // prepare for HTTP GET
@@ -57,68 +51,27 @@ const getCommitNum = (request, response) => {
         const dom = new JSDOM(body);
         // get commit num.
         const commitNum = dom.window.document.querySelector('.commits').querySelector('.num').textContent.trim();
-        // show commits num.
-        response.render('index', { commitNum });
         // save
         commitInfo.username = username;
         commitInfo.repo = repo;
+        commitInfo.page = page;
         commitInfo.commitNum = commitNum;
+        res.json(commitInfo);
       } catch (e) {
         console.error(e);
       }
     });
   } else {
     // If commitNum is already got
-    const commitNum = commitInfo.commitNum;
-    response.render('index', { commitNum });
+    res.json(commitInfo);
   }
 };
 
-app.get('/commits', function (request, response) {
+app.get('/commits', function(request, response) {
   getCommitNum(request, response);
 });
-// app.get('/commits', (request, response) => {
-//   // get query
-//   let username = request.query.username;
-//   let repo = request.query.repo;
-//   // compare query with pre-query
-//   if (username !== commitInfo.username || repo !== commitInfo.repo) {
-//     // prepare for HTTP GET
-//     const reqCommitNum = require('request');
-//     const {
-//       JSDOM
-//     } = require('jsdom');
-//     const url = `https://github.com/${username}/${repo}`;
-//     // HTTP GET
-//     reqCommitNum(url, (e, resCommitNum, body) => {
-//       if (e) {
-//         console.error(e);
-//       }
-//       try {
-//         // parse HTML
-//         const dom = new JSDOM(body);
-//         // get commit num.
-//         const commitNum = dom.window.document.querySelector('.commits').querySelector('.num').textContent.trim();
-//         // show commits num.
-//         response.render('index', { commitNum });
-//         // save
-//         commitInfo.username = username;
-//         commitInfo.repo = repo;
-//         commitInfo.commitNum = commitNum;
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     });
-//   } else {
-//     // If commitNum is already got
-//     const commitNum = commitInfo.commitNum;
-//     response.render('index', { commitNum });
-//   }
-// })
 
-
-
+//
+// run
+//
 exports.app = functions.https.onRequest(app);
-
-// ルート（http://localhost/）にアクセスしてきたときに「Hello」を返す
-// app.get('/', (req, res) => res.send('Hello'));
