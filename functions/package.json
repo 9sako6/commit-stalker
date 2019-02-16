@@ -12,9 +12,12 @@
   "dependencies": {
     "consolidate": "^0.15.1",
     "express": "^4.16.4",
+    "firebase": "^5.0.1",
     "firebase-admin": "~7.0.0",
     "firebase-functions": "^2.2.0",
-    "handlebars": "^4.1.0"
+    "handlebars": "^4.1.0",
+    "jsdom": "^10.1.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
