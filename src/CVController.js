@@ -10,11 +10,23 @@ class CVController {
   request(model, view) {
     // basic request
     $("#request").on("click", () => {
+      const preUsername = model.username;
+      const preRepo = model.repo;
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
       model.page = $("#page-form").val();
-      this.getCommitNum(model, view);
+      if (preUsername !== model.username || preRepo !== model.repo) {
+        this.getCommitNum(model, view);
+      }
       this.getGitHubAPI(model, view);
+    });
+    // the latest page request
+    $("#latest-request").on("click", () => {
+      model.username = $("#username-form").val();
+      model.repo = $("#repo-form").val();
+      model.page = 1;
+      this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
     });
     // page back
     $("#back-request").on("click", () => {
@@ -37,7 +49,7 @@ class CVController {
     $("#oldest-request").on("click", () => {
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
-      let lastPage = model.commitNum.replace(',', '') / 100 | 0 + 1;
+      let lastPage = model.commitNum / 100 | 0 + 1;
       model.page = lastPage;
       this.getGitHubAPI(model, view);
       view.setPageForm(model.page);
@@ -66,15 +78,30 @@ class CVController {
   }
 
   getCommitNum(model, view) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET",`/commits?username=${model.username}&repo=${model.repo}&page=${model.page}`);
-    xhr.addEventListener("load", (e) => {
-      var commitInfo = JSON.parse(xhr.responseText);
-      model.commitNum = commitInfo.commitNum;
-      // console.log(commitInfo.commitNum);
+    // GET request via GitHub API
+    const request = new XMLHttpRequest();
+    var url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
+    request.open("GET", url);
+    request.addEventListener("load", (event) => {
+      // error
+      if (event.target.status !== 200) {
+        console.log(`${event.target.status}: ${event.target.statusText}`);
+        return;
+      }
+      // success
+      // console.log(event.target.status);
+      // console.log(event.target.responseText);
+      const resJSON = JSON.parse(event.target.responseText);
+      let contributions = 0;
+      console.log(resJSON);
+      for(let contribution of resJSON) {
+        contributions += contribution.contributions;
+      }
+      console.log(contributions);
+      model.commitNum = contributions;
       view.showCommitNum(model.commitNum);
     });
-    xhr.send();
+    request.send();
   }
 
 }
