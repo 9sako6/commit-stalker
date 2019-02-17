@@ -8,4 +8,6 @@ In addition, You can search **the oldest commit** easily.
 ![demo](figs/demo.gif)
 
 
-URL: https://commit-stalker.firebaseapp.com/
+~~URL: https://commit-stalker.firebaseapp.com/~~
+
+URL: https://9sako6.me/commit-stalker/

@@ -1,0 +1,26 @@
+{
+  "name": "commit-stalker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -m '[AUTO] Upload pages' -d . -a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9sako6/commit-stalker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/9sako6/commit-stalker/issues"
+  },
+  "homepage": "https://github.com/9sako6/commit-stalker#readme",
+  "dependencies": {
+    "kuromoji": "^0.1.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
