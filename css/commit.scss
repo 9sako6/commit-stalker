@@ -28,6 +28,15 @@
 }
 
 // commit num
+.commit-area {
+  width: 800px;
+  display: flex;
+}
+
+.commit-area img {
+  margin-top: 7px;
+  height: 1em;
+}
 
 #commit-num {
   color: #fff;
@@ -36,4 +45,24 @@
 }
 .text-emphasized {
   font-weight: 600;
+}
+
+.warning {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.author-area {
+  display: flex;
+}
+
+.author {
+  font-size: 12px;
+  margin: 0 1em 0 1em;
+  color: #586069;
+}
+
+.date {
+  font-size: 12px;
+  color: #586069;
 }

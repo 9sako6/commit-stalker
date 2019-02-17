@@ -41,18 +41,27 @@ class CVController {
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
       model.page = Number(model.page) + 1;
-      console.log(model.page);
       this.getGitHubAPI(model, view);
       view.setPageForm(model.page);
     });
     // the oldest page request
     $("#oldest-request").on("click", () => {
+      const preUsername = model.username;
+      const preRepo = model.repo;
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
-      let lastPage = model.commitNum / 100 | 0 + 1;
-      model.page = lastPage;
-      this.getGitHubAPI(model, view);
-      view.setPageForm(model.page);
+      if (preUsername !== model.username || preRepo !== model.repo || !model.commitNum) {
+        this.getCommitNum(model, view);
+        let lastPage = model.commitNum / 100 | 0 + 1;
+        model.page = lastPage;
+        this.getGitHubAPI(model, view);
+        view.setPageForm(model.page);
+      } else {
+        let lastPage = model.commitNum / 100 | 0 + 1;
+        model.page = lastPage;
+        this.getGitHubAPI(model, view);
+        view.setPageForm(model.page);
+      }
     });
   }
 
@@ -68,11 +77,10 @@ class CVController {
         return;
       }
       // success
-      // console.log(event.target.status);
-      // console.log(event.target.responseText);
+      console.log(event.target.status);
       model.responseJSON = JSON.parse(event.target.responseText);
       // console.log(model.responseJSON);
-      view.showResponse(model.responseJSON);
+      view.showResponse(model.responseJSON, model.repo);
     });
     request.send();
   }
@@ -89,17 +97,16 @@ class CVController {
         return;
       }
       // success
-      // console.log(event.target.status);
+      console.log(event.target.status);
       // console.log(event.target.responseText);
       const resJSON = JSON.parse(event.target.responseText);
       let contributions = 0;
-      console.log(resJSON);
       for(let contribution of resJSON) {
         contributions += contribution.contributions;
       }
-      console.log(contributions);
       model.commitNum = contributions;
-      view.showCommitNum(model.commitNum);
+      let cautionFlag = resJSON.length == 100 ? true : false;
+      view.showCommitNum(model.commitNum, cautionFlag);
     });
     request.send();
   }

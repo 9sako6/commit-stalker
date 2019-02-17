@@ -3,6 +3,14 @@ body {
   font-family: -apple-system, 'BlinkMacSystemFont';
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 input[type=text] {
   font-size: 16px;
 }
@@ -50,7 +58,7 @@ button {
   overflow:auto;
   top: 10%;
   right: 0;
-  bottom: 0;
+  bottom: 1%;
   left: 0;
 }
 

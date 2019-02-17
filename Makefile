@@ -1,5 +1,4 @@
-SRC = ./public/css/style
+SRC = ./css/style
 
 all: $(SRC).scss
 	sass $(SRC).scss:$(SRC).css
-	firebase serve --only functions,hosting
