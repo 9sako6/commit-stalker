@@ -14,11 +14,12 @@ class CVController {
       const preRepo = model.repo;
       model.username = $("#username-form").val();
       model.repo = $("#repo-form").val();
-      model.page = $("#page-form").val();
+      model.page = $("#page-form").val() || 1;
       if (preUsername !== model.username || preRepo !== model.repo) {
         this.getCommitNum(model, view);
       }
       this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
     });
     // the latest page request
     $("#latest-request").on("click", () => {
@@ -57,7 +58,7 @@ class CVController {
         this.getGitHubAPI(model, view);
         view.setPageForm(model.page);
       } else {
-        let lastPage = model.commitNum / 100 | 0 + 1;
+        let lastPage = (model.commitNum / 100 | 0) + 1;
         model.page = lastPage;
         this.getGitHubAPI(model, view);
         view.setPageForm(model.page);
