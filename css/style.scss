@@ -84,7 +84,7 @@ textarea {
 
 @media screen and (min-width: 761px){
   #info-container {
-    height: 60px;
+    height: 50px;
     padding: 1em;
   }
   #request img {
@@ -97,7 +97,9 @@ textarea {
     border-radius:5px;
     margin: 5px 0 0 0;
   }
-
+  .input-area {
+    height: 30px;
+  }
   #page-form {
     width: 75px;
   }
@@ -107,7 +109,7 @@ textarea {
   }
   #show-window {
     top: 10%;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .arrows {
     margin-left: 0.8em;
