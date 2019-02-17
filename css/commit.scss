@@ -34,7 +34,7 @@
 }
 @media screen and (max-width: 760px){
   .commit-area {
-    width: 300px;
+    width: 500px;
   }
   .commit-area img {
     margin-top: 3px;
@@ -47,7 +47,7 @@
     height: 12px;
   }
   .warning {
-    font-size: 7px;
+    font-size: 5px !important;
   }
 }
 

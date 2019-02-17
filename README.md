@@ -2,11 +2,10 @@
 
 GitHub commits viewer.
 **100 commits** are showed in a page. (30 commits in the official site.)
-
 In addition, You can search **the oldest commit** easily.
+URL: https://9sako6.me/commit-stalker/
 
 ![demo](figs/demo.gif)
 
-URL: https://9sako6.me/commit-stalker/
-
-~~URL: https://commit-stalker.firebaseapp.com/~~
+# More Details
+[I built the Web app to search commits on GitHub - dev.to](https://dev.to/9sako6/i-built-the-web-app-to-search-commits-on-github-3l82)

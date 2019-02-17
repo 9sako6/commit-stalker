@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Commit Stalker</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- fontawesome icon-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <!-- jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="src/CVModel.js"></script>
@@ -23,16 +25,18 @@
           <div id="info-container">
             <div class="forms">
               <div class="commit-area"><img src="./figs/history.png"><div id="commit-num"></div></div>
-              <input type="text" id="username-form" value="" placeholder="username">
-              <span class="path-divider">/</span>
-              <input type="text" id="repo-form" value="" placeholder="repository">
-              <span class="path-divider">|</span>
-              <input type="text" id="page-form" value="" placeholder="page num.">
-              <button type="button" id="request">request</button>
-              <button id="latest-request"><<</button>
-              <button id="back-request"><</button>
-              <button id="next-request">></button>
-              <button id="oldest-request">>></button>
+              <div class="input-area">
+                <textarea type="text" id="username-form" value="" placeholder="username" rows="1"></textarea>
+                <span class="path-divider">/</span>
+                <textarea type="text" id="repo-form" value="" placeholder="repository" rows="1"></textarea>
+                <span class="path-divider">|</span>
+                <textarea type="text" id="page-form" value="" placeholder="page" rows="1"></textarea>
+                <div class="buttons" type="div" id="request"><img src="figs/search-icon-white.png"></div>
+                <div class="buttons arrows" id="latest-request"><i class="fas fa-angle-double-left"></i></div>
+                <div class="buttons arrows" id="back-request"><i class="fas fa-angle-left"></i></div>
+                <div class="buttons arrows" id="next-request"><i class="fas fa-angle-right"></i></div>
+                <div class="buttons arrows" id="oldest-request"><i class="fas fa-angle-double-right"></i></div>
+              </div>
             </div>
           </div>
           <div id="show-window"></div>
