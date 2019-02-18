@@ -7,61 +7,125 @@ class CVController {
     this.request(this.model, this.view);
   }
 
+  searchCommits(model, view) {
+    const preUsername = model.username;
+    const preRepo = model.repo;
+    model.username = $("#username-form").val();
+    model.repo = $("#repo-form").val();
+    model.page = $("#page-form").val() || 1;
+    if (preUsername !== model.username || preRepo !== model.repo) {
+      this.getCommitNum(model, view);
+    }
+    this.getGitHubAPI(model, view);
+    view.setPageForm(model.page);
+  }
+
+  moveFirstPage (model, view) {
+    model.username = $("#username-form").val();
+    model.repo = $("#repo-form").val();
+    model.page = 1;
+    this.getGitHubAPI(model, view);
+    view.setPageForm(model.page);
+  }
+
+  movePrePage (model, view) {
+    model.username = $("#username-form").val();
+    model.repo = $("#repo-form").val();
+    model.page = model.page == 1 ? 1 : Number(model.page) - 1;
+    this.getGitHubAPI(model, view);
+    view.setPageForm(model.page);
+  }
+
+  moveNextPage (model, view) {
+    model.username = $("#username-form").val();
+    model.repo = $("#repo-form").val();
+    model.page = Number(model.page) + 1;
+    this.getGitHubAPI(model, view);
+    view.setPageForm(model.page);
+  }
+
+  moveLastPage (model, view) {
+    const preUsername = model.username;
+    const preRepo = model.repo;
+    model.username = $("#username-form").val();
+    model.repo = $("#repo-form").val();
+    if (preUsername !== model.username || preRepo !== model.repo || !model.commitNum) {
+      this.getCommitNum(model, view);
+    }
+    let lastPage = (model.commitNum / 100 | 0) + 1;
+    model.page = lastPage;
+    this.getGitHubAPI(model, view);
+    view.setPageForm(model.page);
+  }
+
   request(model, view) {
+    //
     // basic request
+    //
+    // click
     $("#request").on("click", () => {
-      const preUsername = model.username;
-      const preRepo = model.repo;
-      model.username = $("#username-form").val();
-      model.repo = $("#repo-form").val();
-      model.page = $("#page-form").val() || 1;
-      if (preUsername !== model.username || preRepo !== model.repo) {
-        this.getCommitNum(model, view);
+      this.searchCommits(model, view);
+    });
+    // press Enter key
+    $("#request").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.searchCommits(model, view);
       }
-      this.getGitHubAPI(model, view);
-      view.setPageForm(model.page);
     });
-    // the latest page request
+
+    //
+    // the first page request
+    //
+    // click
     $("#latest-request").on("click", () => {
-      model.username = $("#username-form").val();
-      model.repo = $("#repo-form").val();
-      model.page = 1;
-      this.getGitHubAPI(model, view);
-      view.setPageForm(model.page);
+      this.moveFirstPage(model, view);
     });
+    // press Enter key
+    $("#latest-request").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.moveFirstPage(model, view);
+      }
+    });
+
+    //
     // page back
+    //
+    // click
     $("#back-request").on("click", () => {
-      model.username = $("#username-form").val();
-      model.repo = $("#repo-form").val();
-      model.page = model.page == 1 ? 1 : Number(model.page) - 1;
-      this.getGitHubAPI(model, view);
-      view.setPageForm(model.page);
+      this.movePrePage(model, view);
     });
+    // press Enter key
+    $("#back-request").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.movePrePage(model, view);
+      }
+    });
+
+    //
     // next page
+    //
+    // click
     $("#next-request").on("click", () => {
-      model.username = $("#username-form").val();
-      model.repo = $("#repo-form").val();
-      model.page = Number(model.page) + 1;
-      this.getGitHubAPI(model, view);
-      view.setPageForm(model.page);
+      this.moveNextPage(model, view);
     });
+    // press Enter key
+    $("#next-request").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.moveNextPage(model, view);
+      }
+    });
+
+    //
     // the oldest page request
+    //
+    // click
     $("#oldest-request").on("click", () => {
-      const preUsername = model.username;
-      const preRepo = model.repo;
-      model.username = $("#username-form").val();
-      model.repo = $("#repo-form").val();
-      if (preUsername !== model.username || preRepo !== model.repo || !model.commitNum) {
-        this.getCommitNum(model, view);
-        let lastPage = model.commitNum / 100 | 0 + 1;
-        model.page = lastPage;
-        this.getGitHubAPI(model, view);
-        view.setPageForm(model.page);
-      } else {
-        let lastPage = (model.commitNum / 100 | 0) + 1;
-        model.page = lastPage;
-        this.getGitHubAPI(model, view);
-        view.setPageForm(model.page);
+      this.moveLastPage(model, view);
+    });
+    // press Enter key
+    $("#oldest-request").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.moveLastPage(model, view);
       }
     });
   }
