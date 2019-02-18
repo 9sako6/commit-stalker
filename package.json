@@ -11,14 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/9sako6/commit-stalker.git"
   },
-  "author": "",
+  "author": "9sako6",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/9sako6/commit-stalker/issues"
   },
   "homepage": "https://github.com/9sako6/commit-stalker#readme",
   "dependencies": {
-    "kuromoji": "^0.1.2"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"
