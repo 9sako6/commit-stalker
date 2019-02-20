@@ -50,12 +50,18 @@ class CVController {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     if (preUsername !== model.username || preRepo !== model.repo || !model.commitNum) {
-      this.getCommitNum(model, view);
+      this.getCommitNum(model, view).then(() => {
+        let lastPage = (model.commitNum / 100 | 0) + 1;
+        model.page = lastPage;
+        this.getGitHubAPI(model, view);
+        view.setPageForm(model.page);
+      });
+    } else {
+      let lastPage = (model.commitNum / 100 | 0) + 1;
+      model.page = lastPage;
+      this.getGitHubAPI(model, view);
+      view.setPageForm(model.page);
     }
-    let lastPage = (model.commitNum / 100 | 0) + 1;
-    model.page = lastPage;
-    this.getGitHubAPI(model, view);
-    view.setPageForm(model.page);
   }
 
   request(model, view) {
@@ -151,29 +157,34 @@ class CVController {
   }
 
   getCommitNum(model, view) {
-    // GET request via GitHub API
-    const request = new XMLHttpRequest();
-    var url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
-    request.open("GET", url);
-    request.addEventListener("load", (event) => {
-      // error
-      if (event.target.status !== 200) {
-        console.log(`${event.target.status}: ${event.target.statusText}`);
-        return;
-      }
-      // success
-      console.log(event.target.status);
-      // console.log(event.target.responseText);
-      const resJSON = JSON.parse(event.target.responseText);
-      let contributions = 0;
-      for(let contribution of resJSON) {
-        contributions += contribution.contributions;
-      }
-      model.commitNum = contributions;
-      let cautionFlag = resJSON.length == 100 ? true : false;
-      view.showCommitNum(model.commitNum, cautionFlag);
+    return new Promise((resolve, reject) => {
+      // GET request via GitHub API
+      const request = new XMLHttpRequest();
+      var url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
+      request.open("GET", url);
+      request.addEventListener("load", (event) => {
+        // error
+        if (event.target.status !== 200) {
+          console.log(`${event.target.status}: ${event.target.statusText}`);
+          reject();
+          return;
+        }
+        // success
+        console.log(event.target.status);
+        // console.log(event.target.responseText);
+        const resJSON = JSON.parse(event.target.responseText);
+        let contributions = 0;
+        for(let contribution of resJSON) {
+          contributions += contribution.contributions;
+        }
+        model.commitNum = contributions;
+        let cautionFlag = resJSON.length == 100 ? true : false;
+        view.showCommitNum(model.commitNum, cautionFlag);
+        resolve();
+      });
+      request.send();
+
     });
-    request.send();
   }
 
 }
