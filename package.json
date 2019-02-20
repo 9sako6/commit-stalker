@@ -17,8 +17,7 @@
     "url": "https://github.com/9sako6/commit-stalker/issues"
   },
   "homepage": "https://github.com/9sako6/commit-stalker#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gh-pages": "^2.0.1"
   }
