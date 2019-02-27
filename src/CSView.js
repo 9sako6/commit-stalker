@@ -1,4 +1,4 @@
-class CVView {
+class CSView {
 
   showResponse(responseJSON, repo) {
     let addElem = "";

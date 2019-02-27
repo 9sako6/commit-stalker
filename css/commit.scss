@@ -27,61 +27,6 @@
   color: #24292e;
 }
 
-// commit num
-
-.commit-area {
-  display: flex;
-}
-@media screen and (max-width: 760px){
-  .commit-area {
-    width: 500px;
-  }
-  .commit-area img {
-    margin-top: 3px;
-    height: 0.7em;
-  }
-  #commit-num {
-    color: #fff;
-    font-size: 11px;
-    margin: 2px;
-    height: 12px;
-  }
-  .warning {
-    font-size: 5px !important;
-  }
-}
-
-@media screen and (min-width: 761px){
-  .commit-area {
-    width: 800px;
-  }
-  .commit-area img {
-    margin-top: 7px;
-    height: 1em;
-  }
-  #commit-num {
-    color: #fff;
-    margin: 5px;
-    height: 20px;
-  }
-  .warning {
-    font-size: 11px;
-  }
-}
-
-
-
-
-
-.text-emphasized {
-  font-weight: 600;
-}
-
-.warning {
-  font-size: 11px;
-  color: #aaa;
-}
-
 .author-area {
   display: flex;
 }
