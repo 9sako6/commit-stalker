@@ -139,7 +139,7 @@ class CVController {
   getGitHubAPI(model, view) {
     // GET request via GitHub API
     const request = new XMLHttpRequest();
-    var url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
+    let url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
     request.open("GET", url);
     request.addEventListener("load", (event) => {
       // error
@@ -160,7 +160,7 @@ class CVController {
     return new Promise((resolve, reject) => {
       // GET request via GitHub API
       const request = new XMLHttpRequest();
-      var url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
+      let url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
       request.open("GET", url);
       request.addEventListener("load", (event) => {
         // error
