@@ -1,7 +1,7 @@
 class CVView {
 
   showResponse(responseJSON, repo) {
-    var addElem = "";
+    let addElem = "";
     for (let commitInfo of responseJSON) {
       let author;
       if (commitInfo.author) {
