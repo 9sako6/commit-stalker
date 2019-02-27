@@ -1,6 +1,3 @@
-sample
 .DS_Store
 node_modules
-/.firebase
-/.firebaserc
-firebase-debug.log
+.sass-cache
