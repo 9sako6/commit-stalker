@@ -1,3 +1,5 @@
+// Whole-script strict mode syntax
+"use strict";
 class CSController {
   constructor() {
     // init
@@ -5,6 +7,7 @@ class CSController {
     this.view = new CSView();
     // event
     this.request(this.model, this.view);
+    this.goNextForm(this.model, this.view);
   }
 
   searchCommits(model, view) {
@@ -137,6 +140,11 @@ class CSController {
   }
 
   getGitHubAPI(model, view) {
+    const key = `${model.username}-${model.repo}-${model.page}`;
+    if (model.responseJSON[key]) {
+      view.showResponse(model.responseJSON[key], model.repo);
+      return;
+    }
     // GET request via GitHub API
     const request = new XMLHttpRequest();
     let url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
@@ -149,9 +157,9 @@ class CSController {
       }
       // success
       console.log(event.target.status);
-      model.responseJSON = JSON.parse(event.target.responseText);
-      // console.log(model.responseJSON);
-      view.showResponse(model.responseJSON, model.repo);
+      model.responseJSON[key] = JSON.parse(event.target.responseText);
+      // console.log(model.responseJSON[key]);
+      view.showResponse(model.responseJSON[key], model.repo);
     });
     request.send();
   }
@@ -185,6 +193,10 @@ class CSController {
       request.send();
 
     });
+  }
+
+  goNextForm(model, view) {
+    // TODO
   }
 
 }
