@@ -1,8 +1,8 @@
-class CVController {
+class CSController {
   constructor() {
     // init
-    this.model = new CVModel();
-    this.view = new CVView();
+    this.model = new CSModel();
+    this.view = new CSView();
     // event
     this.request(this.model, this.view);
   }

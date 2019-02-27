@@ -1,3 +1,4 @@
+@import "media_query";
 body {
   background-color: #fff;
   font-family: -apple-system, 'BlinkMacSystemFont';
@@ -11,124 +12,15 @@ a:hover {
   text-decoration: underline;
 }
 
-#info-container {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 100vw;
-  background-color: #24292e;
-  color: #fff;
-}
-
-textarea {
-  resize: none;
-  padding: 0;
-}
-
-.input-area {
-  display: flex;
-}
-
-.arrows {
-  color: #fff;
-}
-
-
-
-.path-divider {
-  color: #aaa;
-}
-
-.buttons:hover {
-  opacity: 0.5;
-}
-
-@media screen and (max-width: 760px){
-  #info-container {
-    height: 30px;
-    padding: 0.7em;
-  }
-  #request img {
-    height: 17px;
-    margin: 0.3em;
-  }
-  textarea {
-    font-size: 10px;
-    border-radius:3px;
-    width: 60px;
-    margin: 5px 0 0 0;
-  }
-  .input-area {
-    height: 22px;
-  }
-  #page-form {
-    width: 30px;
-  }
-  .path-divider {
-    font-size: 18px;
-    margin: .10em;
-  }
-  #show-window {
+#show-window {
+  @include mq(sm) {
     top: 5%;
     margin-top: 20px;
   }
-  .arrows {
-    margin-left: 0.6em;
-  }
-  .fa-angle-double-left,.fa-angle-left,.fa-angle-right,.fa-angle-double-right {
-    font-size: 1.6em;
-  }
-}
-
-@media screen and (min-width: 761px){
-  #info-container {
-    height: 50px;
-    padding: 1em;
-  }
-  #request img {
-    height: 23px;
-    padding-top: 0.5em;
-    margin-left: 0.8em ;
-  }
-  textarea {
-    font-size: 16px;
-    border-radius:5px;
-    margin: 5px 0 0 0;
-  }
-  .input-area {
-    height: 30px;
-  }
-  #page-form {
-    width: 75px;
-  }
-  .path-divider {
-    font-size: 25px;
-    margin: 0 .25em 0 .25em;
-  }
-  #show-window {
+  @include mq() {
     top: 10%;
     margin-top: 20px;
   }
-  .arrows {
-    margin-left: 0.8em;
-  }
-  .fa-angle-double-left,.fa-angle-left,.fa-angle-right,.fa-angle-double-right {
-    font-size: 2.2em;
-  }
-}
-
-
-.forms {
-  display: inline-block;
-  position: absolute;
-  width: 800px;
-}
-
-
-
-#show-window {
   position: fixed;
   overflow:auto;
   right: 0;
@@ -137,4 +29,5 @@ textarea {
 }
 
 
+@import "menu";
 @import "commit";

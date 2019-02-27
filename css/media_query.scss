@@ -1,10 +1,8 @@
-$breakpoint-sm: 400px !default;
-$breakpoint-md: 768px !default;
-$breakpoint-lg: 1000px !default;
+// source: https://www.tam-tam.co.jp/tipsnote/html_css/post10708.html
 
 $breakpoints: (
   'sm': 'screen and (max-width: 767px)',
-  'md': 'screen and (min-width: 768px)',
+  'md': 'screen and (min-width: 768px)'
 ) !default;
 
 @mixin mq($breakpoint: md) {

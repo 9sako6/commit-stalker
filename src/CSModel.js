@@ -1,4 +1,4 @@
-class CVModel {
+class CSModel {
   constructor() {
     // init
     this.username = "";

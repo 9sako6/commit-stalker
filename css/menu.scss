@@ -1,0 +1,161 @@
+
+#info-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #24292e;
+  color: #fff;
+  @include mq(sm) {
+    height: 30px;
+    padding: 0.7em;
+  }
+  @include mq() {
+    height: 50px;
+    padding: 1em;
+  }
+}
+
+textarea {
+  resize: none;
+  padding: 0;
+  @include mq(sm) {
+    font-size: 10px;
+    border-radius: 3px;
+    width: 60px;
+    margin: 5px 0 0;
+  }
+  @include mq() {
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px 0 0;
+  }
+}
+
+.input-area {
+  display: flex;
+  @include mq(sm) {
+    height: 22px;
+  }
+  @include mq() {
+    height: 30px;
+  }
+}
+
+.arrows {
+  color: #fff;
+  @include mq(sm) {
+    margin-left: 0.6em;
+  }
+  @include mq() {
+    margin-left: 0.6em;
+  }
+}
+
+.path-divider {
+  color: #aaa;
+  @include mq(sm) {
+    font-size: 18px;
+    margin: 0.10em;
+  }
+  @include mq() {
+    font-size: 25px;
+    margin: 0 0.25em;
+  }
+}
+
+.fa-angle-double-left,
+.fa-angle-double-right,
+.fa-angle-left,
+.fa-angle-right {
+  @include mq(sm) {
+    font-size: 1.6em;
+  }
+  @include mq() {
+    font-size: 2.3em;
+  }
+}
+
+.buttons:hover {
+  opacity: 0.5;
+}
+
+#page-form {
+  @include mq(sm) {
+    width: 30px;
+  }
+  @include mq() {
+    width: 75px;
+  }
+}
+
+#request img {
+  @include mq(sm) {
+    height: 17px;
+    margin: 0.3em;
+  }
+  @include mq() {
+    height: 23px;
+    padding-top: 0.5em;
+    margin-left: 0.8em;
+  }
+}
+
+.forms {
+  display: inline-block;
+  position: absolute;
+  width: 800px;
+}
+// commit num
+.commit-area {
+  display: flex;
+}
+
+.commit-area {
+  @include mq(sm) {
+    width: 500px;
+  }
+  @include mq() {
+    width: 800px;
+  }
+}
+
+.commit-area img {
+  @include mq(sm) {
+    margin-top: 3px;
+    height: 0.7em;
+  }
+  @include mq() {
+    margin-top: 7px;
+    height: 1em;
+  }
+}
+
+#commit-num {
+  color: #fff;
+  @include mq(sm) {
+    font-size: 11px;
+    margin: 2px;
+    height: 12px;
+  }
+  @include mq() {
+    margin: 5px;
+    height: 20px;
+  }
+}
+
+.warning {
+  color: #aaa;
+  @include mq(sm) {
+    font-size: 5px !important;
+  }
+  @include mq() {
+    font-size: 11px;
+  }
+}
+
+.text-emphasized {
+  font-weight: 600;
+}
