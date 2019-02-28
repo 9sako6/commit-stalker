@@ -41,17 +41,19 @@ a:hover {
       height: 50px;
       padding: 1em; } }
 
-textarea {
+input {
   resize: none;
   padding: 0; }
   @media screen and (max-width: 767px) {
-    textarea {
+    input {
+      padding-left: 3px;
       font-size: 10px;
       border-radius: 3px;
       width: 60px;
       margin: 5px 0 0; } }
   @media screen and (min-width: 768px) {
-    textarea {
+    input {
+      padding-left: 5px;
       font-size: 16px;
       border-radius: 5px;
       margin: 5px 0 0; } }
