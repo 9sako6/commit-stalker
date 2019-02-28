@@ -6,8 +6,8 @@ class CSController {
     this.model = new CSModel();
     this.view = new CSView();
     // event
-    this.request(this.model, this.view);
-    this.goNextForm(this.model, this.view);
+    this.activateButtons(this.model, this.view);
+    this.moveNextForm(this.model, this.view);
   }
 
   searchCommits(model, view) {
@@ -17,9 +17,9 @@ class CSController {
     model.repo = $("#repo-form").val();
     model.page = $("#page-form").val() || 1;
     if (preUsername !== model.username || preRepo !== model.repo) {
-      this.getCommitNum(model, view);
+      this.requestCommitsCount(model, view);
     }
-    this.getGitHubAPI(model, view);
+    this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
   }
 
@@ -27,7 +27,7 @@ class CSController {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     model.page = 1;
-    this.getGitHubAPI(model, view);
+    this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
   }
 
@@ -35,7 +35,7 @@ class CSController {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     model.page = model.page == 1 ? 1 : Number(model.page) - 1;
-    this.getGitHubAPI(model, view);
+    this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
   }
 
@@ -43,7 +43,7 @@ class CSController {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     model.page = Number(model.page) + 1;
-    this.getGitHubAPI(model, view);
+    this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
   }
 
@@ -52,22 +52,22 @@ class CSController {
     const preRepo = model.repo;
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
-    if (preUsername !== model.username || preRepo !== model.repo || !model.commitNum) {
-      this.getCommitNum(model, view).then(() => {
-        let lastPage = (model.commitNum / 100 | 0) + 1;
+    if (preUsername !== model.username || preRepo !== model.repo || !model.commitsCount) {
+      this.requestCommitsCount(model, view).then(() => {
+        let lastPage = (model.commitsCount / 100 | 0) + 1;
         model.page = lastPage;
-        this.getGitHubAPI(model, view);
+        this.requestCommitsHistory(model, view);
         view.setPageForm(model.page);
       });
     } else {
-      let lastPage = (model.commitNum / 100 | 0) + 1;
+      let lastPage = (model.commitsCount / 100 | 0) + 1;
       model.page = lastPage;
-      this.getGitHubAPI(model, view);
+      this.requestCommitsHistory(model, view);
       view.setPageForm(model.page);
     }
   }
 
-  request(model, view) {
+  activateButtons(model, view) {
     //
     // basic request
     //
@@ -139,10 +139,17 @@ class CSController {
     });
   }
 
-  getGitHubAPI(model, view) {
+
+  //
+  // HTTPS request to obtain commits' history via GitHub API
+  //
+  requestCommitsHistory(model, view) {
+    if (model.username === "" || model.repo === "") {
+      return;
+    }
     const key = `${model.username}-${model.repo}-${model.page}`;
     if (model.responseJSON[key]) {
-      view.showResponse(model.responseJSON[key], model.repo);
+      view.drawCommitsInfo(model.responseJSON[key], model.repo);
       return;
     }
     // GET request via GitHub API
@@ -159,12 +166,18 @@ class CSController {
       console.log(event.target.status);
       model.responseJSON[key] = JSON.parse(event.target.responseText);
       // console.log(model.responseJSON[key]);
-      view.showResponse(model.responseJSON[key], model.repo);
+      view.drawCommitsInfo(model.responseJSON[key], model.repo);
     });
     request.send();
   }
 
-  getCommitNum(model, view) {
+  //
+  // HTTPS request to obtain commits' history via GitHub API
+  //
+  requestCommitsCount(model, view) {
+    if (model.username === "" || model.repo === "") {
+      return;
+    }
     return new Promise((resolve, reject) => {
       // GET request via GitHub API
       const request = new XMLHttpRequest();
@@ -185,9 +198,9 @@ class CSController {
         for(let contribution of resJSON) {
           contributions += contribution.contributions;
         }
-        model.commitNum = contributions;
+        model.commitsCount = contributions;
         let cautionFlag = resJSON.length == 100 ? true : false;
-        view.showCommitNum(model.commitNum, cautionFlag);
+        view.drawCommitsCount(model.commitsCount, cautionFlag);
         resolve();
       });
       request.send();
@@ -195,8 +208,26 @@ class CSController {
     });
   }
 
-  goNextForm(model, view) {
-    // TODO
+
+  moveNextForm(model, view) {
+    // move to next form when an Enter key is pressed
+    $("#username-form").on("keypress", (e) => {
+      if (e.which == 13) {
+        $("#repo-form").focus();
+      }
+    });
+
+    $("#repo-form").on("keypress", (e) => {
+      if (e.which == 13) {
+        $("#page-form").focus();
+      }
+    });
+
+    $("#page-form").on("keypress", (e) => {
+      if (e.which == 13) {
+        this.searchCommits(model, view);;
+      }
+    });
   }
 
 }
