@@ -1,48 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Commit Stalker</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" href="./figs/favicon.ico">
-    <!-- fontawesome icon-->
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
-    <!-- jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="src/CSModel.js"></script>
-    <script src="src/CSView.js"></script>
-    <script src="src/CSController.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commit Stalker</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="icon" href="./figs/favicon.ico">
+  <!-- fontawesome icon-->
+  <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+  <!-- jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="src/CSModel.js"></script>
+  <script src="src/CSView.js"></script>
+  <script src="src/CSController.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
       new CSController();
-      });
-    </script>
-  </head>
-  <body>
-    <main>
-      <article>
-        <div id="page">
-          <div id="info-container">
-            <div class="forms">
-              <div class="commit-area"><img src="./figs/history.png"><div id="commit-num"></div></div>
-              <div class="input-area">
-                <input type="text" id="username-form" value="" placeholder="username" rows="1">
-                <span class="path-divider">/</span>
-                <input type="text" id="repo-form" value="" placeholder="repository" rows="1">
-                <span class="path-divider">|</span>
-                <input type="text" id="page-form" value="" placeholder="page" rows="1">
-                <div class="buttons" type="div" id="request"><img tabIndex="0" src="figs/search-icon-white.png"></div>
-                <div class="buttons arrows" id="latest-request"><i tabIndex="0" class="fas fa-angle-double-left"></i></div>
-                <div class="buttons arrows" id="back-request"><i tabIndex="0" class="fas fa-angle-left"></i></div>
-                <div class="buttons arrows" id="next-request"><i tabIndex="0" class="fas fa-angle-right"></i></div>
-                <div class="buttons arrows" id="oldest-request"><i tabIndex="0" class="fas fa-angle-double-right"></i></div>
+    });
+  </script>
+</head>
+
+<body>
+  <main>
+    <article>
+      <div id="page">
+        <div id="info-container">
+          <div class="forms">
+            <div class="commit-area"><img src="./figs/history.png">
+              <div id="commit-num"></div>
+            </div>
+            <div class="input-area">
+              <div class="cp_iptxt">
+                <input class="ef" type="text" placeholder="" id="username-form">
+                <label>User</label>
+                <span class="focus_line"></span>
               </div>
+              <div class="cp_iptxt">
+                <input class="ef" type="text" placeholder="" id="username-form">
+                <label>Repository</label>
+                <span class="focus_line"></span>
+              </div>
+              <!-- <input type="text" id="username-form" value="" placeholder="username" rows="1"> -->
+              <span class="path-divider">/</span>
+              <input type="text" id="repo-form" value="" placeholder="repository" rows="1">
+              <span class="path-divider">|</span>
+              <input type="text" id="page-form" value="" placeholder="page" rows="1">
+
+
+
+              <div class="buttons" type="div" id="request"><img tabIndex="0" src="figs/search-icon-white.png"></div>
+              <div class="buttons arrows" id="latest-request"><i tabIndex="0" class="fas fa-angle-double-left"></i></div>
+              <div class="buttons arrows" id="back-request"><i tabIndex="0" class="fas fa-angle-left"></i></div>
+              <div class="buttons arrows" id="next-request"><i tabIndex="0" class="fas fa-angle-right"></i></div>
+              <div class="buttons arrows" id="oldest-request"><i tabIndex="0" class="fas fa-angle-double-right"></i></div>
             </div>
           </div>
-          <div id="show-window"></div>
         </div>
-      </article>
-    </main>
-  </body>
+        <div id="show-window"></div>
+      </div>
+    </article>
+  </main>
+</body>
+
 </html>
