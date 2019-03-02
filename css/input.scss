@@ -7,9 +7,10 @@
   text-align: center;
   background-color: transparent;
   border-bottom: solid 1px #fff;
+  margin-left: 1%;
   @include mq(sm) {
-    font: 12px sans-serif;
-    width: 15%;
+    font: 10px sans-serif;
+    width: 20%;
   }
   @include mq() {
     font: 16px sans-serif;
