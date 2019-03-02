@@ -12,6 +12,8 @@ class CSView {
       } else {
         author = "anonymous author";
       }
+      let date = new Date(commitInfo.commit.author.date);
+
       addElem += `<li class="commits-list-item">
       <div class="table-list-cell">
       <p class="commit-title">
@@ -22,7 +24,7 @@ class CSView {
       </div>
         <div class="author-area">
         <a href="https://github.com/${author}/${repoName}/commits?author=${author}"><div class="author">${author}</div></a>
-        <div class="date"> committed on ${commitInfo.commit.author.date}</div>
+        <div class="date"> committed on ${date.toLocaleDateString()} ${date.toLocaleTimeString()}</div>
       </div>
       </li>`;
     }
@@ -33,7 +35,7 @@ class CSView {
 
   drawCommitsCount(commitsCount, cautionFlag) {
     if (commitsCount) {
-      let elem = `<span class="num text-emphasized">${commitsCount.toLocaleString()}</span> commits`
+      let elem = `<span class="num text-emphasized">${commitsCount.toLocaleString()+" commits"}</span> `
       if (cautionFlag) {
         elem += `<span class="warning">  WARNING: This count of commits is not correct</span>`
       }

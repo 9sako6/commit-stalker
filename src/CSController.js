@@ -16,6 +16,10 @@ class CSController {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     model.page = $("#page-form").val() || 1;
+    if (isNaN(model.page)) {
+      // model.page is not a number
+      return;
+    }
     if (preUsername !== model.username || preRepo !== model.repo) {
       this.requestCommitsCount(model, view);
     }
@@ -34,6 +38,10 @@ class CSController {
   movePrePage (model, view) {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
+    if (isNaN(model.page)) {
+      // model.page is not a number
+      return;
+    }
     model.page = model.page == 1 ? 1 : Number(model.page) - 1;
     this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
@@ -42,6 +50,10 @@ class CSController {
   moveNextPage (model, view) {
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
+    if (isNaN(model.page)) {
+      // model.page is not a number
+      return;
+    }
     model.page = Number(model.page) + 1;
     this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
