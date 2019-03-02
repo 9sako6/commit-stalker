@@ -1,62 +1,24 @@
-.cp_iptxt {
+.menu-form {
   position: relative;
-  width: 200px;
-  // margin: 40px 3%;
-}
-
-.cp_iptxt input[type='text'] {
-  font: 15px/24px sans-serif;
-  box-sizing: border-box;
-  width: 100%;
-  // letter-spacing: 1px;
-  padding-left: 2em;
-  color: #fff;
-  // border-bottom: solid 1px #fff;
-}
-
-.cp_iptxt input[type='text']:focus {
-  outline: none;
-}
-
-.ef {
+  display: inline-block;
   padding: 4px 0;
+  color: #fff;
   border: 0;
-  border-bottom: 1px solid #fff;
+  text-align: center;
   background-color: transparent;
+  border-bottom: solid 1px #fff;
+  @include mq(sm) {
+    font: 12px sans-serif;
+    width: 15%;
+  }
+  @include mq() {
+    font: 16px sans-serif;
+    width: 20%;
+  }
 }
 
-.ef ~ .focus_line {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  transition: 0.4s;
-  background-color: #da3c41;
-}
-
-.cp_iptxt.ef ~ .focus_line,
-.ef:focus ~ .focus_line {
-  left: 0;
-  width: 100%;
-  transition: 0.4s;
-}
-
-.ef ~ label {
-  position: absolute;
-  z-index: -1;
-  top: 4px;
-  left: 0;
-  width: 100%;
-  transition: 0.3s;
-  letter-spacing: 0.5px;
-  color: #aaaaaa;
-}
-
-.cp_iptxt.ef ~ label,
-.ef:focus ~ label {
-  font-size: 12px;
-  top: -16px;
-  transition: 0.3s;
-  color: #da3c41;
+.menu-form:focus {
+  border-bottom: 1px solid cyan;
+  outline: none;
+  transition: all .4s;
 }

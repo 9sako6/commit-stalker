@@ -1,8 +1,8 @@
 .commits-list-item {
   list-style: none;
-  border-top: 1px solid #eaecef;
-  margin: 0;
-  padding : 0;
+  border: 1px solid #eaecef;
+  margin: 0 1% 0 1%;
+  padding : 10px;
 }
 
 .commits-list-item:hover {
@@ -15,7 +15,6 @@
   padding: 8px 10px;
   position: relative;
   vertical-align: top;
-  border-left: 1px solid #eaecef;
 }
 
 .commit-title {

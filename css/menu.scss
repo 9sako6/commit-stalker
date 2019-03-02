@@ -1,6 +1,6 @@
 
 #info-container {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  // box-shadow: 1px 0px 10px rgba(100, 100, 100, 0.7);
   position: fixed;
   top: 0;
   right: 0;
@@ -17,24 +17,6 @@
     padding: 1em;
   }
 }
-
-// input {
-//   resize: none;
-//   padding: 0;
-//   @include mq(sm) {
-//     padding-left: 3px;
-//     font-size: 10px;
-//     border-radius: 3px;
-//     width: 60px;
-//     margin: 5px 0 0;
-//   }
-//   @include mq() {
-//     padding-left: 5px;
-//     font-size: 16px;
-//     border-radius: 5px;
-//     margin: 5px 0 0;
-//   }
-// }
 
 .input-area {
   display: flex;
@@ -84,15 +66,6 @@
   opacity: 0.5;
 }
 
-#page-form {
-  @include mq(sm) {
-    width: 30px;
-  }
-  @include mq() {
-    width: 75px;
-  }
-}
-
 #request img {
   @include mq(sm) {
     height: 17px;
@@ -112,38 +85,22 @@
 }
 // commit num
 .commit-area {
-  display: flex;
-}
-
-.commit-area {
   @include mq(sm) {
-    width: 500px;
+    width: 80%;
   }
   @include mq() {
-    width: 800px;
-  }
-}
-
-.commit-area img {
-  @include mq(sm) {
-    margin-top: 3px;
-    height: 0.7em;
-  }
-  @include mq() {
-    margin-top: 7px;
-    height: 1em;
+    width: 80%;
   }
 }
 
 #commit-num {
   color: #fff;
   @include mq(sm) {
-    font-size: 11px;
-    margin: 2px;
+    margin-bottom: 3px;
     height: 12px;
   }
   @include mq() {
-    margin: 5px;
+    margin-bottom: 5px;
     height: 20px;
   }
 }
@@ -158,6 +115,11 @@
   }
 }
 
-.text-emphasized {
-  font-weight: 600;
+.num {
+  @include mq(sm) {
+    font-size: 12px;
+  }
+  @include mq() {
+    font-size: 16px;
+  }
 }
