@@ -16,10 +16,10 @@ a:hover {
   left: 0; }
   @media screen and (max-width: 767px) {
     #show-window {
-      top: 10%; } }
+      top: 70px; } }
   @media screen and (min-width: 768px) {
     #show-window {
-      top: 13%; } }
+      top: 100px; } }
 
 #info-container {
   position: fixed;
@@ -32,11 +32,11 @@ a:hover {
   padding-top: 1%; }
   @media screen and (max-width: 767px) {
     #info-container {
-      height: 5%;
+      height: 30px;
       padding-left: 1%; } }
   @media screen and (min-width: 768px) {
     #info-container {
-      height: 7%;
+      height: 50px;
       padding-left: 1%; } }
 
 .input-area {
@@ -113,13 +113,13 @@ a:hover {
 .commit-area {
   position: fixed;
   margin-left: 1em;
-  height: 2%; }
+  height: 20px; }
   @media screen and (max-width: 767px) {
     .commit-area {
-      top: 6%; } }
+      top: 40px; } }
   @media screen and (min-width: 768px) {
     .commit-area {
-      top: 10%; } }
+      top: 70px; } }
 
 .menu-form {
   position: relative;

@@ -14,10 +14,10 @@ a:hover {
 
 #show-window {
   @include mq(sm) {
-    top: 10%;
+    top: 70px;
   }
   @include mq() {
-    top: 13%;
+    top: 100px;
   }
   position: fixed;
   overflow:auto;

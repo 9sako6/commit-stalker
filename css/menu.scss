@@ -10,11 +10,11 @@
   color: #fff;
   padding-top: 1%;
   @include mq(sm) {
-    height: 5%;
+    height: 30px;
     padding-left: 1%;
   }
   @include mq() {
-    height: 7%;
+    height: 50px;
     padding-left: 1%;
   }
 }
@@ -105,11 +105,11 @@
 .commit-area {
   position: fixed;
   margin-left: 1em;
-  height: 2%;
+  height: 20px;
   @include mq(sm) {
-    top: 6%;
+    top: 40px;
   }
   @include mq() {
-    top: 10%;
+    top: 70px;
   }
 }
