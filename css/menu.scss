@@ -1,6 +1,5 @@
 
 #info-container {
-  // box-shadow: 1px 0px 10px rgba(100, 100, 100, 0.7);
   position: fixed;
   top: 0;
   right: 0;
@@ -8,57 +7,42 @@
   width: 100vw;
   background-color: #24292e;
   color: #fff;
+  padding-top: 1%;
   @include mq(sm) {
     height: 30px;
-    padding: 0.7em;
+    padding-left: 1%;
   }
   @include mq() {
     height: 50px;
-    padding: 1em;
+    padding-left: 1%;
   }
 }
 
 .input-area {
   display: flex;
-  @include mq(sm) {
-    height: 22px;
-  }
-  @include mq() {
-    height: 30px;
-  }
 }
 
 .arrows {
   color: #fff;
   @include mq(sm) {
-    margin-left: 0.6em;
+    margin-left: 0.3em;
+    margin-top: 0.3em;
   }
   @include mq() {
     margin-left: 0.6em;
   }
 }
 
-.path-divider {
-  color: #aaa;
-  @include mq(sm) {
-    font-size: 18px;
-    margin: 0.10em;
-  }
-  @include mq() {
-    font-size: 25px;
-    margin: 0 0.25em;
-  }
-}
-
+.fa-search,
 .fa-angle-double-left,
 .fa-angle-double-right,
 .fa-angle-left,
 .fa-angle-right {
   @include mq(sm) {
-    font-size: 1.6em;
+    font-size: 1.2em;
   }
   @include mq() {
-    font-size: 2.3em;
+    font-size: 2em;
   }
 }
 
@@ -68,7 +52,7 @@
 
 #request img {
   @include mq(sm) {
-    height: 17px;
+    height: 1.2em;
     margin: 0.3em;
   }
   @include mq() {
@@ -78,11 +62,6 @@
   }
 }
 
-.forms {
-  display: inline-block;
-  position: absolute;
-  width: 800px;
-}
 // commit num
 .commit-area {
   @include mq(sm) {
@@ -94,13 +73,10 @@
 }
 
 #commit-num {
-  color: #fff;
   @include mq(sm) {
-    margin-bottom: 3px;
     height: 12px;
   }
   @include mq() {
-    margin-bottom: 5px;
     height: 20px;
   }
 }
@@ -121,5 +97,17 @@
   }
   @include mq() {
     font-size: 16px;
+  }
+}
+
+.commit-area {
+  position: fixed;
+  margin-left: 1em;
+  height: 20px;
+  @include mq(sm) {
+    top: 40px;
+  }
+  @include mq() {
+    top: 70px;
   }
 }

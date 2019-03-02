@@ -14,12 +14,10 @@ a:hover {
 
 #show-window {
   @include mq(sm) {
-    top: 5%;
-    margin-top: 20px;
+    top: 70px;
   }
   @include mq() {
-    top: 10%;
-    margin-top: 20px;
+    top: 100px;
   }
   position: fixed;
   overflow:auto;
@@ -27,7 +25,6 @@ a:hover {
   bottom: 1%;
   left: 0;
 }
-
 
 @import "menu";
 @import "input";

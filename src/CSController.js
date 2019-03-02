@@ -11,15 +11,15 @@ class CSController {
   }
 
   searchCommits(model, view) {
+    if (isNaN($("#page-form").val())) {
+      // model.page is not a number
+      return;
+    }
     const preUsername = model.username;
     const preRepo = model.repo;
     model.username = $("#username-form").val();
     model.repo = $("#repo-form").val();
     model.page = $("#page-form").val() || 1;
-    if (isNaN(model.page)) {
-      // model.page is not a number
-      return;
-    }
     if (preUsername !== model.username || preRepo !== model.repo) {
       this.requestCommitsCount(model, view);
     }
@@ -151,7 +151,6 @@ class CSController {
     });
   }
 
-
   //
   // HTTPS request to obtain commits' history via GitHub API
   //
@@ -219,7 +218,6 @@ class CSController {
 
     });
   }
-
 
   moveNextForm(model, view) {
     // move to next form when an Enter key is pressed
