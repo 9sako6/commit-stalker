@@ -1,9 +1,9 @@
 # commit-stalker
 
 GitHub commits viewer.
-**100 commits** are showed in a page. (30 commits in the official site.)
+**100 commits** are showed in a page. (35 commits in the official site.)
 In addition, You can search **the oldest commit** easily.
-URL: https://9sako6.me/commit-stalker/
+URL: https://9sako6.github.io/commit-stalker/
 
 ![demo](figs/demo.gif)
 
