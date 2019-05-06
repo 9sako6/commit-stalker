@@ -192,7 +192,7 @@ class CSController {
     return new Promise((resolve, reject) => {
       // GET request via GitHub API
       const request = new XMLHttpRequest();
-      let url = `https://api.github.com/repos/${model.username}/${model.repo}/contributors?anon=true&per_page=100`;
+      const url = `https://secure-tundra-40881.herokuapp.com/count?user=${model.username}&repo=${model.repo}`;
       request.open("GET", url);
       request.addEventListener("load", (event) => {
         // error
@@ -202,20 +202,11 @@ class CSController {
           return;
         }
         // success
-        console.log(event.target.status);
-        // console.log(event.target.responseText);
-        const resJSON = JSON.parse(event.target.responseText);
-        let contributions = 0;
-        for(let contribution of resJSON) {
-          contributions += contribution.contributions;
-        }
-        model.commitsCount = contributions;
-        let cautionFlag = resJSON.length == 100 ? true : false;
-        view.drawCommitsCount(model.commitsCount, cautionFlag);
+        model.commitsCount = event.target.responseText;
+        view.drawCommitsCount(model.commitsCount);
         resolve();
       });
       request.send();
-
     });
   }
 
