@@ -33,12 +33,9 @@ class CSView {
     $("#show-window").append(addElem);
   }
 
-  drawCommitsCount(commitsCount, cautionFlag) {
+  drawCommitsCount(commitsCount) {
     if (commitsCount) {
       let elem = `<span class="num text-emphasized">${commitsCount.toLocaleString()+" commits"}</span> `
-      if (cautionFlag) {
-        elem += `<span class="warning">  WARNING: This count of commits is not correct</span>`
-      }
       $("#commit-num").empty();
       $("#commit-num").append(elem);
     }
