@@ -1,5 +1,5 @@
 // Whole-script strict mode syntax
-"use strict";
+'use strict';
 class CSController {
   constructor() {
     // init
@@ -11,15 +11,15 @@ class CSController {
   }
 
   searchCommits(model, view) {
-    if (isNaN($("#page-form").val())) {
+    if (isNaN($('#page-form').val())) {
       // model.page is not a number
       return;
     }
     const preUsername = model.username;
     const preRepo = model.repo;
-    model.username = $("#username-form").val();
-    model.repo = $("#repo-form").val();
-    model.page = $("#page-form").val() || 1;
+    model.username = $('#username-form').val();
+    model.repo = $('#repo-form').val();
+    model.page = $('#page-form').val() || 1;
     if (preUsername !== model.username || preRepo !== model.repo) {
       this.requestCommitsCount(model, view);
     }
@@ -28,16 +28,16 @@ class CSController {
   }
 
   moveFirstPage (model, view) {
-    model.username = $("#username-form").val();
-    model.repo = $("#repo-form").val();
+    model.username = $('#username-form').val();
+    model.repo = $('#repo-form').val();
     model.page = 1;
     this.requestCommitsHistory(model, view);
     view.setPageForm(model.page);
   }
 
   movePrePage (model, view) {
-    model.username = $("#username-form").val();
-    model.repo = $("#repo-form").val();
+    model.username = $('#username-form').val();
+    model.repo = $('#repo-form').val();
     if (isNaN(model.page)) {
       // model.page is not a number
       return;
@@ -48,8 +48,8 @@ class CSController {
   }
 
   moveNextPage (model, view) {
-    model.username = $("#username-form").val();
-    model.repo = $("#repo-form").val();
+    model.username = $('#username-form').val();
+    model.repo = $('#repo-form').val();
     if (isNaN(model.page)) {
       // model.page is not a number
       return;
@@ -62,8 +62,8 @@ class CSController {
   moveLastPage (model, view) {
     const preUsername = model.username;
     const preRepo = model.repo;
-    model.username = $("#username-form").val();
-    model.repo = $("#repo-form").val();
+    model.username = $('#username-form').val();
+    model.repo = $('#repo-form').val();
     if (preUsername !== model.username || preRepo !== model.repo || !model.commitsCount) {
       this.requestCommitsCount(model, view).then(() => {
         let lastPage = (model.commitsCount / 100 | 0) + 1;
@@ -80,82 +80,84 @@ class CSController {
   }
 
   activateButtons(model, view) {
-    //
-    // basic request
-    //
+    /**
+     * basic request
+     */
     // click
-    $("#request").on("click", () => {
+    $('#request').on('click', () => {
       this.searchCommits(model, view);
     });
     // press Enter key
-    $("#request").on("keypress", (e) => {
+    $('#request').on('keypress', (e) => {
       if (e.which == 13) {
         this.searchCommits(model, view);
       }
     });
 
-    //
-    // the first page request
-    //
+    /**
+     * the first page request
+     */
     // click
-    $("#latest-request").on("click", () => {
+    $('#latest-request').on('click', () => {
       this.moveFirstPage(model, view);
     });
     // press Enter key
-    $("#latest-request").on("keypress", (e) => {
+    $('#latest-request').on('keypress', (e) => {
       if (e.which == 13) {
         this.moveFirstPage(model, view);
       }
     });
 
-    //
-    // page back
-    //
+    /**
+     * page back
+     */
     // click
-    $("#back-request").on("click", () => {
+    $('#back-request').on('click', () => {
       this.movePrePage(model, view);
     });
     // press Enter key
-    $("#back-request").on("keypress", (e) => {
+    $('#back-request').on('keypress', (e) => {
       if (e.which == 13) {
         this.movePrePage(model, view);
       }
     });
 
-    //
-    // next page
-    //
+    /**
+     * next page
+     */
     // click
-    $("#next-request").on("click", () => {
+    $('#next-request').on('click', () => {
       this.moveNextPage(model, view);
     });
     // press Enter key
-    $("#next-request").on("keypress", (e) => {
+    $('#next-request').on('keypress', (e) => {
       if (e.which == 13) {
         this.moveNextPage(model, view);
       }
     });
 
-    //
-    // the oldest page request
-    //
+    /**
+     * the oldest page request
+     */
     // click
-    $("#oldest-request").on("click", () => {
+    $('#oldest-request').on('click', () => {
       this.moveLastPage(model, view);
     });
     // press Enter key
-    $("#oldest-request").on("keypress", (e) => {
+    $('#oldest-request').on('keypress', (e) => {
       if (e.which == 13) {
         this.moveLastPage(model, view);
       }
     });
   }
 
-  //
-  // HTTPS request to obtain commits' history via GitHub API
-  //
+  /**
+   * HTTP request to obtain commits' history via GitHub API
+   * @param {CSModel} model 
+   * @param {CSView} view 
+   */
   requestCommitsHistory(model, view) {
-    if (model.username === "" || model.repo === "") {
+    if (model.username === '' || model.repo === '') {
       return;
     }
     const key = `${model.username}-${model.repo}-${model.page}`;
@@ -165,9 +167,9 @@ class CSController {
     }
     // GET request via GitHub API
     const request = new XMLHttpRequest();
-    let url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
-    request.open("GET", url);
-    request.addEventListener("load", (event) => {
+    const url = `https://api.github.com/repos/${model.username}/${model.repo}/commits?page=${model.page}&per_page=100`;
+    request.open('GET', url);
+    request.addEventListener('load', (event) => {
       // error
       if (event.target.status !== 200) {
         console.log(`${event.target.status}: ${event.target.statusText}`);
@@ -176,25 +178,26 @@ class CSController {
       // success
       console.log(event.target.status);
       model.responseJSON[key] = JSON.parse(event.target.responseText);
-      // console.log(model.responseJSON[key]);
       view.drawCommitsInfo(model.responseJSON[key], model.repo);
     });
     request.send();
   }
 
-  //
-  // HTTPS request to obtain commits' history via GitHub API
-  //
+  /**
+   * HTTP request to obtain total commit count
+   * @param {CSModel} model 
+   * @param {CSView} view 
+   */
   requestCommitsCount(model, view) {
-    if (model.username === "" || model.repo === "") {
+    if (model.username === '' || model.repo === '') {
       return;
     }
     return new Promise((resolve, reject) => {
-      // GET request via GitHub API
+      // GET request via Original GitHub API
       const request = new XMLHttpRequest();
       const url = `https://secure-tundra-40881.herokuapp.com/count?user=${model.username}&repo=${model.repo}`;
-      request.open("GET", url);
-      request.addEventListener("load", (event) => {
+      request.open('GET', url);
+      request.addEventListener('load', (event) => {
         // error
         if (event.target.status !== 200) {
           console.log(`${event.target.status}: ${event.target.statusText}`);
@@ -212,19 +215,19 @@ class CSController {
 
   moveNextForm(model, view) {
     // move to next form when an Enter key is pressed
-    $("#username-form").on("keypress", (e) => {
+    $('#username-form').on('keypress', (e) => {
       if (e.which == 13) {
-        $("#repo-form").focus();
+        $('#repo-form').focus();
       }
     });
 
-    $("#repo-form").on("keypress", (e) => {
+    $('#repo-form').on('keypress', (e) => {
       if (e.which == 13) {
-        $("#page-form").focus();
+        $('#page-form').focus();
       }
     });
 
-    $("#page-form").on("keypress", (e) => {
+    $('#page-form').on('keypress', (e) => {
       if (e.which == 13) {
         this.searchCommits(model, view);;
       }

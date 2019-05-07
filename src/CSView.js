@@ -1,16 +1,16 @@
 class CSView {
 
-  //
-  // draw commits' infomartion
-  //
+  /**
+   * draw commits' infomartion
+   */
   drawCommitsInfo(commitsInfoJSON, repoName) {
-    let addElem = "";
+    let addElem = '';
     for (let commitInfo of commitsInfoJSON) {
       let author;
       if (commitInfo.author) {
         author = commitInfo.author.login;
       } else {
-        author = "anonymous author";
+        author = 'anonymous author';
       }
       let date = new Date(commitInfo.commit.author.date);
 
@@ -28,21 +28,20 @@ class CSView {
       </div>
       </li>`;
     }
-    $("#show-window").children().remove();
+    $('#show-window').children().remove();
     // add contents
-    $("#show-window").append(addElem);
+    $('#show-window').append(addElem);
   }
 
   drawCommitsCount(commitsCount) {
     if (commitsCount) {
       let elem = `<span class="num text-emphasized">${commitsCount.toLocaleString()+" commits"}</span> `
-      $("#commit-num").empty();
-      $("#commit-num").append(elem);
+      $('#commit-num').empty();
+      $('#commit-num').append(elem);
     }
   }
 
   setPageForm(page) {
-    $("#page-form").val(page);
+    $('#page-form').val(page);
   }
-
 }
