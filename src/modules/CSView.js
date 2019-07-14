@@ -1,5 +1,6 @@
-export default class CSView {
+import $ from 'jquery';
 
+export default class CSView {
   /**
    * draw commits' infomartion
    */

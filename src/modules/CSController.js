@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import CSModel from './CSModel.js';
 import CSView from './CSView.js';
 // Whole-script strict mode syntax
