@@ -1,6 +1,8 @@
+import CSModel from './CSModel.js';
+import CSView from './CSView.js';
 // Whole-script strict mode syntax
 'use strict';
-class CSController {
+export default class CSController {
   constructor() {
     // init
     this.model = new CSModel();

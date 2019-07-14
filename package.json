@@ -19,6 +19,8 @@
   "homepage": "https://github.com/9sako6/commit-stalker#readme",
   "dependencies": {},
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   }
 }
