@@ -1,4 +1,4 @@
-class CSView {
+export default class CSView {
 
   /**
    * draw commits' infomartion

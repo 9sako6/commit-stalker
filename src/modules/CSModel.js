@@ -1,4 +1,4 @@
-class CSModel {
+export default class CSModel {
   constructor() {
     // init
     this.username = '';
