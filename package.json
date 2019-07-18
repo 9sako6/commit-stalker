@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -m '[AUTO] Upload pages' -d . -a",
-    "sass": "sass --watch css/style.scss:style.css"
+    "sass": "sass --watch css/style.scss:style.css",
+    "webpack": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
