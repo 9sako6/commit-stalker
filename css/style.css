@@ -19,7 +19,7 @@ a:hover {
       top: 70px; } }
   @media screen and (min-width: 768px) {
     #show-window {
-      top: 100px; } }
+      top: 120px; } }
 
 #info-container {
   position: fixed;
@@ -82,9 +82,14 @@ a:hover {
 
 @media screen and (max-width: 767px) {
   .commit-area {
+    margin-left: 0.5em;
+    height: 20px;
     width: 80%; } }
 @media screen and (min-width: 768px) {
   .commit-area {
+    margin-top: 0.8em;
+    margin-left: 1em;
+    height: 30px;
     width: 80%; } }
 
 @media screen and (max-width: 767px) {
@@ -92,7 +97,7 @@ a:hover {
     height: 12px; } }
 @media screen and (min-width: 768px) {
   #commit-num {
-    height: 20px; } }
+    height: 30px; } }
 
 .warning {
   color: #aaa; }
@@ -105,15 +110,13 @@ a:hover {
 
 @media screen and (max-width: 767px) {
   .num {
-    font-size: 12px; } }
+    font-size: 0.8em; } }
 @media screen and (min-width: 768px) {
   .num {
-    font-size: 16px; } }
+    font-size: 1em; } }
 
 .commit-area {
-  position: fixed;
-  margin-left: 1em;
-  height: 20px; }
+  position: fixed; }
   @media screen and (max-width: 767px) {
     .commit-area {
       top: 40px; } }
