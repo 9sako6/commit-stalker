@@ -65,9 +65,14 @@
 // commit num
 .commit-area {
   @include mq(sm) {
+    margin-left: 0.5em;
+    height: 20px;
     width: 80%;
   }
   @include mq() {
+    margin-top: 0.8em;
+    margin-left: 1em;
+    height: 30px;
     width: 80%;
   }
 }
@@ -77,7 +82,7 @@
     height: 12px;
   }
   @include mq() {
-    height: 20px;
+    height: 30px;
   }
 }
 
@@ -93,17 +98,15 @@
 
 .num {
   @include mq(sm) {
-    font-size: 12px;
+    font-size: 0.8em;
   }
   @include mq() {
-    font-size: 16px;
+    font-size: 1em;
   }
 }
 
 .commit-area {
   position: fixed;
-  margin-left: 1em;
-  height: 20px;
   @include mq(sm) {
     top: 40px;
   }
