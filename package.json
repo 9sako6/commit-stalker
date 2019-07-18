@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -m '[AUTO] Upload pages' -d . -a"
+    "deploy": "gh-pages -m '[AUTO] Upload pages' -d . -a",
+    "sass": "sass --watch css/style.scss:style.css"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/9sako6/commit-stalker#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.13"
   },
