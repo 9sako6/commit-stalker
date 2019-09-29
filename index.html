@@ -7,38 +7,22 @@
     content="GitHub commits viewer. 100 commits are showed in a page. (35 commits in the official site.) In addition, you can search the oldest commit easily.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Commit Stalker</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="icon" href="./figs/favicon.ico">
-  <script src="src/cs.bundle.js"></script>
 </head>
 
 <body>
-  <main>
-    <article>
-      <div id="page">
-        <div id="info-container">
-          <div class="forms">
-            <div class="input-area">
-              <input class="menu-form" type="text" placeholder="User" id="username-form">
-              <input class="menu-form" type="text" placeholder="Repository" id="repo-form">
-              <input class="menu-form" type="text" placeholder="Page" id="page-form">
-              <div class="buttons arrows" id="request"><i tabIndex="0" class="fas fa-search"></i></div>
-              <div class="buttons arrows" id="latest-request"><i tabIndex="0" class="fas fa-angle-double-left"></i>
-              </div>
-              <div class="buttons arrows" id="back-request"><i tabIndex="0" class="fas fa-angle-left"></i></div>
-              <div class="buttons arrows" id="next-request"><i tabIndex="0" class="fas fa-angle-right"></i></div>
-              <div class="buttons arrows" id="oldest-request"><i tabIndex="0" class="fas fa-angle-double-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="commit-area">
-          <div id="commit-num"></div>
-        </div>
-        <div id="show-window"></div>
-      </div>
-    </article>
+  <header>
+    <div id="site-header"></div>
+  </header>
+  <main id="root">
+    <div id="page-info-top"></div>
+    <div id="commit-history"></div>
+    <div id="page-info-bottom"></div>
   </main>
+  <footer>
+    <div id="site-footer"></div>
+  </footer>
 </body>
+<script src="./dest/app.min.js"></script>
 
 </html>
