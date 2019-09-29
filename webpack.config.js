@@ -1,10 +1,30 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/app.js',
+  entry: './src/app.tsx',
   output: {
-    filename: 'cs.bundle.js',
-    path: path.join(__dirname, 'src')
+    filename: 'app.min.js',
+    path: path.join(__dirname, './dest')
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+  module: {
+    rules: [{
+        test: /\.tsx?$/,
+        use: 'ts-loader'
+      },
+      {
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
+      },
+    ]
   }
 };

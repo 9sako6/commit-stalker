@@ -6,26 +6,39 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -m '[AUTO] Upload pages' -d . -a",
-    "sass": "sass --watch css/style.scss:style.css",
-    "webpack": "./node_modules/.bin/webpack"
+    "dev": "./node_modules/.bin/webpack --mode development",
+    "build": "./node_modules/.bin/webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/9sako6/commit-stalker.git"
   },
   "author": "9sako6",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/9sako6/commit-stalker/issues"
   },
   "homepage": "https://github.com/9sako6/commit-stalker#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@types/jquery": "^3.3.31",
+    "@types/node-emoji": "^1.8.1",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.13"
+    "node-emoji": "^1.10.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.1",
+    "css-loader": "^3.2.0",
     "gh-pages": "^2.0.1",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.1.2",
+    "typescript": "^3.6.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   }

@@ -1,0 +1,15 @@
+.buttons {
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  margin-right: 0.3em;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.buttons:hover{
+  background-color: #777;
+  cursor: pointer;
+}

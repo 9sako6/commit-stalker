@@ -1,0 +1,37 @@
+#header-menu {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#site-header {
+  background-color: #24292e;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.7rem 1.5rem;
+  line-height: 2.2rem;
+  z-index: 999;
+}
+
+@keyframes fadeOut {
+  50% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+#site-header.header-fadeout {
+  animation: fadeOut 0.3s linear 0s 1 alternate forwards running;
+}
+
+.site-title {
+  font-weight: 700;
+  position: relative;
+  font-size: 1.3em;
+  color: #ffffff;
+}

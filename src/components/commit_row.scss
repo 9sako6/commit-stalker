@@ -1,0 +1,77 @@
+.commit-group-title {
+  color: #586069;
+  font-size: 14px;
+  margin: 1.5em 0 0.8em 0;
+}
+
+.commits-list-item {
+  list-style: none;
+  border: 1px solid #eaecef;
+}
+
+.commits-list-item:hover {
+  background-color: #f5fbff;
+}
+
+.table-list-cell {
+  display: table-cell;
+  font-size: 12px;
+  padding: 8px 10px;
+  position: relative;
+}
+
+.commit-title {
+  margin: 0;
+  padding: 0;
+}
+
+.message-link {
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  color: #444d56;
+}
+
+.message-link:hover {
+  text-decoration: underline;
+}
+
+.author-area {
+  display: flex;
+  margin-top: 4px;
+}
+
+.author-avatar {
+  border-radius: 2px;
+  height: 20px;
+  width: 20px;
+}
+
+.author-link {
+  font-weight: 600;
+  font-size: 12px;
+  margin: 0 1em 0 1em;
+  color: #586069;
+  text-decoration: none;
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
+
+.date {
+  font-size: 12px;
+  color: #586069;
+}
+
+.verify-mark {
+  font-size: 13px;
+  padding: 6px 12px;
+  color: #22863a;
+  border-radius: 3px;
+  border: 1px solid #e1e4e8;
+}
+.verify-mark:hover {
+  border-color: #22863a;
+  cursor: pointer;
+}
