@@ -30,22 +30,6 @@ export function renderLoading(rootId: string) {
 }
 
 export function renderCommitHistory(model: CSModel) {
-  function _renderCommitHistory(model: CSModel) {
-    const user = model.request.user;
-    const repo = model.request.repo;
-    const page = model.request.page;
-    const key = `${user}/${repo}/${page}`;
-    requestCommitsHistory(user, repo, page)
-      .then((jsonList) => {
-        // save response
-        model.responseHistory[key] = jsonList;
-        renderPageInfo(model);
-        ReactDOM.render(
-          CommitHistory(model.responseHistory[key], user, repo),
-          document.getElementById('commit-history')
-        );
-      });
-  }
   const user = model.request.user;
   const repo = model.request.repo;
   if (user === "" || repo === "") { return; }
@@ -77,27 +61,39 @@ export function renderCommitHistory(model: CSModel) {
   }
 }
 
+function _renderCommitHistory(model: CSModel) {
+  const user = model.request.user;
+  const repo = model.request.repo;
+  const page = model.request.page;
+  const key = `${user}/${repo}/${page}`;
+  requestCommitsHistory(user, repo, page)
+    .then((jsonList) => {
+      // save response
+      model.responseHistory[key] = jsonList;
+      renderPageInfo(model);
+      ReactDOM.render(
+        CommitHistory(model.responseHistory[key], user, repo),
+        document.getElementById('commit-history')
+      );
+    });
+}
+
 export function renderPageInfo(model: CSModel) {
   const user = model.request.user;
   const repo = model.request.repo;
   const page = model.request.page;
   const oldestPage = (model.totalCommitNumHistory[`${user}/${repo}`] / 100 | 0) + 1;
+  const styles = {
+    width: '900px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  };
   ReactDOM.render(
-    <div style={{
-      textAlign: 'right',
-      width: '900px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }}>{`${page} / ${oldestPage}`}</div>,
+    <div style={{ ...styles, ...{ textAlign: 'right' } }}>{`${page} / ${oldestPage}`}</div>,
     document.getElementById('page-info-top')
   );
   ReactDOM.render(
-    <div style={{
-      textAlign: 'right',
-      width: '900px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }}>{`${page} / ${oldestPage}`}</div>,
+    <div style={{ ...styles, ...{ textAlign: 'right' } }} > {`${page} / ${oldestPage}`}</ div>,
     document.getElementById('page-info-bottom')
   );
 }

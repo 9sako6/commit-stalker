@@ -1,10 +1,10 @@
 'use strict';
-export type RequestNameType = "user" | "repo" | "page";
+export type RequestNameType = 'user' | 'repo' | 'page';
 export type RequestType = {
-  user: string,
-  repo: string,
-  page: number,
-}
+  user: string;
+  repo: string;
+  page: number;
+};
 export default class CSModel {
   request: RequestType;
   headerId: string;
@@ -13,10 +13,10 @@ export default class CSModel {
   responseHistory: object;
   constructor() {
     this.request = {
-      user: "",
-      repo: "",
-      page: 1,
-    }
+      user: '',
+      repo: '',
+      page: 1
+    };
     this.headerId = 'site-header';
     this.footerId = 'site-footer';
     /**
