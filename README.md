@@ -5,7 +5,7 @@ GitHub commits viewer.
 In addition, you can search **the oldest commit** easily.
 URL: https://9sako6.github.io/commit-stalker/
 
-![demo](figs/demo.gif)
+![demo](figs/sample.gif)
 
 
 # More Details

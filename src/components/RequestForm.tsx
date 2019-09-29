@@ -5,12 +5,22 @@ import { renderCommitHistory } from '../helper';
 // css
 import './request_form.scss';
 
-type RequestFormProps = { name: RequestNameType, model: CSModel, value?: string, placeHolder?: string };
+type RequestFormProps = {
+  name: RequestNameType;
+  model: CSModel;
+  value?: string;
+  placeHolder?: string;
+};
 type RequestFormState = { value: string };
-export default class RequestForm extends Component<RequestFormProps, RequestFormState> {
+export default class RequestForm extends Component<
+  RequestFormProps,
+  RequestFormState
+> {
   constructor(props: RequestFormProps) {
     super(props);
-    this.state = { value: this.props.value === undefined ? "" : this.props.value };
+    this.state = {
+      value: this.props.value === undefined ? '' : this.props.value
+    };
   }
   handleChange = (e: any) => {
     const newValue = e.target.value;
@@ -28,13 +38,13 @@ export default class RequestForm extends Component<RequestFormProps, RequestForm
       default:
         break;
     }
-  }
+  };
   handleKeyDown = (e: any) => {
     if (e.keyCode === 13) {
       // when the enter key is pressed
       renderCommitHistory(this.props.model);
     }
-  }
+  };
   render() {
     return (
       <input
