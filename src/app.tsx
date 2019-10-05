@@ -1,12 +1,11 @@
-// utils
-import CSModel from './CSModel';
-import { renderHeader, renderFooter } from './helper';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Header, { HEADER_ID } from './components/Header';
 // css
 import './app.scss';
 
-const model = new CSModel();
-
 // header
-renderHeader(model);
-// footer
-// renderFooter(model);
+ReactDOM.render(
+  <Header />,
+  document.getElementById(HEADER_ID)
+);

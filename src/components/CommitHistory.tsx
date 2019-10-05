@@ -1,19 +1,25 @@
-import React from 'react';
+import React from "react";
 // components
-import CommitRow from './CommitRow';
+import CommitRow, { GitHubAPIResponse } from "./CommitRow";
 // css
-import './commit_history.scss';
-export default function CommitHistory(
-  jsonList: any[],
-  user: string,
-  repo: string
-) {
-  let prevDate = '';
+import "./commit_history.scss";
+
+
+
+type CommitHistoryProps = {
+  jsonList: GitHubAPIResponse[];
+  user: string;
+  repo: string;
+};
+export const COMMIT_HISTORY_ID = "commit-history";
+export default function CommitHistory(props: CommitHistoryProps) {
+  let prevDate = "";
+  console.log(props.jsonList);
   return (
     <>
-      {jsonList.map((json: any, i) => {
+      {props.jsonList.map((json: GitHubAPIResponse, i) => {
         const dateList = String(new Date(json.commit.author.date))
-          .split(' ')
+          .split(" ")
           .slice(1, 4);
         const date = `${dateList[0]} ${dateList[1]}, ${dateList[2]}`;
         if (date !== prevDate) {
@@ -21,11 +27,18 @@ export default function CommitHistory(
           return (
             <React.Fragment key={i}>
               <div className="commit-group-title">{date}</div>
-              <CommitRow json={json} user={user} repo={repo} />
+              <CommitRow json={json} user={props.user} repo={props.repo} />
             </React.Fragment>
           );
         } else {
-          return <CommitRow key={i} json={json} user={user} repo={repo} />;
+          return (
+            <CommitRow
+              key={i}
+              json={json}
+              user={props.user}
+              repo={props.repo}
+            />
+          );
         }
       })}
     </>

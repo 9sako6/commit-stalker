@@ -1,11 +1,13 @@
 # commit-stalker
 
+[![CircleCI](https://circleci.com/gh/9sako6/commit-stalker.svg?style=svg)](https://circleci.com/gh/9sako6/commit-stalker)
+
 GitHub commits viewer.
 **100 commits** are showed in a page. (35 commits in the official site.)
 In addition, you can search **the oldest commit** easily.
 URL: https://9sako6.github.io/commit-stalker/
 
-![demo](figs/sample.gif)
+![demo](figs/demo.gif)
 
 
 # More Details
