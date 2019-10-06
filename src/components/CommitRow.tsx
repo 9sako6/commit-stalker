@@ -8,41 +8,41 @@ import "./commit_row.scss";
 library.add(faCheck, faTimes);
 
 interface CommitAuthor {
-  date: string,
-  email: string,
-  name: string,
+  date: string;
+  email: string;
+  name: string;
 }
 
 interface CommitVerification {
-  verified: boolean, 
+  verified: boolean;
 }
 
 interface Commit {
-  author: CommitAuthor,
-  comment_count?: number,
-  committer?: object,
-  message: string,
-  tree?: object,
-  url?: string,
-  verification: CommitVerification,
+  author: CommitAuthor;
+  comment_count?: number;
+  committer?: object;
+  message: string;
+  tree?: object;
+  url?: string;
+  verification: CommitVerification;
 }
 
 interface Author {
-  login: string,
-  html_url: string,
-  avatar_url: string,
+  login: string;
+  html_url: string;
+  avatar_url: string;
 }
 
 export interface GitHubAPIResponse {
-  author: Author,
-  comments_url?: string,
-  commit: Commit,
-  committer?: object,
-  html_url?: string,
-  node_id?: string,
-  parents?: object[],
-  sha?: string,
-  url?: string,
+  author: Author;
+  comments_url?: string;
+  commit: Commit;
+  committer?: object;
+  html_url?: string;
+  node_id?: string;
+  parents?: object[];
+  sha?: string;
+  url?: string;
 }
 
 type CommitRowProps = {

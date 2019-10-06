@@ -78,10 +78,12 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   renderCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (this.commitHistory.has(userRepoPage) === false) {
-      await requestCommitHistory(user, repo, page).then((jsonList: GitHubAPIResponse[]) => {
-        // save response
-        this.commitHistory.set(userRepoPage, jsonList);
-      });
+      await requestCommitHistory(user, repo, page).then(
+        (jsonList: GitHubAPIResponse[]) => {
+          // save response
+          this.commitHistory.set(userRepoPage, jsonList);
+        }
+      );
     }
     // render commit history
     ReactDOM.render(

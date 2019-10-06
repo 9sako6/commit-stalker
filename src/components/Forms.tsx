@@ -7,7 +7,11 @@ interface FuncChange {
 interface FuncKeyDown {
   (arg: React.KeyboardEvent<HTMLInputElement>): void;
 }
-type FormProps = { handleChange: FuncChange; handleKeyDown: FuncKeyDown; value: string };
+type FormProps = {
+  handleChange: FuncChange;
+  handleKeyDown: FuncKeyDown;
+  value: string;
+};
 export function UserForm(props: FormProps) {
   return (
     <input

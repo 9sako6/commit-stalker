@@ -4,8 +4,6 @@ import CommitRow, { GitHubAPIResponse } from "./CommitRow";
 // css
 import "./commit_history.scss";
 
-
-
 type CommitHistoryProps = {
   jsonList: GitHubAPIResponse[];
   user: string;
@@ -14,7 +12,6 @@ type CommitHistoryProps = {
 export const COMMIT_HISTORY_ID = "commit-history";
 export default function CommitHistory(props: CommitHistoryProps) {
   let prevDate = "";
-  console.log(props.jsonList);
   return (
     <>
       {props.jsonList.map((json: GitHubAPIResponse, i) => {

@@ -1,0 +1,13 @@
+.request-left-card {
+  z-index: 900;
+  position: fixed;
+  right: 10px;
+  bottom: 60px;
+  width: 160px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  a {
+    color: #6a737d;
+  }
+}
