@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/app.tsx',
   output: {
     filename: 'app.min.js',
-    path: path.join(__dirname, './dest')
+    path: path.join(__dirname, './public')
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
