@@ -3,8 +3,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 #site-header {
-  background-color: #3c4146;;
+  background-color: #3c4146;
+  ;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -31,7 +33,14 @@
 
 .site-title {
   font-weight: 700;
-  position: relative;
   font-size: 1.3em;
   color: #ffffff;
+  display: table-cell;
+  a {
+    color: #ffffff;
+    font-size: 1.3em;
+    display: table;
+    text-decoration: none;
+    border-bottom: none;
+  }
 }
