@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header, { HEADER_ID } from './components/Header';
-import Footer, { FOOTER_ID } from './components/Footer';
+// import Footer, { FOOTER_ID } from './components/Footer';
 import RequestLeftCard, { REQUEST_LEFT_CARD_ID } from './components/RequestLeftCard';
 // css
 import './app.scss';
@@ -17,7 +17,7 @@ ReactDOM.render(
   document.getElementById(REQUEST_LEFT_CARD_ID)
 );
 // footer
-ReactDOM.render(
-  <Footer />,
-  document.getElementById(FOOTER_ID)
-);
+// ReactDOM.render(
+//   <Footer />,
+//   document.getElementById(FOOTER_ID)
+// );

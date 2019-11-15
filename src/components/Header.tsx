@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import UseAnimations from "react-useanimations";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import {
   faSearch,
@@ -236,7 +237,21 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     };
     return (
       <div id="header-menu">
-        <div className="site-title">Commit Stalker</div>
+        <div className="site-title">
+          <a href="https://github.com/9sako6/commit-stalker" target="_blank">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <UseAnimations animationKey="github" size={32} />
+                  </td>
+                  <td>Commit Stalker</td>
+                </tr>
+              </tbody>
+            </table>
+          </a>
+        </div>
+
         <div style={styles}>
           <UserForm
             value={String(this.state.user)}
