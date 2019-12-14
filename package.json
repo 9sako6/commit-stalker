@@ -33,7 +33,8 @@
     "node-emoji": "^1.10.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
-    "react-useanimations": "^1.2.11"
+    "react-useanimations": "^1.2.11",
+    "serialize-javascript": "2.1.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
