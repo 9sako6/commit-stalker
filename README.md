@@ -1,6 +1,6 @@
 # commit-stalker
 
-[![CircleCI](https://circleci.com/gh/9sako6/commit-stalker.svg?style=svg)](https://circleci.com/gh/9sako6/commit-stalker)
+![deploy gh-pages](https://github.com/9sako6/commit-stalker/workflows/deploy%20gh-pages/badge.svg)
 
 GitHub commits viewer.
 **100 commits** are showed in a page. (35 commits in the official site.)
