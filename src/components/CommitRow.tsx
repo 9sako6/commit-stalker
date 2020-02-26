@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import emoji from "node-emoji";
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 // css
 import "./commit_row.scss";
-// fontawsome
-library.add(faCheck, faTimes);
 
 interface CommitAuthor {
   date: string;
@@ -54,10 +50,6 @@ export default class CommitRow extends Component<CommitRowProps> {
   constructor(props: CommitRowProps) {
     super(props);
   }
-  componentDidMount() {
-    // fontawsome
-    dom.i2svg();
-  }
   render() {
     const author =
       this.props.json.author === null
@@ -87,19 +79,21 @@ export default class CommitRow extends Component<CommitRowProps> {
               data-pjax="true"
               href={this.props.json.html_url}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {emoji.emojify(this.props.json.commit.message)}
             </a>
           </p>
           <div className="author-area">
-            <a href={author_link} target="_blank">
-              <img className="author-avatar" src={avatar_url} />
+            <a href={author_link} target="_blank" rel="noopener noreferrer">
+              <img className="author-avatar" alt="author-avatar" src={avatar_url} />
             </a>
             <a
               className="author-link"
               data-pjax="true"
               href={`https://github.com/${author}/${this.props.repo}/commit?author=${author}`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {author}
             </a>

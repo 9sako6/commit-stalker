@@ -1,23 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header, { HEADER_ID } from './components/Header';
-// import Footer, { FOOTER_ID } from './components/Footer';
-import RequestLeftCard, { REQUEST_LEFT_CARD_ID } from './components/RequestLeftCard';
-// css
-import './app.scss';
+import logo from './logo.svg';
+import './App.css';
 
-// header
-ReactDOM.render(
-  <Header />,
-  document.getElementById(HEADER_ID)
-);
-// request left card
-ReactDOM.render(
-  <RequestLeftCard />,
-  document.getElementById(REQUEST_LEFT_CARD_ID)
-);
-// footer
-// ReactDOM.render(
-//   <Footer />,
-//   document.getElementById(FOOTER_ID)
-// );
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
