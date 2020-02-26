@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import Grid from '@material-ui/core/Grid';
 import UseAnimations from "react-useanimations";
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import {
-  faSearch,
-  faAngleLeft,
-  faAngleDoubleLeft,
-  faAngleRight,
-  faAngleDoubleRight,
-} from "@fortawesome/free-solid-svg-icons";
 // utils
 import { requestTotalCommitNum, requestCommitHistory } from "../APIUtils";
 // components
@@ -27,15 +20,6 @@ import PageInfo, { PAGE_INFO_CLASS } from "./PageInfo";
 // css
 import "./header.scss";
 
-// fontawsome
-library.add(
-  faSearch,
-  faAngleLeft,
-  faAngleDoubleLeft,
-  faAngleRight,
-  faAngleDoubleRight
-);
-
 /**
  * Header
  */
@@ -52,13 +36,6 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     this.commitHistory = new Map();
     // totalCommitNumHistory restores totalCommitNum. key is 'user/repo'
     this.totalCommitNumHistory = new Map();
-  }
-  componentDidMount() {
-    // fontawsome
-    dom.i2svg();
-    // set margin content
-    // const headerHeight = document.getElementById(HEADER_ID)!.clientHeight;
-    // document.getElementById("root")!.style.marginTop = `${headerHeight + 20}px`;
   }
   handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ user: e.currentTarget.value });
@@ -146,7 +123,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
       return false;
     }
     const page = Number(this.state.page);
-    if (page === NaN || page <= 1) {
+    if (isNaN(page) || page <= 1) {
       return false;
     }
     this.renderLoading();
@@ -170,7 +147,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     }
     const oldestPage =
       ((this.totalCommitNumHistory.get(userRepo)! / 100) | 0) + 1;
-    if (page === NaN || page >= oldestPage) {
+    if (isNaN(page) || page >= oldestPage) {
       this.renderMain(this.state.user, this.state.repo, page);
       return false;
     } else {
@@ -232,11 +209,6 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     }
   };
   render() {
-    const styles = {
-      display: "flex",
-      // height: "4em",
-      // lineHeight: "2em",
-    };
     return (
       <div id="header-menu">
         <div className="site-title">
@@ -253,50 +225,56 @@ export default class Header extends Component<HeaderProps, HeaderState> {
             </table>
           </a>
         </div>
-
-        <div style={styles}>
-          <UserForm
-            value={String(this.state.user)}
-            handleChange={this.handleUserChange}
-            handleKeyDown={this.handleFormKeyDown}
-          />
-          <RepoForm
-            value={String(this.state.repo)}
-            handleChange={this.handleRepoChange}
-            handleKeyDown={this.handleFormKeyDown}
-          />
-          <PageForm
-            value={String(this.state.page)}
-            handleChange={this.handlePageChange}
-            handleKeyDown={this.handleFormKeyDown}
-          />
-          <SearchButton
-            handleClick={() =>
-              this.renderMain(
-                this.state.user,
-                this.state.repo,
-                Number(this.state.page)
-              )
-            }
-            handleKeyDown={this.handleSearchKeyDown}
-          />
-          <LatestButton
-            handleClick={this.handleLatestClick}
-            handleKeyDown={this.handleLatestKeyDown}
-          />
-          <BackButton
-            handleClick={this.handleBackClick}
-            handleKeyDown={this.handleBackKeyDown}
-          />
-          <NextButton
-            handleClick={this.handleNextClick}
-            handleKeyDown={this.handleNextKeyDown}
-          />
-          <OldestButton
-            handleClick={this.handleOldestClick}
-            handleKeyDown={this.handleOldestKeyDown}
-          />
-        </div>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <div>
+            <UserForm
+              value={String(this.state.user)}
+              handleChange={this.handleUserChange}
+              handleKeyDown={this.handleFormKeyDown}
+            />
+            <RepoForm
+              value={String(this.state.repo)}
+              handleChange={this.handleRepoChange}
+              handleKeyDown={this.handleFormKeyDown}
+            />
+            <PageForm
+              value={String(this.state.page)}
+              handleChange={this.handlePageChange}
+              handleKeyDown={this.handleFormKeyDown}
+            />
+            <SearchButton
+              handleClick={() =>
+                this.renderMain(
+                  this.state.user,
+                  this.state.repo,
+                  Number(this.state.page)
+                )
+              }
+              handleKeyDown={this.handleSearchKeyDown}
+            />
+            <LatestButton
+              handleClick={this.handleLatestClick}
+              handleKeyDown={this.handleLatestKeyDown}
+            />
+            <BackButton
+              handleClick={this.handleBackClick}
+              handleKeyDown={this.handleBackKeyDown}
+            />
+            <NextButton
+              handleClick={this.handleNextClick}
+              handleKeyDown={this.handleNextKeyDown}
+            />
+            <OldestButton
+              handleClick={this.handleOldestClick}
+              handleKeyDown={this.handleOldestKeyDown}
+            />
+          </div>
+        </Grid>
       </div>
     );
   }
