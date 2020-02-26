@@ -5,10 +5,9 @@
 }
 
 #site-header {
-  background-color: #3c4146;
-  ;
+  // background-color: #4aa5ff;
   padding: 20px;
-  position: fixed;
+  // position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -32,12 +31,13 @@
 }
 
 .site-title {
+  // background-color: #4aa5ff;
   font-weight: 700;
   font-size: 1.3em;
-  color: #ffffff;
+  // color: #413d3d;
   display: table-cell;
   a {
-    color: #ffffff;
+    color: #39383e;
     font-size: 1.3em;
     display: table;
     text-decoration: none;

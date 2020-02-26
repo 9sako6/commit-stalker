@@ -57,8 +57,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     // fontawsome
     dom.i2svg();
     // set margin content
-    const headerHeight = document.getElementById(HEADER_ID)!.clientHeight;
-    document.getElementById("root")!.style.marginTop = `${headerHeight + 20}px`;
+    // const headerHeight = document.getElementById(HEADER_ID)!.clientHeight;
+    // document.getElementById("root")!.style.marginTop = `${headerHeight + 20}px`;
   }
   handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ user: e.currentTarget.value });
@@ -234,11 +234,13 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   render() {
     const styles = {
       display: "flex",
+      // height: "4em",
+      // lineHeight: "2em",
     };
     return (
       <div id="header-menu">
         <div className="site-title">
-          <a href="https://github.com/9sako6/commit-stalker" target="_blank">
+          <a href="https://github.com/9sako6/commit-stalker" target="_blank" rel="noopener noreferrer">
             <table>
               <tbody>
                 <tr>
