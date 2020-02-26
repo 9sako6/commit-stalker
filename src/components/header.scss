@@ -5,39 +5,23 @@
 }
 
 #site-header {
-  // background-color: #4aa5ff;
+  background-color: rgb(0, 123, 207);
   padding: 20px;
-  // position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: 0.7rem 1.5rem;
-  line-height: 2.2rem;
-  z-index: 999;
-}
-
-@keyframes fadeOut {
-  50% {
-    transform: translateY(-50%);
-  }
-
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-#site-header.header-fadeout {
-  animation: fadeOut 0.3s linear 0s 1 alternate forwards running;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3),
 }
 
 .site-title {
   // background-color: #4aa5ff;
   font-weight: 700;
   font-size: 1.3em;
-  // color: #413d3d;
   display: table-cell;
   a {
-    color: #39383e;
+    // color: #39383e;
+    color: #f9f7f5;
     font-size: 1.3em;
     display: table;
     text-decoration: none;

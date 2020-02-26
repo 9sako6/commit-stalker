@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import emoji from "node-emoji";
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 // css
 import "./commit_row.scss";
-// fontawsome
-library.add(faCheck, faTimes);
 
 interface CommitAuthor {
   date: string;
@@ -53,10 +49,6 @@ type CommitRowProps = {
 export default class CommitRow extends Component<CommitRowProps> {
   constructor(props: CommitRowProps) {
     super(props);
-  }
-  componentDidMount() {
-    // fontawsome
-    dom.i2svg();
   }
   render() {
     const author =
