@@ -87,19 +87,21 @@ export default class CommitRow extends Component<CommitRowProps> {
               data-pjax="true"
               href={this.props.json.html_url}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {emoji.emojify(this.props.json.commit.message)}
             </a>
           </p>
           <div className="author-area">
-            <a href={author_link} target="_blank">
-              <img className="author-avatar" src={avatar_url} />
+            <a href={author_link} target="_blank" rel="noopener noreferrer">
+              <img className="author-avatar" alt="author-avatar" src={avatar_url} />
             </a>
             <a
               className="author-link"
               data-pjax="true"
               href={`https://github.com/${author}/${this.props.repo}/commit?author=${author}`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {author}
             </a>
