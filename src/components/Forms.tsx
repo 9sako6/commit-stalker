@@ -1,4 +1,5 @@
 import React from "react";
+import TextField from '@material-ui/core/TextField';
 import "./form.scss";
 
 interface FuncChange {
@@ -14,11 +15,11 @@ type FormProps = {
 };
 export function UserForm(props: FormProps) {
   return (
-    <input
-      className="request-form"
-      type="text"
+    <TextField
+      // className="request-form"
+      // type="text"
       value={props.value}
-      placeholder="User"
+      label="User"
       onChange={props.handleChange}
       onKeyDown={props.handleKeyDown}
     />
@@ -26,11 +27,11 @@ export function UserForm(props: FormProps) {
 }
 export function RepoForm(props: FormProps) {
   return (
-    <input
-      className="request-form"
+    <TextField
+      // className="request-form"
       type="text"
       value={props.value}
-      placeholder="Repository"
+      label="Repository"
       onChange={props.handleChange}
       onKeyDown={props.handleKeyDown}
     />
@@ -38,11 +39,11 @@ export function RepoForm(props: FormProps) {
 }
 export function PageForm(props: FormProps) {
   return (
-    <input
-      className="request-form"
+    <TextField
+      // className="request-form"
       type="text"
       value={props.value}
-      placeholder="Page Number (Option)"
+      label="Page Number (Option)"
       onChange={props.handleChange}
       onKeyDown={props.handleKeyDown}
     />
