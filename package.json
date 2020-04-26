@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "yarn build && gh-pages -d build"
   },
   "homepage": "https://9sako6.github.io/commit-stalker/",
   "eslintConfig": {

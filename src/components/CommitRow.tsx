@@ -99,6 +99,7 @@ export default class CommitRow extends Component<CommitRowProps> {
             </a>
             <span className="date">
               committed on {date.toLocaleDateString()}
+              &nbsp;
               {date.toLocaleTimeString()}
             </span>
           </div>
