@@ -1,6 +1,7 @@
 import React from "react";
 // components
-import CommitRow, { GitHubAPIResponse } from "./CommitRow";
+import CommitRow from "./partials/CommitRow";
+import { GitHubAPIResponse } from "../@types/github-api"
 // css
 import "./commit_history.scss";
 
@@ -12,7 +13,7 @@ type CommitHistoryProps = {
 export const COMMIT_HISTORY_ID = "commit-history";
 export default function CommitHistory(props: CommitHistoryProps) {
   let prevDate = "";
-  return (
+  return props.jsonList !== undefined ? (
     <>
       {props.jsonList.map((json: GitHubAPIResponse, i) => {
         const dateList = String(new Date(json.commit.author.date))
@@ -39,5 +40,5 @@ export default function CommitHistory(props: CommitHistoryProps) {
         }
       })}
     </>
-  );
+  ) : (<></>);
 }

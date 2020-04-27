@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Grid from '@material-ui/core/Grid';
-import UseAnimations from "react-useanimations";
 // utils
-import { requestTotalCommitNum, requestCommitHistory } from "../APIUtils";
+import { requestTotalCommitNum, requestCommitHistory } from "../../APIUtils";
+import { GitHubAPIResponse } from "../../@types/github-api"
 // components
-import { UserForm, RepoForm, PageForm } from "./Forms";
+import Title from "./title";
+import { UserForm, RepoForm, PageForm } from "../partials/Forms";
 import {
   SearchButton,
   LatestButton,
   BackButton,
   NextButton,
   OldestButton,
-} from "./Buttons";
-import CommitHistory, { COMMIT_HISTORY_ID } from "./CommitHistory";
-import { GitHubAPIResponse } from "./CommitRow";
-import Loading from "./Loading";
-import PageInfo, { PAGE_INFO_CLASS } from "./PageInfo";
+} from "../partials/Buttons";
+import CommitHistory, { COMMIT_HISTORY_ID } from "../CommitHistory";
+import Loading from "../partials/Loading";
+import PageInfo, { PAGE_INFO_CLASS } from "../partials/PageInfo";
 // css
 import "./header.scss";
 
@@ -210,21 +210,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   };
   render() {
     return (
-      <div id="header-menu">
-        <div className="site-title">
-          <a href="https://github.com/9sako6/commit-stalker" target="_blank" rel="noopener noreferrer">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <UseAnimations animationKey="github" size={32} />
-                  </td>
-                  <td>Commit Stalker</td>
-                </tr>
-              </tbody>
-            </table>
-          </a>
-        </div>
+      <div id="site-header">
+        <Title />
         <Grid
           container
           direction="row"
