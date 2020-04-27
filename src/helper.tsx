@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { PAGE_INFO_CLASS } from "./components/PageInfo";
 
-export function renderErrorMessage(status: number, message: string) {
-  document.querySelectorAll(PAGE_INFO_CLASS).forEach(elem => {
-    ReactDOM.render(<></>, elem);
-  });
+export const renderErrorMessage = (
+  message: string,
+  targetElementId: string,
+  callback?: (arg?: any) => any
+) => {
   ReactDOM.render(
-    <div>
-      <h1>{status}</h1>
+    <div style={{ textAlign: "center" }}>
       <div>{message}</div>
     </div>,
-    document.getElementById('commit-history')
+    document.getElementById(targetElementId)
   );
+  callback && callback();
 }
