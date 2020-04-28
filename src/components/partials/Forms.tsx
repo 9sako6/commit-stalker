@@ -1,48 +1,44 @@
 import React from "react";
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import "./form.scss";
 
-interface FuncChange {
-  (arg: React.ChangeEvent<HTMLInputElement>): void;
-}
-interface FuncKeyDown {
+type FuncKeyDown = {
   (arg: React.KeyboardEvent<HTMLInputElement>): void;
 }
 type FormProps = TextFieldProps & {
-  handleChange: FuncChange;
+  handleChange: (arg: string) => void;
   handleKeyDown: FuncKeyDown;
   value: string;
 };
 
 const useStyles = makeStyles({
   root: {
-    fontSize: "1.5em",
-    marginRight: '10px',
-    '& label': {
-      color: '#ddf',
-      fontWeight: "700"
-    },
-    '& label.Mui-focused': {
-      color: 'white',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
-      },
-      '&:hover fieldset': {
-        borderColor: 'white',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
-      },
+    // fontSize: "1.5em",
+    margin: '0.3rem',
+    // '& label': {
+    //   color: '#ddf',
+    //   fontWeight: "700"
+    // },
+    // '& label.Mui-focused': {
+    //   color: 'white',
+    // },
+    // '& .MuiInput-underline:after': {
+    //   borderBottomColor: 'white',
+    // },
+    '.MuiOutlinedInput-root MuiInputBase-input': {
+    //   '& fieldset': {
+    //     borderColor: 'white',
+    //   },
+    //   '&:hover fieldset': {
+    //     borderColor: 'white',
+    //   },
+    //   '&.Mui-focused fieldset': {
+    //     borderColor: 'white',
+    //   },
     },
   },
   input: {
-    color: 'white',
+    // color: 'white',
   }
 });
 
@@ -54,7 +50,7 @@ export function UserForm(props: FormProps) {
       className={classes.root}
       value={props.value}
       label="User"
-      onChange={props.handleChange}
+      onChange={(e) => props.handleChange(e.currentTarget.value)}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input
@@ -71,7 +67,7 @@ export function RepoForm(props: FormProps) {
       type="text"
       value={props.value}
       label="Repository"
-      onChange={props.handleChange}
+      onChange={(e) => props.handleChange(e.currentTarget.value)}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input
@@ -79,7 +75,13 @@ export function RepoForm(props: FormProps) {
     />
   );
 }
-export function PageForm(props: FormProps) {
+type PageFormProps = TextFieldProps & {
+  handleChange: (arg: number) => void;
+  handleKeyDown: FuncKeyDown;
+  value: number;
+};
+
+export function PageForm(props: PageFormProps) {
   const classes = useStyles();
   return (
     <TextField
@@ -88,7 +90,7 @@ export function PageForm(props: FormProps) {
       type="text"
       value={props.value}
       label="Page Number"
-      onChange={props.handleChange}
+      onChange={(e) => props.handleChange(Number(e.currentTarget.value))}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input

@@ -1,14 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { PAGE_INFO_CLASS } from "./components/partials/PageInfo";
 import axios from "axios";
 import { renderErrorMessage } from "./helper";
-
-const clearElements = (selector: string): void => {
-  document.querySelectorAll(selector).forEach(targetElem => {
-    ReactDOM.render(<></>, targetElem);
-  });
-}
 
 /**
  * request total commit count
@@ -23,7 +14,7 @@ export const requestTotalCommitNum = async (
     );
     return data;
   } catch (err) {
-    renderErrorMessage(err.message, 'commit-history', () => clearElements(PAGE_INFO_CLASS));
+    renderErrorMessage(err.message, 'commit-history');
   }
 }
 
@@ -41,6 +32,6 @@ export const requestCommitHistory = async (
     );
     return data;
   } catch (err) {
-    renderErrorMessage(err.message, 'commit-history', () => clearElements(PAGE_INFO_CLASS));
+    renderErrorMessage(err.message, 'commit-history');
   }
 }

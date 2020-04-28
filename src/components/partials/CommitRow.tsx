@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import emoji from "node-emoji";
 import "./commit_row.scss";
 import { GitHubAPIResponse } from "../../@types/github-api"
