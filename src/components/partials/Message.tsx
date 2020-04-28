@@ -4,6 +4,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
+import { maxWidth, fontFamily } from "../../common";
 
 const Alert = (props: any) => {
   const [open, setOpen] = React.useState(true);
@@ -32,12 +33,25 @@ const Alert = (props: any) => {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: "900px",
+    maxWidth,
+    width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
-    '& a': {
-      color: "#fff"
-    }
+    fontFamily,
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-50%)",
+    position: "fixed",
+    "& a": {
+      color: "#fff",
+      fontFamily,
+      borderBottom: "none",
+      textDecoration: "none",
+      fontWeight: "600",
+      "&:hover": {
+        color: "red"
+      }
+    },
   },
 });
 
