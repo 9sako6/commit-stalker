@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/commit-stalker/precache-manifest.6abb4afd96715673e28c434c29d8accf.js"
+  "/commit-stalker/precache-manifest.cffc6a6f7429924a0492b9436d5383ea.js"
 );
 
 self.addEventListener('message', (event) => {
