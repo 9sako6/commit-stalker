@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import { fontFamily, backgroundColor } from "../../common";
+import { fontFamily, backgroundColor } from '../../common';
 
 const drawerWidth = 240;
 
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       backgroundColor,
-      color: "black",
-      boxShadow: "none",
+      color: 'black',
+      boxShadow: 'none',
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -131,19 +131,16 @@ const PersistentDrawerLeft: React.FC = ({ children }) => {
         </div>
         <Divider />
         <List>
-          <ListItem style={{ textAlign: "center" }}>
-            {children}
-          </ListItem>
+          <ListItem style={{ textAlign: 'center' }}>{children}</ListItem>
         </List>
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
-      >
-      </main>
+      ></main>
     </div>
   );
-}
+};
 
 export default PersistentDrawerLeft;

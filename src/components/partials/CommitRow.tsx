@@ -1,7 +1,7 @@
-import React from "react";
-import emoji from "node-emoji";
-import "./commit_row.scss";
-import { GitHubAPIResponse } from "../../@types/github-api"
+import React from 'react';
+import emoji from 'node-emoji';
+import './commit_row.scss';
+import { GitHubAPIResponse } from '../../@types/github-api';
 
 type CommitRowProps = {
   json: GitHubAPIResponse;
@@ -9,14 +9,9 @@ type CommitRowProps = {
   repo: string;
 };
 export default (props: CommitRowProps) => {
-  const author =
-    props.json.author === null
-      ? "anonymous author"
-      : props.json.author.login;
-  const author_link =
-    props.json.author === null ? "#" : props.json.author.html_url;
-  const avatar_url =
-    props.json.author === null ? "#" : props.json.author.avatar_url;
+  const author = props.json.author === null ? 'anonymous author' : props.json.author.login;
+  const author_link = props.json.author === null ? '#' : props.json.author.html_url;
+  const avatar_url = props.json.author === null ? '#' : props.json.author.avatar_url;
   const date = new Date(props.json.commit.author.date);
 
   const isVerified = props.json.commit.verification.verified;
@@ -26,11 +21,11 @@ export default (props: CommitRowProps) => {
         <div className="verify-mark">Verified</div>
       </div>
     ) : (
-        <></>
-      );
+      <></>
+    );
   return (
     <li className="commit-list-item">
-      <div className="table-list-cell" style={{ width: "800px" }}>
+      <div className="table-list-cell" style={{ width: '800px' }}>
         <p className="commit-title">
           <a
             className="message-link"
@@ -57,12 +52,12 @@ export default (props: CommitRowProps) => {
           </a>
           <span className="date">
             committed on {date.toLocaleDateString()}
-              &nbsp;
-              {date.toLocaleTimeString()}
+            &nbsp;
+            {date.toLocaleTimeString()}
           </span>
         </div>
       </div>
       {verifyMark}
     </li>
   );
-}
+};

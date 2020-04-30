@@ -3,8 +3,8 @@
   Copyright (c) 2015 Tobias Ahlin
   https://github.com/tobiasahlin/SpinKit/blob/master/LICENSE
  */
-import React from "react";
-import "./loading.scss";
+import React from 'react';
+import './loading.scss';
 
 export default function Loading() {
   return (

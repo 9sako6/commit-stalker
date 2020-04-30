@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import Collapse from '@material-ui/core/Collapse';
 import MuiAlert from '@material-ui/lab/Alert';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import { maxWidth, fontFamily } from "../../common";
+import { maxWidth, fontFamily } from '../../common';
 
 const Alert = (props: any) => {
   const [open, setOpen] = React.useState(true);
@@ -29,28 +29,25 @@ const Alert = (props: any) => {
       />
     </Collapse>
   );
-}
+};
 
 const useStyles = makeStyles({
   root: {
     maxWidth,
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    width: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     fontFamily,
     bottom: 0,
-    left: "50%",
-    transform: "translateX(-50%)",
-    position: "fixed",
-    "& a": {
-      color: "#fff",
+    left: '50%',
+    transform: 'translateX(-50%)',
+    position: 'fixed',
+    '& a': {
+      color: '#fff',
       fontFamily,
-      borderBottom: "none",
-      textDecoration: "none",
-      fontWeight: "600",
-      "&:hover": {
-        // color: "red"
-      }
+      borderBottom: 'none',
+      textDecoration: 'none',
+      fontWeight: '600',
     },
   },
 });
@@ -59,17 +56,10 @@ export default () => {
   const classes = useStyles();
   const message = "The GitHub API's rate limit allows for up to 60 requests per hour";
   return (
-    <Alert
-      severity="info"
-      className={classes.root}
-    >
-      <a
-        href="https://developer.github.com/v3/#rate-limiting"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+    <Alert severity="info" className={classes.root}>
+      <a href="https://developer.github.com/v3/#rate-limiting" target="_blank" rel="noopener noreferrer">
         {message}
       </a>
     </Alert>
   );
-}
+};
