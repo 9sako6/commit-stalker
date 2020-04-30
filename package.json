@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "yarn build && gh-pages -d build",
-    "lintfix": "./node_modules/.bin/prettier --write ./src/*"
+    "lintfix": "./node_modules/.bin/prettier --write ./src/*",
+    "precommit": "yarn lintfix"
   },
   "homepage": "https://9sako6.github.io/commit-stalker/",
   "eslintConfig": {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Pagination from '@material-ui/lab/Pagination';
+import MuiPagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles(_ =>
   createStyles({
@@ -31,7 +31,7 @@ export default (props: PagenationProps) => {
 
   return (
     <div className={classes.root}>
-      <Pagination
+      <MuiPagination
         count={oldestPage}
         page={nowPage}
         onChange={handleChange}

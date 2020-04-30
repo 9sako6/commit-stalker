@@ -1,7 +1,7 @@
 import React from 'react';
 import emoji from 'node-emoji';
 import './commit_row.scss';
-import { GitHubAPIResponse } from '../../@types/github-api';
+import { GitHubAPIResponse } from 'src/typings/github-api';
 
 type CommitRowProps = {
   json: GitHubAPIResponse;

@@ -16,7 +16,7 @@ interface FuncKeyDown {
   (arg: React.KeyboardEvent<HTMLInputElement>): void;
 }
 type ButtonProps = { handleClick: FuncClick; handleKeyDown: FuncKeyDown };
-export function SearchButton(props: ButtonProps): JSX.Element {
+export default (props: ButtonProps): JSX.Element => {
   const classes = useStyles();
   return (
     <div className={classes.root} id="request" onKeyDown={props.handleKeyDown} onClick={props.handleClick}>
@@ -25,4 +25,4 @@ export function SearchButton(props: ButtonProps): JSX.Element {
       </Button>
     </div>
   );
-}
+};
