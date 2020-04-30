@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "allowSyntheticDefaultImports": true, // see below
+    "baseUrl": "./",
     "lib": [
       "dom",
       "dom.iterable",
@@ -9,7 +11,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
@@ -20,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }

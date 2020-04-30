@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import { fontFamily, backgroundColor } from '../../common';
+import { fontFamily, backgroundColor } from 'src/utils/common';
 
 const drawerWidth = 240;
 

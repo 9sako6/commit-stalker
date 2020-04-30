@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { renderErrorMessage } from './helper';
+import { renderErrorMessage } from 'src/utils/helper';
 
 /**
  * request total commit count

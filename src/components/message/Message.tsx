@@ -4,7 +4,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import { maxWidth, fontFamily } from '../../common';
+import { maxWidth, fontFamily } from 'src/utils/common';
 
 const Alert = (props: any) => {
   const [open, setOpen] = React.useState(true);
