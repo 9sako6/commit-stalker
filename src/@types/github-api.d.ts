@@ -1,14 +1,14 @@
-interface CommitAuthor {
+type CommitAuthor = {
   date: string;
   email: string;
   name: string;
-}
+};
 
-interface CommitVerification {
+type CommitVerification = {
   verified: boolean;
-}
+};
 
-interface Commit {
+type Commit = {
   author: CommitAuthor;
   comment_count?: number;
   committer?: object;
@@ -16,15 +16,15 @@ interface Commit {
   tree?: object;
   url?: string;
   verification: CommitVerification;
-}
+};
 
-interface Author {
+type Author = {
   login: string;
   html_url: string;
   avatar_url: string;
-}
+};
 
-export interface GitHubAPIResponse {
+export type GitHubAPIResponse = {
   author: Author;
   comments_url?: string;
   commit: Commit;
@@ -34,4 +34,4 @@ export interface GitHubAPIResponse {
   parents?: object[];
   sha?: string;
   url?: string;
-}
+};

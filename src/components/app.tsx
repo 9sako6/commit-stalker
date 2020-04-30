@@ -1,29 +1,26 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-// utils
-import { requestTotalCommitNum, requestCommitHistory } from "../APIUtils";
-import { GitHubAPIResponse } from "../@types/github-api"
-import { maxWidth } from "../common";
-// components
-import { UserForm, RepoForm, PageForm } from "./partials/Forms";
-import { SearchButton } from "./partials/Buttons";
-import CommitHistory, { COMMIT_HISTORY_ID } from "./CommitHistory";
-import Loading from "./partials/Loading";
-import Pagenation from "./partials/pagenation";
-import FlexDiv from "./partials/FlexDiv";
-import Message from "./partials/Message";
-import Readme from "./partials/readme";
-import Header from "./header";
-// css
-import HiddenWrapper from "./partials/hidden";
+import { requestTotalCommitNum, requestCommitHistory } from '../APIUtils';
+import { GitHubAPIResponse } from '../@types/github-api';
+import { maxWidth } from '../common';
+import { UserForm, RepoForm, PageForm } from './partials/Forms';
+import { SearchButton } from './partials/Buttons';
+import CommitHistory, { COMMIT_HISTORY_ID } from './CommitHistory';
+import Loading from './partials/Loading';
+import Pagenation from './partials/Pagenation';
+import FlexDiv from './partials/FlexDiv';
+import Message from './partials/Message';
+import Readme from './partials/Readme';
+import Header from './partials/Header';
+import HiddenWrapper from './partials/Hidden';
 
 export default () => {
   const commitHistory = new Map<string, GitHubAPIResponse[]>();
   const totalCommitNumHistory = new Map<string, number>();
-  const [user, setUser] = useState("");
-  const [repo, setRepo] = useState("");
+  const [user, setUser] = useState('');
+  const [repo, setRepo] = useState('');
   const [page, setPage] = useState(1);
   const [totalCommitNum, setTotalCommitNum] = useState(0);
   const [isReadmeOpen, setIsReadmeOpen] = useState(true);
@@ -34,21 +31,15 @@ export default () => {
   const renderCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (commitHistory.has(userRepoPage) === false) {
-      await requestCommitHistory(user, repo, page).then(
-        (jsonList: GitHubAPIResponse[]) => {
-          // save response
-          commitHistory.set(userRepoPage, jsonList);
-        }
-      );
+      await requestCommitHistory(user, repo, page).then((jsonList: GitHubAPIResponse[]) => {
+        // save response
+        commitHistory.set(userRepoPage, jsonList);
+      });
     }
     // render commit history
     ReactDOM.render(
-      <CommitHistory
-        jsonList={commitHistory.get(userRepoPage)!}
-        user={user}
-        repo={repo}
-      />,
-      document.getElementById(COMMIT_HISTORY_ID)
+      <CommitHistory jsonList={commitHistory.get(userRepoPage)!} user={user} repo={repo} />,
+      document.getElementById(COMMIT_HISTORY_ID),
     );
   };
   const updateTotalCommitNum = async (user: string, repo: string, page: number) => {
@@ -62,7 +53,7 @@ export default () => {
     setTotalCommitNum(totalCommitNumHistory.get(`${user}/${repo}`) || 0);
   };
   const renderMain = (user: string, repo: string, page: number) => {
-    if (user === "" || repo === "") {
+    if (user === '' || repo === '') {
       return false;
     }
     setIsReadmeOpen(false);
@@ -98,20 +89,12 @@ export default () => {
               handleChange={(value: number) => setPage(value)}
               handleKeyDown={handleEnterKeyDown}
             />
-            <SearchButton
-              handleClick={() => renderMain(user, repo, page)}
-              handleKeyDown={handleEnterKeyDown}
-            />
+            <SearchButton handleClick={() => renderMain(user, repo, page)} handleKeyDown={handleEnterKeyDown} />
           </div>
         </Header>
-        <Hidden only={["xs", "sm"]}>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            <FlexDiv style={{ margin: "1rem 0" }}>
+        <Hidden only={['xs', 'sm']}>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <FlexDiv style={{ margin: '1rem 0' }}>
               <UserForm
                 value={user}
                 handleChange={(value: string) => setUser(value)}
@@ -127,34 +110,23 @@ export default () => {
                 handleChange={(value: number) => setPage(value)}
                 handleKeyDown={handleEnterKeyDown}
               />
-              <SearchButton
-                handleClick={() => renderMain(user, repo, page)}
-                handleKeyDown={handleEnterKeyDown}
-              />
+              <SearchButton handleClick={() => renderMain(user, repo, page)} handleKeyDown={handleEnterKeyDown} />
             </FlexDiv>
           </Grid>
         </Hidden>
       </div>
       <HiddenWrapper isOpen={!isReadmeOpen}>
-        <Pagenation
-          nowPage={page}
-          totalCommitNum={totalCommitNum}
-          callback={(arg) => renderMain(user, repo, arg)}
-        />
+        <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <div id="commit-history" style={{ maxWidth }}></div>
       <HiddenWrapper isOpen={isReadmeOpen}>
         <Readme />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isReadmeOpen}>
-        <Pagenation
-          nowPage={page}
-          totalCommitNum={totalCommitNum}
-          callback={(arg) => renderMain(user, repo, arg)}
-        />
+        <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
-      <div style={{ margin: "3rem" }}></div>
+      <div style={{ margin: '3rem' }}></div>
       <Message />
     </>
   );
-}
+};

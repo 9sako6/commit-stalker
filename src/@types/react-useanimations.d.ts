@@ -1,6 +1,5 @@
-
-declare module "react-useanimations" {
-  import React from "react";
+declare module 'react-useanimations' {
+  import React from 'react';
   export interface UseAnimationsProps {
     style?: object;
     animationKey: string;
