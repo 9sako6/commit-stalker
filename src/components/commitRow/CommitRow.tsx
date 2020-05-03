@@ -2,6 +2,8 @@ import React from 'react';
 import emoji from 'node-emoji';
 import 'src/styles/commit_row.scss';
 import { GitHubAPIResponse } from 'src/typings/github-api';
+import BrowseRepoButton from 'src/components/browseRepoButton';
+import Hidden from '@material-ui/core/Hidden';
 
 type CommitRowProps = {
   json: GitHubAPIResponse;
@@ -9,12 +11,14 @@ type CommitRowProps = {
   repo: string;
 };
 export default (props: CommitRowProps) => {
-  const author = props.json.author === null ? 'anonymous author' : props.json.author.login;
-  const author_link = props.json.author === null ? '#' : props.json.author.html_url;
-  const avatar_url = props.json.author === null ? '#' : props.json.author.avatar_url;
-  const date = new Date(props.json.commit.author.date);
-
-  const isVerified = props.json.commit.verification.verified;
+  const { json, user, repo } = props;
+  const sha = json.sha;
+  const author = json.author === null ? 'anonymous author' : json.author.login;
+  const author_link = json.author === null ? '#' : json.author.html_url;
+  const avatar_url = json.author === null ? '#' : json.author.avatar_url;
+  const date = new Date(json.commit.author.date);
+  const repo_url = `https://github.com/${user}/${repo}/tree/${sha ?? ''}`;
+  const isVerified = json.commit.verification.verified;
   const verifyMark =
     isVerified === true ? (
       <div className="table-list-cell">
@@ -23,18 +27,20 @@ export default (props: CommitRowProps) => {
     ) : (
       <></>
     );
+  const browseRepoButton = sha ? (
+    <div className="table-list-cell">
+      <BrowseRepoButton link={repo_url} />
+    </div>
+  ) : (
+    <></>
+  );
+
   return (
     <li className="commit-list-item">
       <div className="table-list-cell" style={{ width: '800px' }}>
         <p className="commit-title">
-          <a
-            className="message-link"
-            data-pjax="true"
-            href={props.json.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {emoji.emojify(props.json.commit.message)}
+          <a className="message-link" data-pjax="true" href={json.html_url} target="_blank" rel="noopener noreferrer">
+            {emoji.emojify(json.commit.message)}
           </a>
         </p>
         <div className="author-area">
@@ -44,7 +50,7 @@ export default (props: CommitRowProps) => {
           <a
             className="author-link"
             data-pjax="true"
-            href={`https://github.com/${author}/${props.repo}/commit?author=${author}`}
+            href={`https://github.com/${author}/${repo}/commit?author=${author}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -58,6 +64,7 @@ export default (props: CommitRowProps) => {
         </div>
       </div>
       {verifyMark}
+      <Hidden only={['xs']}>{browseRepoButton}</Hidden>
     </li>
   );
 };

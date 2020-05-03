@@ -52,14 +52,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default () => {
+const Message: React.FC = ({ children }) => {
   const classes = useStyles();
-  const message = "The GitHub API's rate limit allows for up to 60 requests per hour";
   return (
     <Alert severity="info" className={classes.root}>
-      <a href="https://developer.github.com/v3/#rate-limiting" target="_blank" rel="noopener noreferrer">
-        {message}
-      </a>
+      {children}
     </Alert>
   );
 };
+export default Message;

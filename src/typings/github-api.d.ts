@@ -6,6 +6,7 @@ type CommitAuthor = {
 
 type CommitVerification = {
   verified: boolean;
+  reason: string;
 };
 
 type Commit = {
@@ -24,6 +25,14 @@ type Author = {
   avatar_url: string;
 };
 
+type ParentCommit = {
+  sha: string;
+  url: string;
+  html_url: string;
+};
+
+export type XRatelimitRemaining = number;
+
 export type GitHubAPIResponse = {
   author: Author;
   comments_url?: string;
@@ -31,7 +40,7 @@ export type GitHubAPIResponse = {
   committer?: object;
   html_url?: string;
   node_id?: string;
-  parents?: object[];
+  parents?: ParentCommit[];
   sha?: string;
   url?: string;
 };
