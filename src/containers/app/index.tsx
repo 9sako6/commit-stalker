@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import { requestTotalCommitNum, requestCommitHistory } from 'src/utils/APIUtils';
 import { GitHubAPIResponse } from 'src/typings/github-api';
 import { maxWidth } from 'src/utils/common';
 import { UserForm, RepoForm, PageForm } from 'src/components/forms';
@@ -15,13 +14,15 @@ import Message from 'src/components/message';
 import Readme from 'src/components/readme';
 import Header from 'src/components/header';
 import HiddenWrapper from 'src/components/hidden';
-
+import { ghClient, commitCountClient } from 'src/utils/client';
+import { renderErrorMessage } from 'src/utils/helper';
 export default () => {
   const commitHistory = new Map<string, GitHubAPIResponse[]>();
   const totalCommitNumHistory = new Map<string, number>();
   const [user, setUser] = useState('');
   const [repo, setRepo] = useState('');
   const [page, setPage] = useState(1);
+  const [xRatelimitRemaining, setRateLimit] = useState(60);
   const [totalCommitNum, setTotalCommitNum] = useState(0);
   const [isReadmeOpen, setIsReadmeOpen] = useState(true);
 
@@ -31,10 +32,14 @@ export default () => {
   const renderCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (commitHistory.has(userRepoPage) === false) {
-      await requestCommitHistory(user, repo, page).then((jsonList: GitHubAPIResponse[]) => {
-        // save response
-        commitHistory.set(userRepoPage, jsonList);
-      });
+      await ghClient
+        .get(`/repos/${user}/${repo}/commits?page=${page}&per_page=100`)
+        .then(res => {
+          setRateLimit(Number(res.headers['x-ratelimit-remaining']));
+          // save response
+          commitHistory.set(userRepoPage, res.data as GitHubAPIResponse[]);
+        })
+        .catch(err => renderErrorMessage(err.message, 'commit-history'));
     }
     // render commit history
     ReactDOM.render(
@@ -42,13 +47,16 @@ export default () => {
       document.getElementById(COMMIT_HISTORY_ID),
     );
   };
-  const updateTotalCommitNum = async (user: string, repo: string, page: number) => {
+  const updateTotalCommitNum = async (user: string, repo: string) => {
     const userRepo = `${user}/${repo}`;
     if (totalCommitNumHistory.has(userRepo) === false) {
-      await requestTotalCommitNum(user, repo).then(res => {
-        const newTotalCommitNum = Number(res);
-        totalCommitNumHistory.set(userRepo, newTotalCommitNum);
-      });
+      await commitCountClient
+        .get('/count', { params: { user, repo } })
+        .then(res => {
+          const newTotalCommitNum = Number(res.data);
+          totalCommitNumHistory.set(userRepo, newTotalCommitNum);
+        })
+        .catch(err => renderErrorMessage(err.message, 'commit-history'));
     }
     setTotalCommitNum(totalCommitNumHistory.get(`${user}/${repo}`) || 0);
   };
@@ -61,7 +69,7 @@ export default () => {
     renderLoading();
     // render
     renderCommitHistory(user.trim(), repo.trim(), page);
-    updateTotalCommitNum(user.trim(), repo.trim(), page);
+    updateTotalCommitNum(user.trim(), repo.trim());
   };
   const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
@@ -126,7 +134,11 @@ export default () => {
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <div style={{ margin: '3rem' }}></div>
-      <Message />
+      <Message>
+        <a href="https://developer.github.com/v3/#rate-limiting" target="_blank" rel="noopener noreferrer">
+          {`The GitHub API's rate limit allows for up to 60 requests per hour. (Remaining: ${xRatelimitRemaining})`}
+        </a>
+      </Message>
     </>
   );
 };
