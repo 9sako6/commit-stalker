@@ -14,8 +14,9 @@ import Message from 'src/components/message';
 import Readme from 'src/components/readme';
 import Header from 'src/components/header';
 import HiddenWrapper from 'src/components/hidden';
-import { ghClient, commitCountClient } from 'src/utils/client';
+import { ghClient, commitCountClient } from 'src/utils/clients';
 import { renderErrorMessage } from 'src/utils/helper';
+
 export default () => {
   const commitHistory = new Map<string, GitHubAPIResponse[]>();
   const totalCommitNumHistory = new Map<string, number>();
@@ -25,10 +26,8 @@ export default () => {
   const [xRatelimitRemaining, setRateLimit] = useState(60);
   const [totalCommitNum, setTotalCommitNum] = useState(0);
   const [isReadmeOpen, setIsReadmeOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const renderLoading = () => {
-    ReactDOM.render(<Loading />, document.getElementById(COMMIT_HISTORY_ID));
-  };
   const renderCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (commitHistory.has(userRepoPage) === false) {
@@ -41,6 +40,7 @@ export default () => {
         })
         .catch(err => renderErrorMessage(err.message, 'commit-history'));
     }
+    setIsLoading(false);
     // render commit history
     ReactDOM.render(
       <CommitHistory jsonList={commitHistory.get(userRepoPage)!} user={user} repo={repo} />,
@@ -66,7 +66,7 @@ export default () => {
     }
     setIsReadmeOpen(false);
     setPage(page);
-    renderLoading();
+    setIsLoading(true);
     // render
     renderCommitHistory(user.trim(), repo.trim(), page);
     updateTotalCommitNum(user.trim(), repo.trim());
@@ -126,7 +126,12 @@ export default () => {
       <HiddenWrapper isOpen={!isReadmeOpen}>
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
-      <div id="commit-history" style={{ maxWidth }}></div>
+      <HiddenWrapper isOpen={!isLoading}>
+        <div id="commit-history" style={{ maxWidth }}></div>
+      </HiddenWrapper>
+      <HiddenWrapper isOpen={isLoading}>
+        <Loading />
+      </HiddenWrapper>
       <HiddenWrapper isOpen={isReadmeOpen}>
         <Readme />
       </HiddenWrapper>
