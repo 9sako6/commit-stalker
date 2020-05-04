@@ -127,7 +127,7 @@ export default () => {
           </Grid>
         </MuiHidden>
       </div>
-      <HiddenWrapper isOpen={!isReadmeOpen}>
+      <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isLoading && !isError}>
@@ -142,7 +142,7 @@ export default () => {
       <HiddenWrapper isOpen={isReadmeOpen}>
         <Readme />
       </HiddenWrapper>
-      <HiddenWrapper isOpen={!isReadmeOpen}>
+      <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <div style={{ margin: '3rem' }}></div>
