@@ -1,5 +1,9 @@
 <h1 align="center"><strong>commit-stalker</strong></h1>
 
+<p align="center">
+    <img src="https://github.com/9sako6/commit-stalker/workflows/CI/badge.svg" alt="ci badge" />
+</p>
+
 This is a simple GitHub commits' history viewer.
 **100 commits** are showed in a page. (35 commits in the official site.)
 In addition, you can search **the oldest commit** easily.
