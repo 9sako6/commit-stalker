@@ -1,5 +1,5 @@
 name: imgcmp
-on: push
+on: [pull_request]
 jobs:
   build:
     name: imgcmp
