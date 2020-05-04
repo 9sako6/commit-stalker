@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
+import MuiHidden from '@material-ui/core/Hidden';
 import { GitHubAPIResponse } from 'src/typings/github-api';
-import { maxWidth } from 'src/utils/common';
 import { UserForm, RepoForm, PageForm } from 'src/components/forms';
 import SearchButton from 'src/components/searchButton';
-import CommitHistory, { COMMIT_HISTORY_ID } from 'src/components/commitHistory';
+import CommitHistory from 'src/components/commitHistory';
 import Loading from 'src/components/loading';
 import Pagenation from 'src/components/pagenation';
 import FlexDiv from 'src/components/flexDiv';
@@ -15,7 +13,7 @@ import Readme from 'src/components/readme';
 import Header from 'src/components/header';
 import HiddenWrapper from 'src/components/hidden';
 import { ghClient, commitCountClient } from 'src/utils/clients';
-import { renderErrorMessage } from 'src/utils/helper';
+import ErrorMessage from 'src/components/errorMessage';
 
 export default () => {
   const commitHistory = new Map<string, GitHubAPIResponse[]>();
@@ -27,36 +25,41 @@ export default () => {
   const [totalCommitNum, setTotalCommitNum] = useState(0);
   const [isReadmeOpen, setIsReadmeOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [currentCommitsList, setCurrentCommitsList] = useState<GitHubAPIResponse[]>([]);
 
-  const renderCommitHistory = async (user: string, repo: string, page: number) => {
+  const fetchCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (commitHistory.has(userRepoPage) === false) {
       await ghClient
-        .get(`/repos/${user}/${repo}/commits?page=${page}&per_page=100`)
+        .get(`/repos/${user}/${repo}/commits`, { params: { page, per_page: 100 } })
         .then(res => {
           setRateLimit(Number(res.headers['x-ratelimit-remaining']));
           // save response
           commitHistory.set(userRepoPage, res.data as GitHubAPIResponse[]);
+          setCurrentCommitsList(res.data as GitHubAPIResponse[]);
         })
-        .catch(err => renderErrorMessage(err.message, 'commit-history'));
+        .catch(err => {
+          setIsError(true);
+          setErrorMessage(err.message);
+        });
     }
     setIsLoading(false);
-    // render commit history
-    ReactDOM.render(
-      <CommitHistory jsonList={commitHistory.get(userRepoPage)!} user={user} repo={repo} />,
-      document.getElementById(COMMIT_HISTORY_ID),
-    );
   };
-  const updateTotalCommitNum = async (user: string, repo: string) => {
+  const fetchTotalCommitNum = async (user: string, repo: string) => {
     const userRepo = `${user}/${repo}`;
-    if (totalCommitNumHistory.has(userRepo) === false) {
+    if (!totalCommitNumHistory.has(userRepo)) {
       await commitCountClient
         .get('/count', { params: { user, repo } })
         .then(res => {
           const newTotalCommitNum = Number(res.data);
           totalCommitNumHistory.set(userRepo, newTotalCommitNum);
         })
-        .catch(err => renderErrorMessage(err.message, 'commit-history'));
+        .catch(err => {
+          setIsError(true);
+          setErrorMessage(err.message);
+        });
     }
     setTotalCommitNum(totalCommitNumHistory.get(`${user}/${repo}`) || 0);
   };
@@ -64,12 +67,13 @@ export default () => {
     if (user === '' || repo === '') {
       return false;
     }
+    setIsError(false);
     setIsReadmeOpen(false);
     setPage(page);
     setIsLoading(true);
     // render
-    renderCommitHistory(user.trim(), repo.trim(), page);
-    updateTotalCommitNum(user.trim(), repo.trim());
+    fetchCommitHistory(user.trim(), repo.trim(), page);
+    fetchTotalCommitNum(user.trim(), repo.trim());
   };
   const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
@@ -100,7 +104,7 @@ export default () => {
             <SearchButton handleClick={() => renderMain(user, repo, page)} handleKeyDown={handleEnterKeyDown} />
           </div>
         </Header>
-        <Hidden only={['xs', 'sm']}>
+        <MuiHidden only={['xs', 'sm']}>
           <Grid container direction="row" justify="center" alignItems="center">
             <FlexDiv style={{ margin: '1rem 0' }}>
               <UserForm
@@ -121,13 +125,16 @@ export default () => {
               <SearchButton handleClick={() => renderMain(user, repo, page)} handleKeyDown={handleEnterKeyDown} />
             </FlexDiv>
           </Grid>
-        </Hidden>
+        </MuiHidden>
       </div>
       <HiddenWrapper isOpen={!isReadmeOpen}>
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
-      <HiddenWrapper isOpen={!isLoading}>
-        <div id="commit-history" style={{ maxWidth }}></div>
+      <HiddenWrapper isOpen={!isLoading && !isError}>
+        <CommitHistory jsonList={currentCommitsList} user={user} repo={repo} />
+      </HiddenWrapper>
+      <HiddenWrapper isOpen={isError}>
+        <ErrorMessage message={errorMessage} />
       </HiddenWrapper>
       <HiddenWrapper isOpen={isLoading}>
         <Loading />
