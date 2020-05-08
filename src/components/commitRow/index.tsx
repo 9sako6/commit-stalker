@@ -1,24 +1,29 @@
 import React from 'react';
 import emoji from 'node-emoji';
 import 'src/styles/commit_row.scss';
-import { GitHubAPIResponse } from 'src/typings/github-api';
 import BrowseRepoButton from 'src/components/browseRepoButton';
 import Hidden from '@material-ui/core/Hidden';
 
+export type CommitInfo = {
+  sha: string;
+  author_name: string;
+  author_url: string;
+  avatar_url: string;
+  repo_url: string;
+  date: Date;
+  isVerified: boolean;
+  commit_message: string;
+  commit_url: string;
+};
+
 type CommitRowProps = {
-  json: GitHubAPIResponse;
+  json: CommitInfo;
   user: string;
   repo: string;
 };
 export default (props: CommitRowProps) => {
   const { json, user, repo } = props;
-  const sha = json.sha;
-  const author = json.author === null ? 'anonymous author' : json.author.login;
-  const author_link = json.author === null ? '#' : json.author.html_url;
-  const avatar_url = json.author === null ? '#' : json.author.avatar_url;
-  const date = new Date(json.commit.author.date);
-  const repo_url = `https://github.com/${user}/${repo}/tree/${sha ?? ''}`;
-  const isVerified = json.commit.verification.verified;
+  const { sha, author_name, author_url, avatar_url, repo_url, date, isVerified, commit_message, commit_url } = json;
   const verifyMark =
     isVerified === true ? (
       <div className="table-list-cell">
@@ -39,22 +44,22 @@ export default (props: CommitRowProps) => {
     <li className="commit-list-item">
       <div className="table-list-cell" style={{ width: '800px' }}>
         <p className="commit-title">
-          <a className="message-link" data-pjax="true" href={json.html_url} target="_blank" rel="noopener noreferrer">
-            {emoji.emojify(json.commit.message)}
+          <a className="message-link" data-pjax="true" href={commit_url} target="_blank" rel="noopener noreferrer">
+            {emoji.emojify(commit_message)}
           </a>
         </p>
         <div className="author-area">
-          <a href={author_link} target="_blank" rel="noopener noreferrer">
+          <a href={author_url} target="_blank" rel="noopener noreferrer">
             <img className="author-avatar" alt="author-avatar" src={avatar_url} />
           </a>
           <a
             className="author-link"
             data-pjax="true"
-            href={`https://github.com/${author}/${repo}/commit?author=${author}`}
+            href={`https://github.com/${user}/${repo}/commits?author=${author_name}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {author}
+            {author_name}
           </a>
           <span className="date">
             committed on {date.toLocaleDateString()}
