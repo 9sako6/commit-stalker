@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ba08346dbc5766de3a54ccfe25857508",
+    "revision": "b607ece1486571b4fe90328377e29fb0",
     "url": "/commit-stalker/index.html"
   },
   {
-    "revision": "f2d1b32bfb63f63948ee",
+    "revision": "31d81fbf508414723db5",
     "url": "/commit-stalker/static/css/main.96bce2a2.chunk.css"
   },
   {
-    "revision": "b756668a12405b6f9dce",
-    "url": "/commit-stalker/static/js/2.69d8bcd9.chunk.js"
+    "revision": "6ce9308837ad1f34ae22",
+    "url": "/commit-stalker/static/js/2.2934896a.chunk.js"
   },
   {
     "revision": "eac4cf64bf573541fd6dba29c78393a0",
-    "url": "/commit-stalker/static/js/2.69d8bcd9.chunk.js.LICENSE.txt"
+    "url": "/commit-stalker/static/js/2.2934896a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f2d1b32bfb63f63948ee",
-    "url": "/commit-stalker/static/js/main.3d0eff08.chunk.js"
+    "revision": "31d81fbf508414723db5",
+    "url": "/commit-stalker/static/js/main.a8857345.chunk.js"
   },
   {
     "revision": "a89453fedef0cabeac5d",
