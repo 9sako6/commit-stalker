@@ -145,7 +145,7 @@ export default () => {
       <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
         <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
       </HiddenWrapper>
-      <div style={{ margin: '3rem' }}></div>
+      <div style={{ margin: '6rem' }}></div>
       <Message>
         <a href="https://developer.github.com/v3/#rate-limiting" target="_blank" rel="noopener noreferrer">
           {`The GitHub API's rate limit allows for up to 60 requests per hour. (Remaining: ${xRatelimitRemaining})`}
