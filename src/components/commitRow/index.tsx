@@ -6,14 +6,14 @@ import Hidden from '@material-ui/core/Hidden';
 
 export type CommitInfo = {
   sha: string;
-  author_name: string;
-  author_url: string;
-  avatar_url: string;
-  repo_url: string;
+  authorName: string;
+  authorUrl: string;
+  avatarUrl: string;
+  repoUrl: string;
   date: Date;
   isVerified: boolean;
-  commit_message: string;
-  commit_url: string;
+  commitMessage: string;
+  commitUrl: string;
 };
 
 type CommitRowProps = {
@@ -23,7 +23,8 @@ type CommitRowProps = {
 };
 export default (props: CommitRowProps) => {
   const { json, user, repo } = props;
-  const { sha, author_name, author_url, avatar_url, repo_url, date, isVerified, commit_message, commit_url } = json;
+  const { sha, authorName, authorUrl, avatarUrl, repoUrl, date, isVerified, commitMessage, commitUrl } = json;
+  const [messageTitle, messageBody] = commitMessage.split(/(?<=^[^\n]+?)\n/);
   const verifyMark =
     isVerified === true ? (
       <div className="table-list-cell">
@@ -34,7 +35,7 @@ export default (props: CommitRowProps) => {
     );
   const browseRepoButton = sha ? (
     <div className="table-list-cell">
-      <BrowseRepoButton link={repo_url} />
+      <BrowseRepoButton link={repoUrl} />
     </div>
   ) : (
     <></>
@@ -43,23 +44,24 @@ export default (props: CommitRowProps) => {
   return (
     <li className="commit-list-item">
       <div className="table-list-cell" style={{ width: '800px' }}>
-        <p className="commit-title">
-          <a className="message-link" data-pjax="true" href={commit_url} target="_blank" rel="noopener noreferrer">
-            {emoji.emojify(commit_message)}
+        <div className="commit-title">
+          <a className="message-link" data-pjax="true" href={commitUrl} target="_blank" rel="noopener noreferrer">
+            {emoji.emojify(messageTitle)}
           </a>
-        </p>
+          <div>{emoji.emojify(messageBody)}</div>
+        </div>
         <div className="author-area">
-          <a href={author_url} target="_blank" rel="noopener noreferrer">
-            <img className="author-avatar" alt="author-avatar" src={avatar_url} />
+          <a href={authorUrl} target="_blank" rel="noopener noreferrer">
+            <img className="author-avatar" alt="author-avatar" src={avatarUrl} />
           </a>
           <a
             className="author-link"
             data-pjax="true"
-            href={`https://github.com/${user}/${repo}/commits?author=${author_name}`}
+            href={`https://github.com/${user}/${repo}/commits?author=${authorName}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {author_name}
+            {authorName}
           </a>
           <span className="date">
             committed on {date.toLocaleDateString()}
