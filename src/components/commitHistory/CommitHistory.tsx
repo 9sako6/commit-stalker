@@ -30,14 +30,14 @@ export default ({ jsonList, user, repo }: CommitHistoryProps) => {
 
   const commitJsonList: CommitInfo[] = jsonList.map((json: GitHubAPIResponse) => ({
     sha: json.sha ?? '',
-    author_name: json.author === null ? 'anonymous author' : json.author.login,
-    author_url: json.author === null ? '#' : json.author.html_url,
-    avatar_url: json.author === null ? '#' : json.author.avatar_url,
-    repo_url: `https://github.com/${user}/${repo}/tree/${json.sha ?? ''}`,
+    authorName: json.author === null ? 'anonymous author' : json.author.login,
+    authorUrl: json.author === null ? '#' : json.author.html_url,
+    avatarUrl: json.author === null ? '#' : json.author.avatar_url,
+    repoUrl: `https://github.com/${user}/${repo}/tree/${json.sha ?? ''}`,
     date: new Date(json.commit.author.date),
     isVerified: !!json.commit.verification.verified,
-    commit_message: json.commit.message,
-    commit_url: json.html_url ?? '#',
+    commitMessage: json.commit.message,
+    commitUrl: json.html_url ?? '#',
   }));
 
   return (
