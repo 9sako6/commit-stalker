@@ -23,7 +23,7 @@ type PagenationProps = {
 export default (props: PagenationProps) => {
   const classes = useStyles();
   const { totalCommitNum, nowPage, callback } = props;
-  const oldestPage = ((totalCommitNum / 100) | 0) + 1;
+  const oldestPage = Math.ceil(totalCommitNum / 100);
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     callback && callback(value);
