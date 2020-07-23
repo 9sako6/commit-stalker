@@ -11,7 +11,7 @@ const useStyles = makeStyles((_theme: Theme) =>
   }),
 );
 
-export default (props: { message: string }) => (
+export const ErrorMessage = (props: { message: string }) => (
   <Alert severity="error" className={useStyles().root}>
     Error: {props.message}
   </Alert>

@@ -26,7 +26,7 @@ export function UserForm(props: FormProps) {
       className={classes.root}
       value={props.value}
       label="User"
-      onChange={e => props.handleChange(e.currentTarget.value)}
+      onChange={(e) => props.handleChange(e.currentTarget.value)}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input,
@@ -43,7 +43,7 @@ export function RepoForm(props: FormProps) {
       type="text"
       value={props.value}
       label="Repository"
-      onChange={e => props.handleChange(e.currentTarget.value)}
+      onChange={(e) => props.handleChange(e.currentTarget.value)}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input,
@@ -66,7 +66,7 @@ export function PageForm(props: PageFormProps) {
       type="text"
       value={props.value}
       label="Page Number"
-      onChange={e => props.handleChange(Number(e.currentTarget.value))}
+      onChange={(e) => props.handleChange(Number(e.currentTarget.value))}
       onKeyDown={props.handleKeyDown}
       InputProps={{
         className: classes.input,

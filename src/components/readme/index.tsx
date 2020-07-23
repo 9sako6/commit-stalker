@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { maxWidth, fontFamily } from 'src/utils/common';
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth,
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme =>
   }),
 );
 
-export default () => (
+export const Readme = () => (
   <Container className={useStyles().root}>
     <h1 className="readme-title">Commit Stalker</h1>
     <p>

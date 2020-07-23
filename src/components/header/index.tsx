@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const PersistentDrawerLeft: React.FC = ({ children }) => {
+export const Header: React.FC = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -142,5 +142,3 @@ const PersistentDrawerLeft: React.FC = ({ children }) => {
     </div>
   );
 };
-
-export default PersistentDrawerLeft;

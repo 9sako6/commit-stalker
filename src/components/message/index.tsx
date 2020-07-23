@@ -10,6 +10,7 @@ const Alert = (props: any) => {
   const [open, setOpen] = React.useState(true);
   return (
     <Collapse in={open}>
+      (
       <MuiAlert
         elevation={6}
         variant="filled"
@@ -27,6 +28,7 @@ const Alert = (props: any) => {
         }
         {...props}
       />
+      )
     </Collapse>
   );
 };
@@ -52,7 +54,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Message: React.FC = ({ children }) => {
+export const Message: React.FC = ({ children }) => {
   const classes = useStyles();
   return (
     <Alert severity="info" className={classes.root}>
@@ -60,4 +62,3 @@ const Message: React.FC = ({ children }) => {
     </Alert>
   );
 };
-export default Message;

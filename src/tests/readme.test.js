@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Readme from 'src/components/readme';
+import { Readme } from 'src/components/readme';
 
 test('readme should has two p tags and two h1 tags', () => {
   const { container, getByText } = render(<Readme />);

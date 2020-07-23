@@ -12,11 +12,14 @@ const useStyles = makeStyles({
 interface FuncClick {
   (): void;
 }
+
 interface FuncKeyDown {
   (arg: React.KeyboardEvent<HTMLInputElement>): void;
 }
+
 type ButtonProps = { handleClick: FuncClick; handleKeyDown: FuncKeyDown };
-export default (props: ButtonProps): JSX.Element => {
+
+export const SearchButton = (props: ButtonProps): JSX.Element => {
   const classes = useStyles();
   return (
     <div className={classes.root} id="request" onKeyDown={props.handleKeyDown} onClick={props.handleClick}>

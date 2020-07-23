@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MuiHidden from '@material-ui/core/Hidden';
+import { Message } from 'src/components/message';
+import { FlexDiv } from 'src/components/flexDiv';
+import { ErrorMessage } from 'src/components/errorMessage';
+import { HiddenWrapper } from 'src/components/hidden';
 import { GitHubAPIResponse } from 'src/typings/github-api';
 import { UserForm, RepoForm, PageForm } from 'src/components/forms';
-import SearchButton from 'src/components/searchButton';
-import CommitHistory from 'src/components/commitHistory';
-import Loading from 'src/components/loading';
-import Pagenation from 'src/components/pagenation';
-import FlexDiv from 'src/components/flexDiv';
-import Message from 'src/components/message';
-import Readme from 'src/components/readme';
-import Header from 'src/components/header';
-import HiddenWrapper from 'src/components/hidden';
+import { SearchButton } from 'src/components/searchButton';
+import { CommitHistory } from 'src/components/commitHistory';
+import { Loading } from 'src/components/loading';
+import { Readme } from 'src/components/readme';
+import { Header } from 'src/components/header';
+import { Pagination } from 'src/components/pagination';
 import { ghClient, commitCountClient } from 'src/utils/clients';
-import ErrorMessage from 'src/components/errorMessage';
 
-export default () => {
+export const App = () => {
   const commitHistory = new Map<string, GitHubAPIResponse[]>();
   const totalCommitNumHistory = new Map<string, number>();
   const [user, setUser] = useState('');
@@ -34,13 +34,13 @@ export default () => {
     if (commitHistory.has(userRepoPage) === false) {
       await ghClient
         .get(`/repos/${user}/${repo}/commits`, { params: { page, per_page: 100 } })
-        .then(res => {
+        .then((res) => {
           setRateLimit(Number(res.headers['x-ratelimit-remaining']));
           // save response
           commitHistory.set(userRepoPage, res.data as GitHubAPIResponse[]);
           setCurrentCommitsList(res.data as GitHubAPIResponse[]);
         })
-        .catch(err => {
+        .catch((err) => {
           setIsError(true);
           setErrorMessage(err.message);
         });
@@ -52,11 +52,11 @@ export default () => {
     if (!totalCommitNumHistory.has(userRepo)) {
       await commitCountClient
         .get('/count', { params: { user, repo } })
-        .then(res => {
+        .then((res) => {
           const newTotalCommitNum = Number(res.data);
           totalCommitNumHistory.set(userRepo, newTotalCommitNum);
         })
-        .catch(err => {
+        .catch((err) => {
           setIsError(true);
           setErrorMessage(err.message);
         });
@@ -128,7 +128,7 @@ export default () => {
         </MuiHidden>
       </div>
       <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
-        <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
+        <Pagination nowPage={page} totalCommitNum={totalCommitNum} callback={(arg) => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isLoading && !isError}>
         <CommitHistory jsonList={currentCommitsList} user={user} repo={repo} />
@@ -143,7 +143,7 @@ export default () => {
         <Readme />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
-        <Pagenation nowPage={page} totalCommitNum={totalCommitNum} callback={arg => renderMain(user, repo, arg)} />
+        <Pagination nowPage={page} totalCommitNum={totalCommitNum} callback={(arg) => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <div style={{ margin: '6rem' }}></div>
       <Message>

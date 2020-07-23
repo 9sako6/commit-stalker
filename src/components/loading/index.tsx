@@ -6,7 +6,7 @@
 import React from 'react';
 import 'src/styles/loading.scss';
 
-export default () => (
+export const Loading = () => (
   <div className="sk-fading-circle">
     <div className="sk-circle1 sk-circle"></div>
     <div className="sk-circle2 sk-circle"></div>

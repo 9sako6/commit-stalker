@@ -21,7 +21,7 @@ type CommitRowProps = {
   user: string;
   repo: string;
 };
-export default (props: CommitRowProps) => {
+export const CommitRow = (props: CommitRowProps) => {
   const { json, user, repo } = props;
   const { sha, authorName, authorUrl, avatarUrl, repoUrl, date, isVerified, commitMessage, commitUrl } = json;
   const [messageTitle, messageBody] = commitMessage.split(/(?<=^[^\n]+?)\n/);

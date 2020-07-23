@@ -1,5 +1,5 @@
 import React from 'react';
-import CommitRow, { CommitInfo } from 'src/components/commitRow';
+import { CommitRow, CommitInfo } from 'src/components/commitRow';
 import { GitHubAPIResponse } from 'src/typings/github-api';
 import { maxWidth } from 'src/utils/common';
 
@@ -8,7 +8,7 @@ type CommitHistoryProps = {
   user: string;
   repo: string;
 };
-export default ({ jsonList, user, repo }: CommitHistoryProps) => {
+export const CommitHistory = ({ jsonList, user, repo }: CommitHistoryProps) => {
   if (jsonList === undefined) {
     return <></>;
   }

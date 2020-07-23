@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import MuiPagination from '@material-ui/lab/Pagination';
 
-const useStyles = makeStyles(_ =>
+const useStyles = makeStyles((_) =>
   createStyles({
     root: {
       margin: '1rem auto',
@@ -14,13 +14,13 @@ const useStyles = makeStyles(_ =>
   }),
 );
 
-type PagenationProps = {
+type PaginationProps = {
   totalCommitNum: number;
   nowPage: number;
   callback?: (arg?: any) => any;
 };
 
-export default (props: PagenationProps) => {
+export const Pagination = (props: PaginationProps) => {
   const classes = useStyles();
   const { totalCommitNum, nowPage, callback } = props;
   const oldestPage = Math.ceil(totalCommitNum / 100);
