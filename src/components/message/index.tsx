@@ -6,11 +6,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { maxWidth, fontFamily } from 'src/utils/common';
 
+// prettier-ignore
+
 const Alert = (props: any) => {
   const [open, setOpen] = React.useState(true);
-  return (
-    <Collapse in={open}>
-      (
+  return (<Collapse in={open}>
       <MuiAlert
         elevation={6}
         variant="filled"
@@ -28,9 +28,7 @@ const Alert = (props: any) => {
         }
         {...props}
       />
-      )
-    </Collapse>
-  );
+    </Collapse>);
 };
 
 const useStyles = makeStyles({
