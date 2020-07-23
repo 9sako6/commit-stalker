@@ -14,10 +14,12 @@ import { Readme } from 'src/components/readme';
 import { Header } from 'src/components/header';
 import { Pagination } from 'src/components/pagination';
 import { ghClient, commitCountClient } from 'src/utils/clients';
+import { LRUCache } from 'src/utils/lru_cache';
+
+const totalCommitNumHistory = new LRUCache<string, number>(100);
+const commitHistory = new LRUCache<string, GitHubAPIResponse[]>(5);
 
 export const App = () => {
-  const commitHistory = new Map<string, GitHubAPIResponse[]>();
-  const totalCommitNumHistory = new Map<string, number>();
   const [user, setUser] = useState('');
   const [repo, setRepo] = useState('');
   const [page, setPage] = useState(1);
