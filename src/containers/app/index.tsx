@@ -40,13 +40,13 @@ export const App = () => {
           setRateLimit(Number(res.headers['x-ratelimit-remaining']));
           // save response
           commitHistory.set(userRepoPage, res.data as GitHubAPIResponse[]);
-          setCurrentCommitsList(res.data as GitHubAPIResponse[]);
         })
         .catch((err) => {
           setIsError(true);
           setErrorMessage(err.message);
         });
     }
+    setCurrentCommitsList(commitHistory.get(userRepoPage) || []);
     setIsLoading(false);
   };
   const fetchTotalCommitNum = async (user: string, repo: string) => {
