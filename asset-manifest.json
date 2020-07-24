@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/commit-stalker/static/css/main.6daed035.chunk.css",
-    "main.js": "/commit-stalker/static/js/main.13f02bcf.chunk.js",
-    "main.js.map": "/commit-stalker/static/js/main.13f02bcf.chunk.js.map",
+    "main.js": "/commit-stalker/static/js/main.4ccd00d5.chunk.js",
+    "main.js.map": "/commit-stalker/static/js/main.4ccd00d5.chunk.js.map",
     "runtime-main.js": "/commit-stalker/static/js/runtime-main.1749daf1.js",
     "runtime-main.js.map": "/commit-stalker/static/js/runtime-main.1749daf1.js.map",
     "static/js/2.be173d1c.chunk.js": "/commit-stalker/static/js/2.be173d1c.chunk.js",
     "static/js/2.be173d1c.chunk.js.map": "/commit-stalker/static/js/2.be173d1c.chunk.js.map",
     "index.html": "/commit-stalker/index.html",
-    "precache-manifest.0b22e1aa083d1664efa377b916e8c414.js": "/commit-stalker/precache-manifest.0b22e1aa083d1664efa377b916e8c414.js",
+    "precache-manifest.dea614857daf3347716aa62556f49cd0.js": "/commit-stalker/precache-manifest.dea614857daf3347716aa62556f49cd0.js",
     "service-worker.js": "/commit-stalker/service-worker.js",
     "static/css/main.6daed035.chunk.css.map": "/commit-stalker/static/css/main.6daed035.chunk.css.map",
     "static/js/2.be173d1c.chunk.js.LICENSE.txt": "/commit-stalker/static/js/2.be173d1c.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1749daf1.js",
     "static/js/2.be173d1c.chunk.js",
     "static/css/main.6daed035.chunk.css",
-    "static/js/main.13f02bcf.chunk.js"
+    "static/js/main.4ccd00d5.chunk.js"
   ]
 }
