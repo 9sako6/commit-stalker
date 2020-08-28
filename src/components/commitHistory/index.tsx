@@ -34,7 +34,7 @@ export const CommitHistory = ({ jsonList, user, repo }: CommitHistoryProps) => {
     authorUrl: json.author === null ? '#' : json.author.html_url,
     avatarUrl: json.author === null ? '#' : json.author.avatar_url,
     repoUrl: `https://github.com/${user}/${repo}/tree/${json.sha ?? ''}`,
-    date: new Date(json.commit.author.date),
+    date: new Date(json.commit.committer.date),
     isVerified: !!json.commit.verification.verified,
     commitMessage: json.commit.message,
     commitUrl: json.html_url ?? '#',
@@ -43,7 +43,7 @@ export const CommitHistory = ({ jsonList, user, repo }: CommitHistoryProps) => {
   return (
     <div style={styles.root}>
       {commitJsonList.map((json: CommitInfo, i) => {
-        const dateList = String(new Date(jsonList[i].commit.author.date)).split(' ').slice(1, 4);
+        const dateList = String(new Date(jsonList[i].commit.committer.date)).split(' ').slice(1, 4);
         const date = `${dateList[0]} ${dateList[1]}, ${dateList[2]}`;
         if (date !== prevDate) {
           prevDate = date;

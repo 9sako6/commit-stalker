@@ -12,7 +12,9 @@ type CommitVerification = {
 type Commit = {
   author: CommitAuthor;
   comment_count?: number;
-  committer?: object;
+  committer: {
+    date: string;
+  };
   message: string;
   tree?: object;
   url?: string;
