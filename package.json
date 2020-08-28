@@ -48,7 +48,10 @@
   },
   "devDependencies": {
     "@types/node-emoji": "^1.8.1",
+    "@types/react-list": "^0.8.5",
     "gh-pages": "^2.2.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "react-list": "^0.8.15",
+    "react-markdown": "^4.3.1"
   }
 }
