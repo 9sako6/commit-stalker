@@ -1,5 +1,6 @@
 import React from 'react';
 import emoji from 'node-emoji';
+import ReactMarkdown from 'react-markdown';
 import 'src/styles/commit_row.scss';
 import BrowseRepoButton from 'src/components/browseRepoButton';
 import Hidden from '@material-ui/core/Hidden';
@@ -18,11 +19,12 @@ export type CommitInfo = {
 
 type CommitRowProps = {
   json: CommitInfo;
+  rowHeight: number;
   user: string;
   repo: string;
 };
 export const CommitRow = (props: CommitRowProps) => {
-  const { json, user, repo } = props;
+  const { json, rowHeight, user, repo } = props;
   const { sha, authorName, authorUrl, avatarUrl, repoUrl, date, isVerified, commitMessage, commitUrl } = json;
   const [messageTitle, messageBody] = commitMessage.split(/(?<=^[^\n]+?)\n/);
   const verifyMark =
@@ -42,13 +44,14 @@ export const CommitRow = (props: CommitRowProps) => {
   );
 
   return (
-    <li className="commit-list-item">
+    <li className="commit-list-item" style={{ height: rowHeight }}>
       <div className="table-list-cell" style={{ width: '800px' }}>
         <div className="commit-title">
           <a className="message-link" data-pjax="true" href={commitUrl} target="_blank" rel="noopener noreferrer">
             {emoji.emojify(messageTitle)}
           </a>
-          <div>{emoji.emojify(messageBody)}</div>
+          {/* <div>{emoji.emojify(messageBody)}</div> */}
+          <ReactMarkdown source={emoji.emojify(messageBody)} />
         </div>
         <div className="author-area">
           <a href={authorUrl} target="_blank" rel="noopener noreferrer">

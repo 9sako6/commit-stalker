@@ -145,7 +145,9 @@ export const App = () => {
         <Readme />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isReadmeOpen && !isError}>
-        <Pagination nowPage={page} totalCommitNum={totalCommitNum} callback={(arg) => renderMain(user, repo, arg)} />
+        <div style={{ margin: '100px 0 200px 0' }}>
+          <Pagination nowPage={page} totalCommitNum={totalCommitNum} callback={(arg) => renderMain(user, repo, arg)} />
+        </div>
       </HiddenWrapper>
       <div style={{ margin: '6rem' }}></div>
       <Message>
