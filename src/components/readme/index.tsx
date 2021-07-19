@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { maxWidth, fontFamily } from 'src/utils/common';
+import { maxWidth, fontFamily } from '../../utils/common';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

@@ -9,11 +9,31 @@
     "eject": "react-scripts eject",
     "deploy": "yarn build && gh-pages -d build",
     "lintfix": "npx standard --fix",
-    "precommit": "yarn lintfix"
+    "precommit": "yarn lintfix",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "homepage": "https://9sako6.github.io/commit-stalker/",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -46,11 +66,19 @@
     "typescript": "~3.7.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-essentials": "^6.3.4",
+    "@storybook/addon-links": "^6.3.4",
+    "@storybook/addon-storyshots": "^6.3.4",
+    "@storybook/node-logger": "^6.3.4",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.4",
     "@types/node-emoji": "^1.8.1",
     "@types/react-list": "^0.8.5",
     "gh-pages": "^2.2.0",
     "react-list": "^0.8.15",
     "react-markdown": "^4.3.1",
+    "react-test-renderer": "^17.0.2",
     "sass": "^1.35.2",
     "standard": "^16.0.3"
   }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "allowSyntheticDefaultImports": true, // see below
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "lib": [
       "dom",
@@ -20,7 +20,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src"],
+  "exclude": ["src/stories/**/*"]
 }
