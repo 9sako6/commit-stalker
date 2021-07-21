@@ -4,7 +4,7 @@
   https://github.com/tobiasahlin/SpinKit/blob/master/LICENSE
  */
 import React from 'react';
-import 'src/styles/loading.scss';
+import './loading.scss';
 
 export const Loading = () => (
   <div className="sk-fading-circle">

@@ -1,7 +1,7 @@
 import React from 'react';
 import emoji from 'node-emoji';
 import ReactMarkdown from 'react-markdown';
-import 'src/styles/commit_row.scss';
+import './commit_row.scss';
 import BrowseRepoButton from 'src/components/browseRepoButton';
 import Hidden from '@material-ui/core/Hidden';
 
