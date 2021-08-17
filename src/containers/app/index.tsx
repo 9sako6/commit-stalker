@@ -8,7 +8,7 @@ import { HiddenWrapper } from 'src/components/hidden';
 import { GitHubAPIResponse } from 'src/typings/github-api';
 import { UserForm, RepoForm, PageForm } from 'src/components/forms';
 import { SearchButton } from 'src/components/searchButton';
-import { CommitHistory } from 'src/components/commitHistory';
+import { CommitRowTable } from 'src/components/commitRowTable';
 import { Loading } from 'src/components/loading';
 import { Readme } from 'src/components/readme';
 import { Header } from 'src/components/header';
@@ -133,7 +133,7 @@ export const App = () => {
         <Pagination nowPage={page} totalCommitNum={totalCommitNum} callback={(arg) => renderMain(user, repo, arg)} />
       </HiddenWrapper>
       <HiddenWrapper isOpen={!isLoading && !isError}>
-        <CommitHistory jsonList={currentCommitsList} user={user} repo={repo} />
+        <CommitRowTable jsonList={currentCommitsList} user={user} repo={repo} />
       </HiddenWrapper>
       <HiddenWrapper isOpen={isError}>
         <ErrorMessage message={errorMessage} />

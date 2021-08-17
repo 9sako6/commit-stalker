@@ -5,7 +5,7 @@ import { maxWidth } from 'src/utils/common';
 import { calcRowHeight } from './calcRowHeight';
 import ReactList from 'react-list';
 
-type CommitHistoryProps = {
+type commitRowTableProps = {
   jsonList: GitHubAPIResponse[];
   user: string;
   repo: string;
@@ -13,7 +13,7 @@ type CommitHistoryProps = {
 
 const dateHeight = 24;
 
-export const CommitHistory = ({ jsonList, user, repo }: CommitHistoryProps) => {
+export const CommitRowTable = ({ jsonList, user, repo }: commitRowTableProps) => {
   if (jsonList === undefined) {
     return null;
   }
