@@ -12,8 +12,8 @@
     "precommit": "yarn lintfix"
   },
   "homepage": "https://9sako6.github.io/commit-stalker/",
-  "eslintConfig": {
-    "extends": "react-app"
+  "standard": {
+    "env": ["jest"]
   },
   "browserslist": {
     "production": [
