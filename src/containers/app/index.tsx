@@ -13,7 +13,7 @@ import { Loading } from 'src/components/loading';
 import { Readme } from 'src/components/readme';
 import { Header } from 'src/components/header';
 import { Pagination } from 'src/components/pagination';
-import { ghClient, commitCountClient } from 'src/utils/clients';
+import { ghClient } from 'src/utils/clients';
 import { LRUCache } from 'src/utils/lru_cache';
 
 const totalCommitNumHistory = new LRUCache<string, number>(100);
@@ -49,19 +49,25 @@ export const App = () => {
     setCurrentCommitsList(commitHistory.get(userRepoPage) || []);
     setIsLoading(false);
   };
-  const fetchTotalCommitNum = async (user: string, repo: string) => {
-    const userRepo = `${user}/${repo}`;
-    if (!totalCommitNumHistory.has(userRepo)) {
-      await commitCountClient
-        .get('/count', { params: { user, repo } })
-        .then((res) => {
-          const newTotalCommitNum = Number(res.data);
-          totalCommitNumHistory.set(userRepo, newTotalCommitNum);
-        })
-        .catch((err) => {
-          setIsError(true);
-          setErrorMessage(err.message);
-        });
+  const getCommitsCount = async (user: string, repo: string) => {
+    return await ghClient.get(`/repos/${user}/${repo}/commits?per_page=1`)
+      .then(response => {
+        return Number(
+          // NOTE: The number of commits is written in the header.
+          response.headers['link'].match(/page=(?<commitsCount>\d+)>; rel="last"/).groups['commitsCount']
+        );
+      })
+      .catch((err) => {
+        setIsError(true);
+        setErrorMessage(err.message);
+        return null;
+      });
+  };
+  const fetchCommitsCount = async (user: string, repo: string) => {
+    if (!totalCommitNumHistory.has(`${user}/${repo}`)) {
+      const commitsCount = await getCommitsCount(user, repo);
+      if (commitsCount)
+        totalCommitNumHistory.set(`${user}/${repo}`, commitsCount);
     }
     setTotalCommitNum(totalCommitNumHistory.get(`${user}/${repo}`) || 0);
   };
@@ -75,7 +81,7 @@ export const App = () => {
     setIsLoading(true);
     // render
     fetchCommitHistory(user.trim(), repo.trim(), page);
-    fetchTotalCommitNum(user.trim(), repo.trim());
+    fetchCommitsCount(user.trim(), repo.trim());
   };
   const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
