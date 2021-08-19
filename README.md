@@ -26,7 +26,7 @@ URL: https://9sako6.github.io/commit-stalker/
 - [2020-04-29] responsive support
 - [2019-05-06]
 To count all commit, commit-stalker uses original Web API: [9sako6/github-api-for-commit-count](https://github.com/9sako6/github-api-for-commit-count)
-
+  - [2021-08-19] This API is no longer used.
 
 ## License
 - [WTFPL](https://github.com/9sako6/commit-stalker/blob/master/LICENSE.md)
