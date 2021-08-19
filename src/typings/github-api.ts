@@ -33,8 +33,6 @@ type ParentCommit = {
   html_url: string;
 };
 
-export type XRatelimitRemaining = number;
-
 export type GitHubAPIResponse = {
   author: Author;
   comments_url?: string;
