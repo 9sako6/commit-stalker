@@ -15,6 +15,7 @@ import { Header } from 'src/components/header';
 import { Pagination } from 'src/components/pagination';
 import { ghClient } from 'src/utils/clients';
 import { LRUCache } from 'src/utils/lru_cache';
+import { useEffect } from 'react';
 
 const totalCommitNumHistory = new LRUCache<string, number>(100);
 const commitHistory = new LRUCache<string, GitHubAPIResponse[]>(5);
@@ -23,7 +24,7 @@ export const App = () => {
   const [user, setUser] = useState('');
   const [repo, setRepo] = useState('');
   const [page, setPage] = useState(1);
-  const [xRatelimitRemaining, setRateLimit] = useState(60);
+  const [rateLimitCount, setRateLimit] = useState(60);
   const [totalCommitNum, setTotalCommitNum] = useState(0);
   const [isReadmeOpen, setIsReadmeOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,14 +32,24 @@ export const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [currentCommitsList, setCurrentCommitsList] = useState<GitHubAPIResponse[]>([]);
 
+  useEffect(() => { fetchRateLimit(); }, []);
+
+  const fetchRateLimit = async () => {
+    await ghClient.get('/rate_limit', { headers: { Accept: 'application/vnd.github.v3+json' } })
+      .then(response => {
+        setRateLimit(Number(response.data.rate.remaining))
+      })
+      .catch((err) => {
+        setIsError(true);
+        setErrorMessage(err.message);
+      });
+  };
   const fetchCommitHistory = async (user: string, repo: string, page: number) => {
     const userRepoPage = `${user}/${repo}/${page}`;
     if (commitHistory.has(userRepoPage) === false) {
       await ghClient
         .get(`/repos/${user}/${repo}/commits`, { params: { page, per_page: 100 } })
         .then((res) => {
-          setRateLimit(Number(res.headers['x-ratelimit-remaining']));
-          // save response
           commitHistory.set(userRepoPage, res.data as GitHubAPIResponse[]);
         })
         .catch((err) => {
@@ -82,6 +93,7 @@ export const App = () => {
     // render
     fetchCommitHistory(user.trim(), repo.trim(), page);
     fetchCommitsCount(user.trim(), repo.trim());
+    fetchRateLimit();
   };
   const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
@@ -158,7 +170,7 @@ export const App = () => {
       <div style={{ margin: '6rem' }}></div>
       <Message>
         <a href="https://developer.github.com/v3/#rate-limiting" target="_blank" rel="noopener noreferrer">
-          {`The GitHub API's rate limit allows for up to 60 requests per hour. (Remaining: ${xRatelimitRemaining})`}
+          {`The GitHub API's rate limit allows for up to 60 requests per hour. (Remaining: ${rateLimitCount})`}
         </a>
       </Message>
     </>
