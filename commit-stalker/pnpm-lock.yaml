@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@next/font': 13.1.1
+  '@playwright/test': ^1.29.1
   '@testing-library/react': ^13.4.0
   '@types/node': 18.11.18
   '@types/react': 18.0.26
@@ -29,6 +30,7 @@ dependencies:
   typescript: 4.9.4
 
 devDependencies:
+  '@playwright/test': 1.29.1
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@vitejs/plugin-react': 3.0.0
   jsdom: 20.0.3
@@ -713,6 +715,15 @@ packages:
       tiny-glob: 0.2.9
       tslib: 2.4.1
     dev: false
+
+  /@playwright/test/1.29.1:
+    resolution: {integrity: sha512-iQxk2DX5U9wOGV3+/Jh9OHPsw5H3mleUL2S4BgQuwtlAfK3PnKvn38m4Rg9zIViGHVW24opSm99HQm/UFLEy6w==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.11.18
+      playwright-core: 1.29.1
+    dev: true
 
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
@@ -2684,6 +2695,12 @@ packages:
       jsonc-parser: 3.2.0
       mlly: 1.0.0
       pathe: 1.0.0
+    dev: true
+
+  /playwright-core/1.29.1:
+    resolution: {integrity: sha512-20Ai3d+lMkWpI9YZYlxk8gxatfgax5STW8GaMozAHwigLiyiKQrdkt7gaoT9UQR8FIVDg6qVXs9IoZUQrDjIIg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /postcss/8.4.14:
