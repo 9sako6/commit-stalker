@@ -1,0 +1,29 @@
+name: CI
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.4.0
+      - run: npm install -g pnpm
+      - run: pnpm install
+        working-directory: commit-stalker
+      - name: Run lint
+        run: pnpm lint
+        working-directory: commit-stalker
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.4.0
+      - run: npm install -g pnpm
+      - run: pnpm install
+        working-directory: commit-stalker
+      - name: Run test
+        run: pnpm exec vitest run
+        working-directory: commit-stalker
