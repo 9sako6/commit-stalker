@@ -1,6 +1,6 @@
 import { expect, test, vi } from 'vitest'
 import { render } from '@testing-library/react'
-import Home from '../src/pages'
+import Home from '@/src/pages'
 
 vi.mock('@next/font/google', async () => {
   return {
