@@ -1,5 +1,4 @@
 import { Commit } from "@/src/models/commit";
-import { test } from "vitest";
 
 test('parse Commit', () => {
   Commit.parse({

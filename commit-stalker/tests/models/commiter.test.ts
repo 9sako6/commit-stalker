@@ -1,5 +1,4 @@
 import { Commiter } from "@/src/models/commiter";
-import { test } from "vitest";
 
 test('parse Commiter', () => {
   Commiter.parse({

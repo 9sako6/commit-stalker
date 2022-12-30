@@ -1,5 +1,4 @@
 import { Author } from "@/src/models/author";
-import { test } from "vitest";
 
 test('parse Author', () => {
   Author.parse({

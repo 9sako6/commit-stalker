@@ -1,5 +1,4 @@
 import { useInputQuery } from "@/src/hooks/use-input-query";
-import { test, describe, expect } from "vitest";
 
 describe('useInputQuery', () => {
   describe('Valid query', () => {
