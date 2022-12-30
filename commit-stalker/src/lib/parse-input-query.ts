@@ -3,7 +3,7 @@ type InputQuery = {
   repository: string;
 }
 
-export const useInputQuery = (value: string): InputQuery => {
+export const parseInputQUery = (value: string): InputQuery => {
   let [owner, repository] = value.split('/')
   owner = owner.trim()
   repository ||= ''

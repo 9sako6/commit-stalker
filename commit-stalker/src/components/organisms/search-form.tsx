@@ -1,9 +1,9 @@
-import { useInputQuery } from "@/src/hooks/use-input-query"
+import { parseInputQUery } from "@/src/lib/parse-input-query"
 import { useState } from "react"
 import { FormEventHandler } from "react"
 
 type Props = {
-  handleSubmit: (query: ReturnType<typeof useInputQuery>) => void
+  handleSubmit: (query: ReturnType<typeof parseInputQUery>) => void
 }
 
 export const SearchForm = ({ handleSubmit }: Props) => {
@@ -15,6 +15,6 @@ export const SearchForm = ({ handleSubmit }: Props) => {
 
   return <form>
     <input name="repository" onChange={handleChange} value={value} placeholder='owner/repository' />
-    <div role='button' onClick={() => handleSubmit(useInputQuery(value))}>Search</div>
+    <div role='button' onClick={() => handleSubmit(parseInputQUery(value))}>Search</div>
   </form>
 }
