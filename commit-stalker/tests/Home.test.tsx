@@ -9,6 +9,14 @@ vi.mock('@next/font/google', async () => {
   }
 })
 
+vi.mock('next/router', async () => {
+  return {
+    useRouter: vi.fn(() => ({
+      query: vi.fn()
+    }))
+  }
+})
+
 test('home', () => {
   const { getByRole } = render(wrapper({ children: <Home /> }))
   getByRole('heading', { name: 'Commit Stalker Title' })

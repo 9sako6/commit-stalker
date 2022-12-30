@@ -9,7 +9,9 @@ import { runMockServer } from '../__mocks__/run-mock-server'
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  if (process.env.NEXT_PUBLIC_API_MOCKING) { runMockServer() }
+  if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+    runMockServer()
+  }
 
   return (<QueryClientProvider client={queryClient}>
     <Component {...pageProps} />

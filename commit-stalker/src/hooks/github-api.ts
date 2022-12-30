@@ -14,5 +14,6 @@ export const useSearchQuery = ({ owner, repository }: SearchQueryParams) =>
       fetch(`${URL}/repos/${owner}/${repository}/commits?per_page=100`).then(
         (res) => res.json()
       ),
-    enabled: !!owner && !!repository
+    enabled: !!owner && !!repository,
+    refetchOnWindowFocus: false,
   })

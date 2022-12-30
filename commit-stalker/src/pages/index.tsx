@@ -3,21 +3,21 @@ import { Inter } from '@next/font/google'
 import { Readme } from '../components/organisms/readme'
 import { SearchForm } from '../components/organisms/search-form'
 import { Commits } from '../components/organisms/commits'
-import { SearchQueryParams, useSearchQuery } from '../hooks/github-api'
-import { useState } from 'react'
+import { useSearchQuery } from '../hooks/github-api'
 import { Commits as CommitsModel } from '../models/commits'
 import type { Commits as CommitsType } from '../models/commits'
+import { useRouter } from 'next/router'
+import { parseInputQuery } from '../lib/parse-input-query'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  let commits: CommitsType = []
-  const [query, setQuery] = useState<SearchQueryParams>({ owner: '', repository: '' })
-  const { isLoading, data, error, isError } = useSearchQuery(query)
+  const router = useRouter()
+  const { repository: rawInputQuery } = router.query
+  const { owner, repository } = parseInputQuery(rawInputQuery)
 
-  const fetchCommits = (query: SearchQueryParams) => {
-    setQuery(query)
-  }
+  let commits: CommitsType = []
+  const { isLoading, data, error, isError } = useSearchQuery({ owner, repository })
 
   if (isLoading) { console.log('loading...') }
   if (error) { console.error(error) }
@@ -34,7 +34,7 @@ export default function Home() {
 
       <main>
         <h1>Commit Stalker Title</h1>
-        <SearchForm handleSubmit={fetchCommits} />
+        <SearchForm />
         <Commits commits={commits} />
         <Readme />
       </main>
