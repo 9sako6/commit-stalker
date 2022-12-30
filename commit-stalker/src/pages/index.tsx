@@ -4,7 +4,6 @@ import { Readme } from '../components/organisms/readme'
 import { SearchForm } from '../components/organisms/search-form'
 import { Commits } from '../components/organisms/commits'
 import { useSearchQuery } from '../hooks/github-api'
-import { Commits as CommitsModel } from '../models/commits'
 import type { Commits as CommitsType } from '../models/commits'
 import { useRouter } from 'next/router'
 import { parseInputQuery } from '../lib/parse-input-query'
@@ -21,7 +20,7 @@ export default function Home() {
 
   if (isLoading) { console.log('loading...') }
   if (error) { console.error(error) }
-  if (data) { commits = CommitsModel.parse(data) }
+  if (data) { commits = data }
 
   return (
     <>
