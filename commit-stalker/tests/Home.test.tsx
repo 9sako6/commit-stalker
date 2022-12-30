@@ -1,6 +1,7 @@
-import { expect, test, vi } from 'vitest'
+import { vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Home from '@/src/pages'
+import { wrapper } from './__mocks__/hooks/query-client-wrapper'
 
 vi.mock('@next/font/google', async () => {
   return {
@@ -9,6 +10,6 @@ vi.mock('@next/font/google', async () => {
 })
 
 test('home', () => {
-  const { getByRole } = render(<Home />)
-  expect(getByRole('img', { name: /next\.js logo/i })).toBeDefined()
+  const { getByRole } = render(wrapper({ children: <Home /> }))
+  getByRole('heading', { name: 'Commit Stalker Title' })
 })

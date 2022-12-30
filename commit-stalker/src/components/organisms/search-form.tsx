@@ -1,17 +1,20 @@
-import { useSearchQuery } from "@/src/fetcher/github-api"
+import { useInputQuery } from "@/src/hooks/use-input-query"
+import { useState } from "react"
+import { FormEventHandler } from "react"
 
-export const SearchForm = () => {
-  // const { isLoading, error, data } = useSearchQuery({
-  //   owner: 'rust-lang',
-  //   repository: 'rust'
-  // })
+type Props = {
+  handleSubmit: (query: ReturnType<typeof useInputQuery>) => void
+}
 
-  // if (isLoading) return <div>Loading...</div>
-  // if (error) return <div>An error has occurred.</div>
+export const SearchForm = ({ handleSubmit }: Props) => {
+  const [value, setValue] = useState('')
+
+  const handleChange: FormEventHandler<HTMLInputElement> = (e) => {
+    setValue(e.currentTarget.value)
+  }
 
   return <form>
-    {/* {JSON.stringify(data)} */}
-    <input name="repository" />
-    <button>Search</button>
+    <input name="repository" onChange={handleChange} value={value} placeholder='owner/repository' />
+    <div role='button' onClick={() => handleSubmit(useInputQuery(value))}>Search</div>
   </form>
 }
