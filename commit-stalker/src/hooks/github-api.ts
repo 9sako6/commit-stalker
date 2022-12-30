@@ -17,11 +17,13 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
       fetch(`${URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`)
         .then(res => res.json())
         .then(json => Commits.parse(json))
-        .then(async commits => await Promise.all(commits.map(async commit => {
-          const html = await mdToHtml(commit.commit.message)
-          commit.commit.message = html
-          return commit
-        }))),
+        .then(commits =>
+          Promise.all(commits.map(async commit => {
+            const html = await mdToHtml(commit.commit.message)
+            commit.commit.message = html
+            return commit
+          }))
+        ),
     enabled: !!owner && !!repository && !!page,
     refetchOnWindowFocus: false,
   })

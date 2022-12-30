@@ -1,9 +1,10 @@
+import { splitTitleBody } from '@/src/lib/split-title-body';
 import type { Commit as CommitType } from '@/src/models/commit';
 import { Avatar } from '../atom/avatar';
 
 export const Commit = ({ author, sha, commit, commiter }: CommitType) => {
   const { message: commitMessage } = commit;
-  const [messageTitle, messageBody] = commitMessage.split(/(?<=^[^\n]+?)\n/);
+  const [messageTitle, messageBody] = splitTitleBody(commitMessage);
 
   return (
     <div className='py-2 px-4 mb-4'>
@@ -13,7 +14,7 @@ export const Commit = ({ author, sha, commit, commiter }: CommitType) => {
           </a> */}
         {/* <div>{emoji.emojify(messageBody)}</div> */}
         <h2
-          className='text-lg font-bold'
+          className='commit-title text-lg font-bold'
           dangerouslySetInnerHTML={{ __html: messageTitle }}
         ></h2>
         <div className='znc' dangerouslySetInnerHTML={{ __html: messageBody }} />
