@@ -23,7 +23,7 @@ test('useSearchQuery', async () => {
 
   await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-  Commits.parse(result.current.data)
+  Commits.parse(result.current.data?.commits)
 })
 
 

@@ -12,6 +12,15 @@ export type SearchQueryParams = {
 
 export class NetworkError extends Error { }
 
+const extractTotalPage = (headers: Response['headers']) => {
+  const link = headers.get('link')
+  console.log(link)
+  if (!link) return;
+  const mathced = link.match(/page=(?<TotalPage>\d+)>; rel="last"/)
+  if (!mathced || !mathced.groups) return;
+  return Number(mathced.groups['TotalPage'])
+}
+
 export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =>
   useQuery({
     queryKey: ['searchCommits'],
@@ -21,14 +30,17 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
       if (!res.ok) {
         throw new NetworkError(json.message || 'An error has occurred. Please wait a moment and try again.')
       }
+      const totalPage = extractTotalPage(res.headers)
 
-      const commits = Commits.parse(json)
-
-      return await Promise.all(commits.map(async commit => {
+      const commits = await Promise.all(Commits.parse(json).map(async commit => {
         const html = await mdToHtml(commit.commit.message)
         commit.commit.message = html
         return commit
       }))
+
+      return {
+        commits, totalPage
+      }
     },
     retry: false,
     enabled: !!owner && !!repository && !!page,

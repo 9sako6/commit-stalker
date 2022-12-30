@@ -19,10 +19,14 @@ export default function Home() {
   const { page } = parseInputPage(router.query.page)
 
   let commits: CommitsType = []
+  let totalPage: number | undefined
   const { isInitialLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
 
   if (isInitialLoading) { console.log('loading...') }
-  if (data) { commits = data }
+  if (data) {
+    commits = data.commits
+    totalPage = data.totalPage
+  }
 
   return (
     <>
@@ -39,6 +43,7 @@ export default function Home() {
           <SearchForm owner={owner} repository={repository} page={page} />
           {!isError && isInitialLoading && <div>Loading...</div>}
           {!isInitialLoading && isError && <ErrorMessage message={String(error)} />}
+          {totalPage && <div>{totalPage}</div>}
           <Commits commits={commits} />
           <Readme />
         </div>
