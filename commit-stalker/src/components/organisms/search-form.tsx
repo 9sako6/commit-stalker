@@ -24,7 +24,7 @@ export const SearchForm = ({ owner, repository, page }: Props) => {
     setPageFromInput(Number(e.currentTarget.value))
   }
 
-  return <form className="w-2/4 flex py-12">
+  return <form className="w-2/4 flex py-4">
     <input
       autoFocus
       name="repository" onChange={handleQueryChange} value={query} placeholder='owner/repository'

@@ -19,5 +19,5 @@ vi.mock('next/router', async () => {
 
 test('home', () => {
   const { getByRole } = render(wrapper({ children: <Home /> }))
-  getByRole('heading', { name: 'Commit Stalker Title' })
+  getByRole('heading', { name: 'Commit Stalker' })
 })

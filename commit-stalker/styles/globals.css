@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply bg-slate-50;
+}
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;

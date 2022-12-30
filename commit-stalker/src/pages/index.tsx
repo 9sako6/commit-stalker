@@ -37,18 +37,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={inter.className}>
-        <div className='md:w-3/4 mx-auto'>
-          <h1>Commit Stalker Title</h1>
+      <header className={`${inter.className} sticky top-0 bg-slate-50 z-30`}>
+        <div className='flex items-center m-auto justify-around'>
+          <h1 className='text-lg'>Commit Stalker</h1>
           <SearchForm owner={owner} repository={repository} page={page} />
+        </div>
+      </header>
+
+      <main className={inter.className}>
+        <div className='md:w-3/5 m-auto bg-white py-8 rounded'>
+          {/* <SearchForm owner={owner} repository={repository} page={page} /> */}
           {!isError && isInitialLoading && <div>Loading...</div>}
           {!isInitialLoading && isError && <ErrorMessage>{String(error)}</ErrorMessage>}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
           {commits && <Commits commits={commits} />}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
-          <Readme />
         </div>
       </main>
+
+      <footer className={`${inter.className} md:w-3/5 m-auto`}>
+        <div>
+          <Readme />
+          <div className='py-4 text-center'>
+            <a className='hover:underline'
+              href='https://github.com/9sako6/commit-stalker'>9sako6/commit-stalker</a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
