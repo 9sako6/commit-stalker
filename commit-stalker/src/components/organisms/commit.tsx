@@ -6,13 +6,16 @@ export const Commit = ({ author, sha, commit, commiter }: CommitType) => {
   const [messageTitle, messageBody] = commitMessage.split(/(?<=^[^\n]+?)\n/);
 
   return (
-    <div>
+    <div className='py-2 px-4 mb-4'>
       <div>
         {/* <a className="message-link" data-pjax="true" href={commitUrl} target="_blank" rel="noopener noreferrer">
             {emoji.emojify(messageTitle)}
           </a> */}
         {/* <div>{emoji.emojify(messageBody)}</div> */}
-        <h2 dangerouslySetInnerHTML={{ __html: messageTitle }}>{ }</h2>
+        <h2
+          className='text-lg font-bold'
+          dangerouslySetInnerHTML={{ __html: messageTitle }}
+        ></h2>
         <div className='znc' dangerouslySetInnerHTML={{ __html: messageBody }} />
         {/* <ReactMarkdown source={emoji.emojify(messageBody)} /> */}
       </div>

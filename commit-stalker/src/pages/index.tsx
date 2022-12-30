@@ -32,10 +32,12 @@ export default function Home() {
       </Head>
 
       <main className={inter.className}>
-        <h1>Commit Stalker Title</h1>
-        <SearchForm />
-        <Commits commits={commits} />
-        <Readme />
+        <div className='md:w-3/4 mx-auto'>
+          <h1>Commit Stalker Title</h1>
+          <SearchForm />
+          <Commits commits={commits} />
+          <Readme />
+        </div>
       </main>
     </>
   )
