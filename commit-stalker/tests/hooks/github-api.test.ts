@@ -1,6 +1,5 @@
 import { useSearchQuery } from "@/src/hooks/github-api";
 import { renderHook, waitFor } from "@testing-library/react";
-import { test, expect, beforeAll, afterAll, afterEach } from "vitest";
 import { wrapper } from "../__mocks__/hooks/query-client-wrapper";
 import { createHandlerMock } from "../__mocks__/rest/create-handler";
 import { server } from "../__mocks__/server";
