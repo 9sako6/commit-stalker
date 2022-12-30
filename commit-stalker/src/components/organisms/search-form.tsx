@@ -1,9 +1,19 @@
+import { useEffect } from "react"
 import { useState } from "react"
 import { FormEventHandler } from "react"
 
-export const SearchForm = () => {
-  const [query, setQuery] = useState('')
+type Props = {
+  owner: string;
+  repository: string;
+}
+
+export const SearchForm = ({ owner, repository }: Props) => {
+  const [query, setQuery] = useState(owner && repository ? `${owner}/${repository}` : '')
   const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    setQuery(owner && repository ? `${owner}/${repository}` : '')
+  }, [owner, repository])
 
   const handleQueryChange: FormEventHandler<HTMLInputElement> = (e) => {
     setQuery(e.currentTarget.value)

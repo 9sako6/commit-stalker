@@ -34,7 +34,7 @@ export default function Home() {
       <main className={inter.className}>
         <div className='md:w-3/4 mx-auto'>
           <h1>Commit Stalker Title</h1>
-          <SearchForm />
+          <SearchForm owner={owner} repository={repository} />
           <Commits commits={commits} />
           <Readme />
         </div>
