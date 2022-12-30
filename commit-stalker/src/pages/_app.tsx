@@ -6,6 +6,9 @@ import {
 } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import { runMockServer } from '../__mocks__/run-mock-server'
+import { Inter } from '@next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const queryClient = new QueryClient()
 
@@ -15,6 +18,6 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (<QueryClientProvider client={queryClient}>
-    <Component {...pageProps} />
+    <Component className={inter.className} {...pageProps} />
   </QueryClientProvider>)
 }

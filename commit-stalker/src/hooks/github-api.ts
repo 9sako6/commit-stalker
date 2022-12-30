@@ -37,7 +37,10 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
         throw new NetworkError(json.message || 'An error has occurred. Please wait a moment and try again.')
       }
       const totalPage = extractTotalPage(res.headers) || getTotalPageFromLocalStorage(owner, repository)
-      localStorage.setItem(`${owner}/${repository}`, String(totalPage))
+
+      if (totalPage) {
+        localStorage.setItem(`${owner}/${repository}`, String(totalPage))
+      }
 
       const commits = await Promise.all(Commits.parse(json).map(async commit => {
         const html = await mdToHtml(commit.commit.message)
