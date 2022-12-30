@@ -19,7 +19,7 @@ export default function Home() {
   const { owner, repository } = parseInputQuery(rawInputQuery)
   const { page } = parseInputPage(router.query.page)
 
-  let commits: CommitsType = []
+  let commits: CommitsType | undefined
   let totalPage: number | undefined
   const { isInitialLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
 
@@ -44,7 +44,7 @@ export default function Home() {
           {!isError && isInitialLoading && <div>Loading...</div>}
           {!isInitialLoading && isError && <ErrorMessage message={String(error)} />}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
-          <Commits commits={commits} />
+          {commits && <Commits commits={commits} />}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
           <Readme />
         </div>

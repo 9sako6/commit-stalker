@@ -66,3 +66,23 @@ test('Show an error message when a repository does not exist', async ({ page }) 
   await expect(page.getByRole('textbox')).toHaveValue('janedoe/not-found')
   await expect(page.getByTestId('alert')).toHaveText('Error: Not Found')
 })
+
+test('Show a message when no results found', async ({ page }) => {
+  await page.route(`${GITHUB_API_URL}/repos/**`, async route => {
+    await route.fulfill({ json: [] });
+  });
+
+  page.on('console', msg => console.log(msg.text()))
+
+  await page.goto('/')
+
+  await expect(page).toHaveTitle(/Commit Stalker/)
+
+  await page.getByRole('textbox').fill('janedoe/zero-commits')
+  await page.getByRole('button', { name: 'Search' }).click()
+
+  await expect(page).toHaveURL(/janedoe/);
+
+  await expect(page.getByRole('textbox')).toHaveValue('janedoe/zero-commits')
+  await expect(page.getByTestId('info')).toHaveText('No results found.')
+})
