@@ -20,6 +20,13 @@ const extractTotalPage = (headers: Response['headers']) => {
   return Number(mathced.groups['TotalPage'])
 }
 
+const getTotalPageFromLocalStorage = (owner: string, repository: string) => {
+  const stored = localStorage.getItem(`${owner}/${repository}`)
+  if (!stored) return;
+
+  return Number(stored)
+}
+
 export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =>
   useQuery({
     queryKey: ['searchCommits', owner, repository, page],
@@ -29,7 +36,8 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
       if (!res.ok) {
         throw new NetworkError(json.message || 'An error has occurred. Please wait a moment and try again.')
       }
-      const totalPage = extractTotalPage(res.headers)
+      const totalPage = extractTotalPage(res.headers) || getTotalPageFromLocalStorage(owner, repository)
+      localStorage.setItem(`${owner}/${repository}`, String(totalPage))
 
       const commits = await Promise.all(Commits.parse(json).map(async commit => {
         const html = await mdToHtml(commit.commit.message)
