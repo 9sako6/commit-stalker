@@ -26,8 +26,11 @@
   "devDependencies": {
     "@playwright/test": "^1.29.1",
     "@testing-library/react": "^13.4.0",
+    "@types/whatwg-fetch": "^0.0.33",
     "@vitejs/plugin-react": "^3.0.0",
     "jsdom": "^20.0.3",
-    "vitest": "^0.26.2"
+    "msw": "^0.49.2",
+    "vitest": "^0.26.2",
+    "whatwg-fetch": "^3.6.2"
   }
 }

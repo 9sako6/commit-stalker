@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-const URL = 'https://api.github.com'
+export const URL = 'https://api.github.com'
 
 type SearchQueryParams = {
   owner: string;
@@ -9,7 +9,7 @@ type SearchQueryParams = {
 
 export const useSearchQuery = ({ owner, repository }: SearchQueryParams) =>
   useQuery({
-    // queryKey: ['repoData'],
+    queryKey: ['searchCommits'],
     queryFn: () =>
       fetch(`${URL}/repos/${owner}/${repository}/commits?per_page=100`).then(
         (res) => res.json()
