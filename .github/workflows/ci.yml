@@ -55,3 +55,16 @@ jobs:
           name: playwright-report
           path: commit-stalker/playwright-report/
           retention-days: 30
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.4.0
+      - run: npm install -g pnpm
+      - run: pnpm install
+        working-directory: commit-stalker
+      - name: Run build
+        run: pnpm build
+        working-directory: commit-stalker
