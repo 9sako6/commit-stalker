@@ -14,7 +14,6 @@ export class NetworkError extends Error { }
 
 const extractTotalPage = (headers: Response['headers']) => {
   const link = headers.get('link')
-  console.log(link)
   if (!link) return;
   const mathced = link.match(/page=(?<TotalPage>\d+)>; rel="last"/)
   if (!mathced || !mathced.groups) return;
@@ -23,7 +22,7 @@ const extractTotalPage = (headers: Response['headers']) => {
 
 export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =>
   useQuery({
-    queryKey: ['searchCommits'],
+    queryKey: ['searchCommits', owner, repository, page],
     queryFn: async () => {
       const res = await fetch(`${URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`)
       const json = await res.json()

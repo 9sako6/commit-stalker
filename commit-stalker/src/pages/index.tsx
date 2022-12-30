@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { parseInputQuery } from '../lib/parse-input-query'
 import { parseInputPage } from '../lib/parse-input-page'
 import { ErrorMessage } from '../components/organisms/error-message'
+import { Pagination } from '../components/organisms/pagination'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +23,6 @@ export default function Home() {
   let totalPage: number | undefined
   const { isInitialLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
 
-  if (isInitialLoading) { console.log('loading...') }
   if (data) {
     commits = data.commits
     totalPage = data.totalPage
@@ -43,8 +43,9 @@ export default function Home() {
           <SearchForm owner={owner} repository={repository} page={page} />
           {!isError && isInitialLoading && <div>Loading...</div>}
           {!isInitialLoading && isError && <ErrorMessage message={String(error)} />}
-          {totalPage && <div>{totalPage}</div>}
+          {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
           <Commits commits={commits} />
+          {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
           <Readme />
         </div>
       </main>
