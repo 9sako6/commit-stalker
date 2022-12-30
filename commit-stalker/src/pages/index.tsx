@@ -42,7 +42,7 @@ export default function Home() {
           <h1>Commit Stalker Title</h1>
           <SearchForm owner={owner} repository={repository} page={page} />
           {!isError && isInitialLoading && <div>Loading...</div>}
-          {!isInitialLoading && isError && <ErrorMessage message={String(error)} />}
+          {!isInitialLoading && isError && <ErrorMessage>{String(error)}</ErrorMessage>}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
           {commits && <Commits commits={commits} />}
           {totalPage && <Pagination count={totalPage} defaultPage={page} owner={owner} repository={repository} />}
