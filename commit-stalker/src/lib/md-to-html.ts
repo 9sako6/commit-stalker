@@ -11,6 +11,6 @@ export const mdToHtml = async (markdown: string) => {
     .process(markdown)
     .then((file) => String(file))
     .catch((_error) => {
-      // nothing
+      return ''
     })
 }

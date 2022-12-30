@@ -12,8 +12,8 @@ export const Commit = ({ author, sha, commit, commiter }: CommitType) => {
             {emoji.emojify(messageTitle)}
           </a> */}
         {/* <div>{emoji.emojify(messageBody)}</div> */}
-        <h2>{messageTitle}</h2>
-        <div>{messageBody}</div>
+        <h2 dangerouslySetInnerHTML={{ __html: messageTitle }}>{ }</h2>
+        <div className='znc' dangerouslySetInnerHTML={{ __html: messageBody }} />
         {/* <ReactMarkdown source={emoji.emojify(messageBody)} /> */}
       </div>
       <div>

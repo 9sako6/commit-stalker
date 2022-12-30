@@ -1,4 +1,5 @@
 import '../../styles/globals.css'
+import 'zenn-content-css';
 import {
   QueryClient,
   QueryClientProvider,

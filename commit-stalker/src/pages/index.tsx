@@ -31,7 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={inter.className}>
         <h1>Commit Stalker Title</h1>
         <SearchForm />
         <Commits commits={commits} />

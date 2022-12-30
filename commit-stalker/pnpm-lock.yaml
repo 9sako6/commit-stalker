@@ -24,6 +24,7 @@ specifiers:
   unified: ^10.1.2
   vitest: ^0.26.2
   whatwg-fetch: ^3.6.2
+  zenn-content-css: ^0.1.134
   zod: ^3.20.2
 
 dependencies:
@@ -42,6 +43,7 @@ dependencies:
   remark-rehype: 10.1.0
   typescript: 4.9.4
   unified: 10.1.2
+  zenn-content-css: 0.1.134
   zod: 3.20.2
 
 devDependencies:
@@ -4529,6 +4531,10 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /zenn-content-css/0.1.134:
+    resolution: {integrity: sha512-jjBAsiDBPNRZaAOVT6wRwa2YJ0RRwRxUqGTchAlLejQ9fkrgzS4Q0MohxF6axsEaI5BIQQi3p1aCjzqNKSMKwg==}
     dev: false
 
   /zod/3.20.2:
