@@ -47,7 +47,7 @@ jobs:
         run: pnpm dlx playwright install --with-deps
         working-directory: commit-stalker
       - name: Run Playwright tests
-        run: pnpm dlx playwright test
+        run: pnpm e2e
         working-directory: commit-stalker
       - uses: actions/upload-artifact@v3
         if: always()
