@@ -7,6 +7,7 @@ import { useSearchQuery } from '../hooks/github-api'
 import type { Commits as CommitsType } from '../models/commits'
 import { useRouter } from 'next/router'
 import { parseInputQuery } from '../lib/parse-input-query'
+import { parseInputPage } from '../lib/parse-input-page'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +15,10 @@ export default function Home() {
   const router = useRouter()
   const { repository: rawInputQuery } = router.query
   const { owner, repository } = parseInputQuery(rawInputQuery)
+  const { page } = parseInputPage(router.query.page)
 
   let commits: CommitsType = []
-  const { isLoading, data, error, isError } = useSearchQuery({ owner, repository })
+  const { isLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
 
   if (isLoading) { console.log('loading...') }
   if (error) { console.error(error) }
@@ -34,7 +36,8 @@ export default function Home() {
       <main className={inter.className}>
         <div className='md:w-3/4 mx-auto'>
           <h1>Commit Stalker Title</h1>
-          <SearchForm owner={owner} repository={repository} />
+          <SearchForm owner={owner} repository={repository} page={page} />
+          {isLoading && <div>Loading...</div>}
           <Commits commits={commits} />
           <Readme />
         </div>

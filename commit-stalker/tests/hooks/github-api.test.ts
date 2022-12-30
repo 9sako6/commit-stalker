@@ -15,10 +15,11 @@ test('useSearchQuery', async () => {
   // FIXME: For some reason, a real request is generated on CI, so we specify a real repository.
   const owner = process.env.CI ? '9sako6' : 'JaneDoe'
   const repository = 'commit-stalker'
-  const handlerMock = createHandlerMock({ url: `${GITHUB_API_URL}/repos/${owner}/${repository}/commits`, responseBody: [], responseStatus: 200 })
+  const page = 10
+  const handlerMock = createHandlerMock({ url: `${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`, responseBody: [], responseStatus: 200 })
   server.use(handlerMock)
 
-  const { result } = renderHook(() => useSearchQuery({ owner, repository }), { wrapper })
+  const { result } = renderHook(() => useSearchQuery({ owner, repository, page }), { wrapper })
 
   await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
