@@ -19,9 +19,9 @@ export default function Home() {
   const { page } = parseInputPage(router.query.page)
 
   let commits: CommitsType = []
-  const { isLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
+  const { isInitialLoading, data, error, isError } = useSearchQuery({ owner, repository, page })
 
-  if (isLoading) { console.log('loading...') }
+  if (isInitialLoading) { console.log('loading...') }
   if (data) { commits = data }
 
   return (
@@ -37,8 +37,8 @@ export default function Home() {
         <div className='md:w-3/4 mx-auto'>
           <h1>Commit Stalker Title</h1>
           <SearchForm owner={owner} repository={repository} page={page} />
-          {!isError && isLoading && <div>Loading...</div>}
-          {!isLoading && isError && <ErrorMessage message={String(error)} />}
+          {!isError && isInitialLoading && <div>Loading...</div>}
+          {!isInitialLoading && isError && <ErrorMessage message={String(error)} />}
           <Commits commits={commits} />
           <Readme />
         </div>
