@@ -24,11 +24,11 @@ export const SearchForm = ({ owner, repository, page }: Props) => {
     setPageFromInput(Number(e.currentTarget.value))
   }
 
-  return <form className="w-2/4 flex py-4">
+  return <form className="text-sm md:text-base w-2/4 flex py-4">
     <input
       autoFocus
       name="repository" onChange={handleQueryChange} value={query} placeholder='owner/repository'
-      className="appearance-none border-b border-gray-200 w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-800" />
+      className="appearance-none border-b border-gray-200 md:w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-800" />
     <input
       autoFocus
       type='number'

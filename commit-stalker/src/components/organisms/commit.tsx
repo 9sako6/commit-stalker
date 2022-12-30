@@ -7,7 +7,7 @@ export const Commit = ({ author, sha, commit, commiter }: CommitType) => {
   const [messageTitle, messageBody] = splitTitleBody(commitMessage);
 
   return (
-    <div className='py-2 px-4 mb-4'>
+    <div className='py-2 px-4 mb-4 break-words'>
       <div>
         {/* <a className="message-link" data-pjax="true" href={commitUrl} target="_blank" rel="noopener noreferrer">
             {emoji.emojify(messageTitle)}

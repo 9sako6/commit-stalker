@@ -38,7 +38,7 @@ export default function Home() {
       </Head>
 
       <header className={`${inter.className} sticky top-0 bg-slate-50 z-30`}>
-        <div className='flex items-center m-auto justify-around'>
+        <div className='md:flex items-center m-auto justify-around'>
           <h1 className='text-lg'>Commit Stalker</h1>
           <SearchForm owner={owner} repository={repository} page={page} />
         </div>
