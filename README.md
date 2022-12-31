@@ -11,14 +11,16 @@ URL: https://9sako6.github.io/commit-stalker/
 
 https://user-images.githubusercontent.com/31821663/210141602-b640a7a4-7377-4e40-83f2-96f8427d02f4.mov
 
-## 🌐 App URL
+These are sample screenshots on mobile.
 
-https://9sako6.github.io/commit-stalker/
-
-<p style="text-align: center;">
+<p>
   <img src="./figs/mobile.png" width=200px/>
   <img src="./figs/rails.mobile.png" width=200px/>
 </p>
+
+## 🌐 App URL
+
+https://9sako6.github.io/commit-stalker/
 
 ## More Details
 
