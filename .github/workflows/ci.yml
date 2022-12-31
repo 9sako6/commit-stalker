@@ -13,10 +13,8 @@ jobs:
           node-version: 18.4.0
       - run: npm install -g pnpm
       - run: pnpm install
-        working-directory: commit-stalker
       - name: Run lint
         run: pnpm lint
-        working-directory: commit-stalker
   test:
     runs-on: ubuntu-latest
     steps:
@@ -26,10 +24,8 @@ jobs:
           node-version: 18.4.0
       - run: npm install -g pnpm
       - run: pnpm install
-        working-directory: commit-stalker
       - name: Run test
         run: pnpm exec vitest run
-        working-directory: commit-stalker
   e2e:
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -42,13 +38,10 @@ jobs:
         run: |
           npm install -g pnpm
           pnpm install
-        working-directory: commit-stalker
       - name: Install Playwright Browsers
         run: pnpm dlx playwright install --with-deps
-        working-directory: commit-stalker
       - name: Run Playwright tests
         run: pnpm e2e
-        working-directory: commit-stalker
       - uses: actions/upload-artifact@v3
         if: always()
         with:
@@ -64,7 +57,5 @@ jobs:
           node-version: 18.4.0
       - run: npm install -g pnpm
       - run: pnpm install
-        working-directory: commit-stalker
       - name: Run build
         run: pnpm build
-        working-directory: commit-stalker
