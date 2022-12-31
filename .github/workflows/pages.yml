@@ -29,18 +29,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: yarn
+          node-version: 18.4.0
+          cache: pnpm
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Build static pages
-        run: yarn build
+        run: pnpm build
         env:
           TZ: "Asia/Tokyo"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./build
+          path: ./out
 
   # Deployment job
   deploy:
