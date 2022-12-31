@@ -37,7 +37,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className='sticky top-0 bg-slate-50 z-30'>
+      <header className='sticky top-0 z-30 bg-white p-4'>
         <div className='md:flex items-center m-auto'>
           <div className='md:w-1/5 flex items-center'>
             <Link href={'/'} className='text-lg md:m-auto font-semibold'>
