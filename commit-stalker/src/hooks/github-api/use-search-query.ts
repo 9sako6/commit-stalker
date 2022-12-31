@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { mdToHtml } from '../lib/md-to-html';
-import { Commits } from '../models/commits';
-
-export const URL = 'https://api.github.com'
+import { GITHUB_API_URL } from '.';
+import { mdToHtml } from '../../lib/md-to-html';
+import { Commits } from '../../models/commits';
 
 export type SearchQueryParams = {
   owner: string;
@@ -31,7 +30,7 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
   useQuery({
     queryKey: ['searchCommits', owner, repository, page],
     queryFn: async () => {
-      const res = await fetch(`${URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`)
+      const res = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`)
       const json = await res.json()
       if (!res.ok) {
         throw new NetworkError(json.message || 'An error has occurred. Please wait a moment and try again.')

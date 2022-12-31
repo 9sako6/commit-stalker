@@ -1,9 +1,9 @@
-import { useSearchQuery } from "@/src/hooks/github-api";
+import { useSearchQuery } from "@/src/hooks/github-api/use-search-query";
 import { renderHook, waitFor } from "@testing-library/react";
-import { wrapper } from "../__mocks__/hooks/query-client-wrapper";
-import { createHandlerMock } from "../__mocks__/rest/create-handler";
-import { server } from "../__mocks__/server";
-import { URL as GITHUB_API_URL } from '@/src/hooks/github-api'
+import { wrapper } from "../../__mocks__/hooks/query-client-wrapper";
+import { createHandlerMock } from "../../__mocks__/rest/create-handler";
+import { server } from "../../__mocks__/server";
+import { GITHUB_API_URL } from '@/src/hooks/github-api'
 import { Commits } from "@/src/models/commits";
 import 'whatwg-fetch'
 

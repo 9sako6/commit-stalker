@@ -1,6 +1,6 @@
 
 import { test, expect } from '@playwright/test';
-import { URL as GITHUB_API_URL } from '../../src/hooks/github-api'
+import { GITHUB_API_URL } from '../../src/hooks/github-api'
 import mockResponse from '../fixtures/github-api-response/rust-lang.rust.json'
 
 test('Move to another page with pagination', async ({ page }) => {

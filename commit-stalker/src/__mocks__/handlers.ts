@@ -1,5 +1,5 @@
 import { rest } from 'msw'
-import { URL as GITHUB_API_URL } from '@/src/hooks/github-api'
+import { URL as GITHUB_API_URL } from '@/src/hooks/github-api/use-search-query'
 
 import rustResponse from '@/tests/fixtures/github-api-response/rust-lang.rust.json'
 import forbiddenResponse from '@/tests/fixtures/github-api-response/403.json'

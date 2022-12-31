@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { URL as GITHUB_API_URL } from '../../src/hooks/github-api'
+import { GITHUB_API_URL } from '../../src/hooks/github-api'
 import response from '../fixtures/github-api-response/rust-lang.rust.json'
 import forbiddenResponse from '../fixtures/github-api-response/403.json'
 import notFoundResponse from '../fixtures/github-api-response/404.json'
