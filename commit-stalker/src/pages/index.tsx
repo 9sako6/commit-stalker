@@ -11,6 +11,7 @@ import { ErrorMessage } from '../components/organisms/error-message'
 import { Pagination } from '../components/organisms/pagination'
 import Link from 'next/link'
 import { LoadingCommits } from '../components/atom/loading-commits'
+import { RateLimit } from '../components/organisms/rate-limit'
 
 export default function Home() {
   const router = useRouter()
@@ -38,15 +39,21 @@ export default function Home() {
 
       <header className='sticky top-0 bg-slate-50 z-30'>
         <div className='md:flex items-center m-auto'>
-          <div className='md:w-1/5 flex'>
+          <div className='md:w-1/5 flex items-center'>
             <Link href={'/'} className='text-lg md:m-auto font-semibold'>
               <h1>Commit Stalker</h1>
             </Link>
+            <div className='ml-auto md:hidden'>
+              <RateLimit />
+            </div>
           </div>
           <div className='md:w-3/5'>
             <SearchForm owner={owner} repository={repository} page={page} />
           </div>
-          <div className='md:w-1/5 flex'>
+          <div className='md:w-1/5 hidden md:block'>
+            <div className='w-3/4'>
+              <RateLimit />
+            </div>
             {/* TODO: GitHub Login Button */}
           </div>
         </div>

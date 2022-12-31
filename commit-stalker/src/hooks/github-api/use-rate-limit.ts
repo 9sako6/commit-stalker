@@ -6,6 +6,7 @@ export class UnexpectedError extends Error { }
 
 export const useRateLimit = () =>
   useQuery({
+    queryKey: ['rateLimit'],
     queryFn: async () => {
       const res = await fetch(`${GITHUB_API_URL}/rate_limit`)
       const json = await res.json()
@@ -14,5 +15,8 @@ export const useRateLimit = () =>
       }
 
       return Resources.parse(json)
-    }
+    },
+    refetchInterval: 500,
+    refetchOnMount: 'always',
+    cacheTime: 0
   })
