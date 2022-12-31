@@ -10,9 +10,7 @@ In addition, you can search **the oldest commit** easily.
 
 URL: https://9sako6.github.io/commit-stalker/
 
-<p align="center">
-    <img src="figs/demo_pc.gif" alt="deploy gh-pages" />
-</p>
+https://user-images.githubusercontent.com/31821663/210141602-b640a7a4-7377-4e40-83f2-96f8427d02f4.mov
 
 ## 🌐 App URL
 
