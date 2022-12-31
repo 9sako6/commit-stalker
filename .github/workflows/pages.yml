@@ -22,6 +22,8 @@ concurrency:
 jobs:
   # Build job
   build:
+    env:
+      NEXT_PUBLIC_BASE_PATH: /commit-stalker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
