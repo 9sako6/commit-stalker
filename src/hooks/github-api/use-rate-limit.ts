@@ -11,9 +11,9 @@ export const useRateLimit = () => {
   return useQuery({
     queryKey: ['rateLimit'],
     queryFn: async () => {
-      const headers = new Headers({
+      const headers = accessToken ? new Headers({
         authorization: accessToken ? `Bearer ${accessToken}` : ''
-      })
+      }) : new Headers()
       const res = await fetch(`${GITHUB_API_URL}/rate_limit`, {
         headers
       })

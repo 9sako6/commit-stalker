@@ -33,9 +33,9 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
   return useQuery({
     queryKey: ['searchCommits', owner, repository, page],
     queryFn: async () => {
-      const headers = new Headers({
+      const headers = accessToken ? new Headers({
         authorization: accessToken ? `Bearer ${accessToken}` : ''
-      })
+      }) : new Headers()
       const res = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`, {
         headers
       })
