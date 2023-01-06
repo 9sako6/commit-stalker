@@ -12,8 +12,7 @@ import { Pagination } from '../components/organisms/pagination'
 import Link from 'next/link'
 import { LoadingCommits } from '../components/atom/loading-commits'
 import { RateLimit } from '../components/organisms/rate-limit'
-import { SignInButton } from '../components/atom/sign-in-button'
-import { SignOutButton } from '../components/atom/sign-out-button'
+import { AuthContent } from '../components/organisms/auth-content'
 
 export default function Home() {
   const router = useRouter()
@@ -47,6 +46,9 @@ export default function Home() {
             </Link>
             <div className='ml-auto md:hidden'>
               <RateLimit />
+              <div className='pt-2'>
+                <AuthContent />
+              </div>
             </div>
           </div>
           <div className='md:w-3/5'>
@@ -56,8 +58,9 @@ export default function Home() {
             <div className='w-3/4'>
               <RateLimit />
             </div>
-            <SignInButton />
-            <SignOutButton />
+            <div className='pl-4'>
+              <AuthContent />
+            </div>
           </div>
         </div>
       </header>

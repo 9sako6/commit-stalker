@@ -11,6 +11,11 @@ const setToLocalStorage = (key: string, value: string) => {
   localStorage.setItem(key, value)
 }
 
+const removeFromLocalStorage = (key: string) => {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem(key)
+}
+
 export const useAccessToken = () => {
   const accessToken = getFromLocalStorage(key)
 
@@ -18,5 +23,9 @@ export const useAccessToken = () => {
     setToLocalStorage(key, accessToken)
   }
 
-  return [accessToken, setAccessToken] as const
+  const removeAccessToken = () => {
+    removeFromLocalStorage(key)
+  }
+
+  return [accessToken, setAccessToken, removeAccessToken] as const
 }

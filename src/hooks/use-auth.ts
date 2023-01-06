@@ -1,9 +1,9 @@
-import { getAuth, signInWithPopup, GithubAuthProvider, connectAuthEmulator } from "firebase/auth";
+import { getAuth, signInWithPopup, GithubAuthProvider, connectAuthEmulator, signOut as fbSignOut } from "firebase/auth";
 import { useAccessToken } from "./use-access-token";
 
 export const useAuth = () => {
   const provider = new GithubAuthProvider()
-  const [_, setAccessToken] = useAccessToken()
+  const [_, setAccessToken, removeAccessToken] = useAccessToken()
   const auth = getAuth()
   const signIn = () => signInWithPopup(auth, provider)
     .then(result => {
@@ -13,6 +13,10 @@ export const useAuth = () => {
         setAccessToken(accessToken)
       }
     })
+  const signOut = () => {
+    removeAccessToken()
+    fbSignOut(auth)
+  }
 
-  return signIn
+  return [signIn, signOut] as const
 }
