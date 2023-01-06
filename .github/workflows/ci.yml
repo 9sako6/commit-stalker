@@ -23,8 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: docker build -t commit-stalker:test -f firebase/Dockerfile .
-      - run: docker container run -t commit-stalker:test pnpm test
+      - run: |
+          docker build -t commit-stalker:test -f firebase/Dockerfile .
+          docker container run -t commit-stalker:test pnpm test
       # - uses: actions/setup-node@v3
       #   with:
       #     node-version: 18.4.0
