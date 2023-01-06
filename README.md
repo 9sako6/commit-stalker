@@ -18,16 +18,13 @@ These are sample screenshots on mobile.
   <img src="./figs/rails.mobile.png" width=200px/>
 </p>
 
-## 🌐 App URL
-
-https://9sako6.github.io/commit-stalker/
-
 ## More Details
 
 [I built the Web app to search commits on GitHub - dev.to](https://dev.to/9sako6/i-built-the-web-app-to-search-commits-on-github-3l82)
 
 ## Change log
 
+- [2023-01-07] You can now sign in with your GitHub account to send authenticated requests
 - [2022-12-31] Replace with Next.js
 - [2020-04-29] responsive support
 - [2019-05-06] To count all commit, commit-stalker uses original Web API:

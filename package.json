@@ -7,7 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest",
+    "test": "cd firebase && firebase emulators:exec 'NEXT_PUBLIC_FIREBASE_EMULATOR=enabled pnpm exec vitest run'",
     "e2e": "NODE_ENV=test playwright test"
   },
   "dependencies": {

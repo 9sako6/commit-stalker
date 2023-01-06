@@ -13,7 +13,7 @@ afterAll(() => server.close())
 
 test('useSearchQuery', async () => {
   // FIXME: For some reason, a real request is generated on CI, so we specify a real repository.
-  const owner = process.env.CI ? '9sako6' : 'JaneDoe'
+  const owner = '9sako6'
   const repository = 'commit-stalker'
   const page = 10
   const handlerMock = createHandlerMock({ url: `${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`, responseBody: [], responseStatus: 200 })
