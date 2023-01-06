@@ -45,8 +45,16 @@ jobs:
         run: |
           npm install -g pnpm
           pnpm install
+      # Cache https://github.com/microsoft/playwright/issues/7249#issuecomment-1317404905
+      - name: Cache Playwright
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.29.1
       - name: Install Playwright Browsers
-        run: pnpm dlx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm dlx playwright@1.29.1 install --with-deps
       - name: Run Playwright tests
         run: pnpm e2e
       - uses: actions/upload-artifact@v3
