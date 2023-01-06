@@ -19,6 +19,6 @@ export const createFirebaseApp = () => {
     console.log("\x1b[35mFirebase Emulator is running\x1b[39m")
   } else {
     const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
+    if (typeof window !== 'undefined') { getAnalytics(app); }
   }
 }
