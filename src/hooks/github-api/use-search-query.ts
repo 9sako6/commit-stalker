@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { GITHUB_API_URL } from '.';
 import { mdToHtml } from '../../lib/md-to-html';
 import { Commits } from '../../models/commits';
+import { useAccessToken } from '../use-access-token';
 
 export type SearchQueryParams = {
   owner: string;
@@ -26,11 +27,18 @@ const getTotalPageFromLocalStorage = (owner: string, repository: string) => {
   return Number(stored)
 }
 
-export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =>
-  useQuery({
+export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) => {
+  const [accessToken] = useAccessToken()
+
+  return useQuery({
     queryKey: ['searchCommits', owner, repository, page],
     queryFn: async () => {
-      const res = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`)
+      const headers = new Headers({
+        authorization: accessToken ? `Bearer ${accessToken}` : ''
+      })
+      const res = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repository}/commits?per_page=100&page=${page}`, {
+        headers
+      })
       const json = await res.json()
       if (!res.ok) {
         throw new NetworkError(json.message || 'An error has occurred. Please wait a moment and try again.')
@@ -55,3 +63,4 @@ export const useSearchQuery = ({ owner, repository, page }: SearchQueryParams) =
     enabled: !!owner && !!repository && !!page,
     refetchOnWindowFocus: false,
   })
+}

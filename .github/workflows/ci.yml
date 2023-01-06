@@ -23,13 +23,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.4.0
-      - run: npm install -g pnpm
-      - run: pnpm install
-      - name: Run test
-        run: pnpm exec vitest run
+      - run: docker build -t commit-stalker:test -f firebase/Dockerfile .
+      - run: doker container run -t commit-stalker:test pnpm test
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18.4.0
+      # - run: npm install -g pnpm
+      # - run: pnpm install
+      # - name: Run test
+      #   run: firebase emulators:exec 'NEXT_PUBLIC_FIREBASE_EMULATOR=enabled pnpm exec vitest run'
   e2e:
     timeout-minutes: 60
     runs-on: ubuntu-latest

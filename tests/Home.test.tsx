@@ -1,7 +1,7 @@
 import { vi } from 'vitest'
 import { render } from '@testing-library/react'
 import Home from '@/src/pages'
-import { wrapper } from './__mocks__/hooks/query-client-wrapper'
+import { wrapper } from './__mocks__'
 
 vi.mock('@next/font/google', async () => {
   return {

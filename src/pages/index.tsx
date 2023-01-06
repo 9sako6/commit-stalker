@@ -12,6 +12,8 @@ import { Pagination } from '../components/organisms/pagination'
 import Link from 'next/link'
 import { LoadingCommits } from '../components/atom/loading-commits'
 import { RateLimit } from '../components/organisms/rate-limit'
+import { SignInButton } from '../components/atom/sign-in-button'
+import { SignOutButton } from '../components/atom/sign-out-button'
 
 export default function Home() {
   const router = useRouter()
@@ -54,7 +56,8 @@ export default function Home() {
             <div className='w-3/4'>
               <RateLimit />
             </div>
-            {/* TODO: GitHub Login Button */}
+            <SignInButton />
+            <SignOutButton />
           </div>
         </div>
       </header>

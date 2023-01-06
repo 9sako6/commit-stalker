@@ -16,6 +16,7 @@ const queryClient = new QueryClient()
 export default function App({ Component, pageProps }: AppProps) {
   if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
     runMockServer()
+    console.log("\x1b[35mMSW is running\x1b[39m")
   }
   createFirebaseApp()
 
