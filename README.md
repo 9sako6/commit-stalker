@@ -3,9 +3,11 @@
 ![Deploy to Pages](https://github.com/9sako6/commit-stalker/workflows/Deploy%20to%20Pages/badge.svg)
 ![CI](https://github.com/9sako6/commit-stalker/workflows/CI/badge.svg)
 
-This is a simple GitHub commits' history viewer.
-**100 commits** are showed in a page. (35 commits in the official site.)
-In addition, you can search older commits easily by pagination.
+A GitHub commits viewer that allows you to easily search older commits by
+pagination. Commit messages are rendered as Markdown.
+
+In addition, **100 commits** are showed in a page. (35 commits in the official
+site.)
 
 URL: https://9sako6.github.io/commit-stalker/
 
@@ -24,12 +26,24 @@ These are sample screenshots on mobile.
 
 ## Change log
 
-- [2023-01-07] You can now sign in with your GitHub account to send authenticated requests
-- [2022-12-31] Replace with Next.js
-- [2020-04-29] responsive support
-- [2019-05-06] To count all commit, commit-stalker uses original Web API:
-  [9sako6/github-api-for-commit-count](https://github.com/9sako6/github-api-for-commit-count)
-  - [2021-08-19] This API is no longer used.
+**2023/01/07**
+
+You can now sign in with your GitHub account to send authenticated requests.
+
+**2022/12/31**
+
+Replace with Next.js.
+
+**2020/04/29**
+
+Responsive support.
+
+**2019/05/06**
+
+To count all commit, commit-stalker uses original Web API:
+[9sako6/github-api-for-commit-count](https://github.com/9sako6/github-api-for-commit-count).
+
+- This API is no longer used. (2021/08/19)
 
 ## License
 
