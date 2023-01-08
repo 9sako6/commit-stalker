@@ -14,5 +14,5 @@ export const Pagination = ({ count, defaultPage, owner, repository }: Props) => 
     router.push(`/?repository=${owner}%2F${repository}&page=${value}`)
   }
   return (
-    <div className='flex justify-center py-8'><MuPagination count={count} defaultPage={defaultPage || 1} showFirstButton showLastButton onChange={handleChange} /></div>)
+    <div className='flex justify-center py-8'><MuPagination size="small" count={count} defaultPage={defaultPage || 1} showFirstButton showLastButton onChange={handleChange} /></div>)
 }
