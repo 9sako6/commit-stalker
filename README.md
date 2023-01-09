@@ -17,7 +17,9 @@ These are sample screenshots on mobile.
 
 <p>
   <img src="./figs/mobile.png" width=200px/>
-  <img src="./figs/rails.mobile.png" width=200px/>
+  <img src="./figs/mobile_rails.png" width=200px/>
+  <img src="./figs/mobile_rails2.png" width=200px/>
+  <img src="./figs/mobile_rust.png" width=200px/>
 </p>
 
 ## More Details
