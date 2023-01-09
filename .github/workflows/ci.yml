@@ -39,7 +39,7 @@ jobs:
           npm install -g pnpm
           pnpm install
       - name: Install Playwright Browsers
-        run: pnpm dlx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
         run: pnpm e2e
       - uses: actions/upload-artifact@v3
