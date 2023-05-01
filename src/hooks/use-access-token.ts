@@ -1,30 +1,30 @@
 const key = 'NO_SCOPE_GITHUB_ACCESS_TOKEN'
 
-const getFromLocalStorage = (key: string) => {
+const getFromSessionStorage = (key: string) => {
   if (typeof window === 'undefined') return;
 
-  return localStorage.getItem(key) ?? undefined
+  return sessionStorage.getItem(key) ?? undefined
 }
 
-const setToLocalStorage = (key: string, value: string) => {
+const setToSessionStorage = (key: string, value: string) => {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(key, value)
+  sessionStorage.setItem(key, value)
 }
 
-const removeFromLocalStorage = (key: string) => {
+const removeFromSessionStorage = (key: string) => {
   if (typeof window === 'undefined') return;
-  localStorage.removeItem(key)
+  sessionStorage.removeItem(key)
 }
 
 export const useAccessToken = () => {
-  const accessToken = getFromLocalStorage(key)
+  const accessToken = getFromSessionStorage(key)
 
   const setAccessToken = (accessToken: string) => {
-    setToLocalStorage(key, accessToken)
+    setToSessionStorage(key, accessToken)
   }
 
   const removeAccessToken = () => {
-    removeFromLocalStorage(key)
+    removeFromSessionStorage(key)
   }
 
   return [accessToken, setAccessToken, removeAccessToken] as const
