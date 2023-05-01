@@ -33,7 +33,7 @@ export function UserProvider({ children }: Props) {
         setIsLoading(false);
       }
     });
-  }, []);
+  }, [auth]);
 
   return (
     <UserContext.Provider value={{ user, isLoading }}>
