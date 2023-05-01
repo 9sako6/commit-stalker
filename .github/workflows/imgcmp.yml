@@ -1,13 +1,12 @@
 name: imgcmp
 on: [pull_request]
 jobs:
-  build:
-    name: imgcmp
+  imgcmp:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
     steps:
-      - uses: 9sako6/imgcmp@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: 9sako6/imgcmp@v2.0.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
