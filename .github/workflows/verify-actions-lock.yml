@@ -1,0 +1,27 @@
+name: verify-actions-lock
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install verified actions-lock CLI
+        run: |
+          gh release download v0.4.0 --repo github/gh-actions-lock --pattern linux-amd64 --output "$RUNNER_TEMP/gh-actions-lock"
+          echo "f9da98f2a6e9e0ae77deadf9a2319a8a86bb002b541cc3203b247cc59fb04842  $RUNNER_TEMP/gh-actions-lock" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/gh-actions-lock"
+      - run: '"$RUNNER_TEMP/gh-actions-lock" --verify'
