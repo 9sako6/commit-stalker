@@ -19,5 +19,9 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - run: gh extension install github/gh-actions-lock --pin v0.4.0
-      - run: gh actions-lock --verify
+      - name: Install verified actions-lock CLI
+        run: |
+          gh release download v0.4.0 --repo github/gh-actions-lock --pattern linux-amd64 --output "$RUNNER_TEMP/gh-actions-lock"
+          echo "f9da98f2a6e9e0ae77deadf9a2319a8a86bb002b541cc3203b247cc59fb04842  $RUNNER_TEMP/gh-actions-lock" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/gh-actions-lock"
+      - run: '"$RUNNER_TEMP/gh-actions-lock" --verify'
